@@ -17,7 +17,7 @@ export default function RootLayout({
         className={cn(
           "h-screen font-sans antialiased",
           satoshi.variable,
-          inter.variable
+          inter.variable,
         )}
       >
         <ThemeProvider

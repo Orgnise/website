@@ -23,14 +23,11 @@ export const NextAuthOptions = {
       },
     },
   },
-  providers: [
-
-  ],
+  providers: [],
 
   callbacks: {
-
     async jwt({ token, user, account, profile }) {
-      console.log("jwt begin", { token, user, account, profile })
+      console.log("jwt begin", { token, user, account, profile });
       if (!token.email) {
         return {};
       }
@@ -45,7 +42,7 @@ export const NextAuthOptions = {
     },
 
     authorized({ auth, request: { nextUrl } }: any) {
-      console.log("authorized begin", { auth, nextUrl })
+      console.log("authorized begin", { auth, nextUrl });
       const isLoggedIn = !!auth?.user;
       const isOnDashboard = nextUrl.pathname.startsWith("/dashboard");
       if (isOnDashboard) {
@@ -99,7 +96,7 @@ export const NextAuthOptions = {
       console.warn(code, message);
     },
     debug(code, ...message) {
-      console.debug(code, message)
+      console.debug(code, message);
     },
   },
 } as AuthOptions;

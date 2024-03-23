@@ -1,9 +1,8 @@
-
 import { Metadata } from "next";
 import { HOME_DOMAIN } from "../constants";
 
 export function constructMetadata({
-  title = `${process.env.NEXT_PUBLIC_APP_NAME} - Orgnise - Create, Collaborate and orgnise.`,
+  title = `${process.env.NEXT_PUBLIC_APP_NAME} - Create, Collaborate and orgnise.`,
   description = `Streamline your work with our all-in-one knowledge, doc, and project.`,
   image = "",
   icons = [

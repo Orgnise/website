@@ -1,18 +1,19 @@
 "use client";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import { clsx, type ClassValue } from "clsx";
+import { clsx } from "clsx";
 import Link from "next/link";
 export function Navbar() {
   const session = useSession();
   const status = session.status;
   const isLoading = status === "loading";
   return (
-    <div className="sticky inset-x-0 top-0 z-30 w-full transition-all border-b border-gray-200 bg-white/75 backdrop-blur-lg">
-      <div className="mx-auto w-full max-w-screen-xl px-2.5 lg:px-20">
+    <div className="sticky inset-x-0 top-0 z-30 w-full border-b border-border bg-background/10 backdrop-blur-lg transition-all">
+      <div className="mx-auto w-full px-2.5 lg:px-20">
         <div className="flex h-14 items-center justify-between">
-          <div className="flex items-center space-x-4">
-            <Link href="/">
+          {/* LOGO */}
+          <div className="flex items-center space-x-10">
+            <Link href="/" className="flex items-center gap-1">
               <Image
                 src="/_static/logo.svg"
                 alt="Vercel Logo"
@@ -21,8 +22,28 @@ export function Navbar() {
                 height={30}
                 priority
               />
+              <h1 className="text-2xl font-bold">Orgnise</h1>
             </Link>
+            {/* NAVIGATION */}
+            <nav className="text-md hidden items-center space-x-8 font-medium text-secondary-foreground/85 lg:flex">
+              <Link href="/" className="">
+                Home
+              </Link>
+              <Link href="#features" className="">
+                Features
+              </Link>
+              <Link href="#pricing" className="">
+                Pricing
+              </Link>
+              <Link href="#contact" className="">
+                Contact
+              </Link>
+            </nav>
           </div>
+
+          <div></div>
+
+          {/* Login/Sign up/Dashboard CTA */}
           {session.data ? (
             <Link
               className="animate-fade-in rounded-full border border-black bg-black px-4 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
@@ -38,14 +59,14 @@ export function Navbar() {
             >
               <div className="">
                 <Link
-                  className="animate-fade-in rounded-full px-4 py-1.5 text-sm font-medium text-gray-500 transition-colors ease-out hover:text-black"
+                  className="animate-fade-in rounded-full px-4 py-1.5 text-sm font-medium text-secondary-foreground/85 transition-colors ease-out hover:text-black"
                   href="https://app.orgnise.in/login"
                 >
                   Log in
                 </Link>
                 <Link
                   className="animate-fade-in rounded-full border border-black bg-black px-4 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
-                  href="https://app.orgnise.in/register"
+                  href="https://app.orgnise.in/signup"
                 >
                   Sign Up
                 </Link>
