@@ -6,9 +6,9 @@ import Link from "next/link";
 import { clsx } from "clsx";
 
 export function HeroSection() {
-  const session = useSession();
-  const status = session.status;
-  const isLoading = status === "loading";
+  // const session = useSession();
+  // const status = session.status;
+  // const isLoading = status === "loading";
   return (
     <div>
       <div className="z-10 pt-10 lg:pt-16">
@@ -28,7 +28,7 @@ export function HeroSection() {
           </h2>
         </div>
         <div className="my-12  flex place-content-center mx-auto">
-          {isLoading ? (
+          {/* {isLoading ? (
             <div className=" h-14 w-[188px] px-10 py-2"></div>
           ) : session.data ? (
             <Link
@@ -44,7 +44,15 @@ export function HeroSection() {
             >
               Sign up for free
             </Link>
-          )}
+          )} */}
+          <Link
+            href="#waitlist"
+            className="flex flex-row items-center rounded-full border border-solid  border-primary px-10 py-3  font-bold text-primary hover:bg-primary hover:text-primary-foreground"
+          >
+            {/* <Button variant={"default"}> */}
+            Join Waitlist
+            {/* </Button> */}
+          </Link>
         </div>
       </div>
       <div className=" border-border relative aspect-video w-full rounded-xl border bg-background drop-shadow-[0px_25px_25px_rgba(230,222,255,0.99)] md:drop-shadow-[0px_50px_50px_rgba(230,222,255,0.99)] lg:rounded-[25px]">

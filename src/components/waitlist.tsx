@@ -2,12 +2,15 @@
 import Image from "next/image";
 import { MaxWidthWrapper } from "./max-width-wrapper";
 import { Button } from "./ui/button";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { APP_DOMAIN } from "@/lib/constants";
+import { Spinner } from "./ui/loader";
+import { CheckCircle2Icon } from "lucide-react";
 
 export function WaitList() {
   type Status = "idle" | "loading" | "success" | "error";
   const [status, setStatus] = useState<Status>("idle");
+  const emailRef = useRef<HTMLInputElement>(null);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -33,11 +36,17 @@ export function WaitList() {
       })
       .catch(() => {
         setStatus("error");
+      })
+      .finally(() => {
+        if (emailRef.current) emailRef.current!.value = "";
       });
   }
   return (
-    <div className="bg-gradient-to-b from-background/10 w-full via-background/80 to-background/10 mx-auto pt-8 pb-20">
-      <MaxWidthWrapper className=" flex flex-col place-content-center max-w-md sm:max-w-xl  text-center">
+    <div
+      id="waitlist"
+      className="bg-gradient-to-b from-background/10 w-full via-background/80 to-background/10 mx-auto pt-8 pb-20 overflow-hidden  relative"
+    >
+      <MaxWidthWrapper className=" flex flex-col place-content-center max-w-md sm:max-w-xl  text-center ">
         <Image
           src="/_static/logo.svg"
           className="bg-background object-cover w-32 h-32 rounded-[30px]  border p-6  shadow-md"
@@ -61,6 +70,7 @@ export function WaitList() {
             className="bg-background rounded flex items-center gap-1 p-1 mx-auto w-3/4 mt-6 shadow-[0px_10px_20px_10px_#E6E6E6AD] border border-border/60"
           >
             <input
+              ref={emailRef}
               className="flex-grow px-2 py-1 bg-transparent text-md text-secondary-foreground/80 focus:outline-none"
               placeholder="Enter your email"
               type="email"
@@ -68,13 +78,26 @@ export function WaitList() {
               autoComplete="email"
               required
             />
-            <Button>
-              {status === "loading"
-                ? "Joining..."
-                : status === "success"
-                  ? "Waitlist joined"
-                  : "Join waitlist"}
-            </Button>
+            {status === "success" ? (
+              <Button
+                variant={"outline"}
+                type="reset"
+                size={"icon"}
+                className="flex items-center gap-1 text-green-500 border-green-500"
+              >
+                <CheckCircle2Icon size={20} />
+              </Button>
+            ) : (
+              <Button className="flex gap-1">
+                {status === "loading" ? (
+                  <span className="flex gap-1 items-center">
+                    <Spinner className="text-primary-foreground" />
+                  </span>
+                ) : (
+                  "Join waitlist"
+                )}
+              </Button>
+            )}
           </form>
         </div>
       </MaxWidthWrapper>

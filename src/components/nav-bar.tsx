@@ -3,10 +3,11 @@ import { useSession } from "next-auth/react";
 import Image from "next/image";
 import { clsx } from "clsx";
 import Link from "next/link";
+import { Button } from "./ui/button";
 export function Navbar() {
-  const session = useSession();
-  const status = session.status;
-  const isLoading = status === "loading";
+  // const session = useSession();
+  // const status = session.status;
+  // const isLoading = status === "loading";
   return (
     <div className="sticky inset-x-0 top-0 z-30 w-full border-b border-border bg-background/10 backdrop-blur-lg transition-all">
       <div className="mx-auto w-full px-2.5 lg:px-20">
@@ -32,19 +33,21 @@ export function Navbar() {
               <Link href="#features" className="">
                 Features
               </Link>
-              <Link href="#pricing" className="">
+              {/* <Link href="#pricing" className="">
                 Pricing
               </Link>
               <Link href="#contact" className="">
                 Contact
-              </Link>
+              </Link> */}
             </nav>
           </div>
 
           <div></div>
-
+          <Link href="#waitlist" className="">
+            <Button variant={"default"}>Join Waitlist</Button>
+          </Link>
           {/* Login/Sign up/Dashboard CTA */}
-          {session.data ? (
+          {/* {session.data ? (
             <Link
               className="animate-fade-in rounded-full border border-black bg-black px-4 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
               href="https://app.orgnise.in"
@@ -72,7 +75,7 @@ export function Navbar() {
                 </Link>
               </div>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

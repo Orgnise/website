@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
+import { Card2 } from "./card";
 
 export function Features() {
   return (
@@ -165,26 +166,18 @@ export function Features2() {
     return (
       <div
         className={cn(
-          "relative overflow-hidden border border-border rounded-2xl backdrop-blur-lg bg-gradient-to-tr bg-background/20 from-transparent via-transparent to-[rgb(133,94,255,0.25)]",
+          "relative overflow-hidden border border-border rounded-2xl backdrop-blur-lg bg-gradient-to-tr bg-background/20 from-transparent via-transparent to-[rgb(133,94,255,0.25)] cursor-default relative",
           className,
         )}
       >
-        <Image
-          src="/_static/card-dotted-grid.png"
-          className={cn(
-            "absolute top-0 left-0 right-0 bottom-0 object-cover",
-            imageClassName,
-          )}
-          width={400}
-          height={300}
-          alt={""}
-        />
-        <div className="flex flex-col gap-8 items-center p-6 py-10">
-          <h3 className="text-2xl font-bold text-primary">{title}</h3>
-          <p className="text-center max-w-[380px] text-base text-secondary-foreground/75">
-            {description}
-          </p>
-        </div>
+        <Card2>
+          <div className="flex flex-col gap-8 items-center p-6 py-10 h-full">
+            <h3 className="text-2xl font-bold text-primary">{title}</h3>
+            <p className="text-center max-w-[380px] text-base text-secondary-foreground/75">
+              {description}
+            </p>
+          </div>
+        </Card2>
       </div>
     );
   }
