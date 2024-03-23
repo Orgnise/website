@@ -11,12 +11,12 @@ export function WaitList() {
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
-    const name = formData.get("email") as string;
-    console.log(name);
+    const email = formData.get("email") as string;
+    console.log(email);
     setStatus("loading");
     fetch(`${APP_DOMAIN}/api/waitlist`, {
       method: "POST",
-      body: JSON.stringify({ name }),
+      body: JSON.stringify({ email }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -62,7 +62,7 @@ export function WaitList() {
           >
             <input
               className="flex-grow px-2 py-1 bg-transparent text-md text-secondary-foreground/80 focus:outline-none"
-              placeholder="Enter your name"
+              placeholder="Enter your email"
               type="email"
               name="email"
               autoComplete="email"
