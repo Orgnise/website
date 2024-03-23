@@ -4,10 +4,10 @@ import Image from "next/image";
 export function Features() {
   return (
     <div
-      id="feature"
+      id="features"
       className="w-full bg-gradient-to-b from-background/10 via-background/80 to-background/10 mb-10 sm:my-32"
     >
-      <div className="mx-auto my-14 sm:max-w-lg lg:my-20">
+      <div className="mx-auto my-14 sm:max-w-2xl lg:my-20">
         <div className="flex items-end justify-center">
           <div className="relative z-10">
             <h2 className="font-display text-center text-4xl font-extrabold  sm:text-5xl">
@@ -17,9 +17,8 @@ export function Features() {
         </div>
         <p className="mt-5 text-center text-muted-foreground/95 sm:text-lg">
           we have a set of features that will help you to get the most out of
-          Orgnise. Here are some of the features that we offer.
-          <br />
-          We are always on the lookout for new features to add to our platform.
+          Orgnise. Here are some of the features that we offer. We are always on
+          the lookout for new features to add to our platform.
         </p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 w-full gap-32">
@@ -118,7 +117,7 @@ export function Features() {
 
 export function Features2() {
   return (
-    <div className="w-full bg-gradient-to-b from-background/5 via-background/30 to-background/5 mb-10 sm:my-16 bg-accent/20  pb-20">
+    <div className="w-full bg-gradient-to-b from-background/5 via-background/30 to-background/5 mb-10 sm:my-16 bg-accent/20">
       <div>
         <div className="mx-auto my-14 lg:my-20">
           <div className="flex items-end justify-center">
@@ -138,7 +137,8 @@ export function Features2() {
           />
 
           <Card
-            className="to-[rgba(101,83,132,0.19)] bg-gradient-to-b"
+            className="to-[rgba(255,102,68,0.07)] bg-gradient-to-b "
+            imageClassName="rotate-180 -translate-y-64"
             title="Simply Easy Space"
             description="Experience a platform that is straightforward and user-friendly,free from unnecessary complexities or distractions"
           />
@@ -155,22 +155,26 @@ export function Features2() {
     title,
     description,
     className,
+    imageClassName,
   }: {
     title: string;
     description: string;
     className?: string;
+    imageClassName?: string;
   }) {
     return (
       <div
         className={cn(
-          "overflow-hidden border border-border rounded-2xl backdrop-blur-lg bg-gradient-to-tr bg-background/20 from-transparent via-transparent to-[rgb(133,94,255,0.25)]",
+          "relative overflow-hidden border border-border rounded-2xl backdrop-blur-lg bg-gradient-to-tr bg-background/20 from-transparent via-transparent to-[rgb(133,94,255,0.25)]",
           className,
         )}
       >
         <Image
-          src="_static/card-dotted-grid.png"
-          className="absolute top-0 left-0 right-0 bottom-0 object-cover  "
-          unoptimized
+          src="/_static/card-dotted-grid.png"
+          className={cn(
+            "absolute top-0 left-0 right-0 bottom-0 object-cover",
+            imageClassName,
+          )}
           width={400}
           height={300}
           alt={""}
