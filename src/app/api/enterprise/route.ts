@@ -19,20 +19,20 @@ export async function OPTIONS(request: Request) {
 // API to save waitlist email
 export async function POST(request: Request) {
   try {
-    const { email, company, comment } = (await request.json()) as {
+    const { email, company, comments } = (await request.json()) as {
       email: string;
       company: string;
-      comment: string;
+      comments: string;
     };
 
-    console.log({ email, company, comment });
+    console.log({ email, company, comments });
     sendEmail({
-      identifier: process.env.EMAIL_SERVER_USER as string,
+      identifier: email,
       subject: "Enterprise Request",
       react: EnterpriseRequest({
         email,
         company,
-        comment,
+        comment: comments,
       }),
     });
     return NextResponse.json({ status: "OK" }, { status: 200 });

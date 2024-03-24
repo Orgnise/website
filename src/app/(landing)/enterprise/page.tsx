@@ -104,8 +104,12 @@ function Form() {
                 aria-invalid="true"
               />
             </div>
-            <Button type="submit" className="bg-secondary-foreground">
-              Submit {status === "pending" ? <Spinner /> : null}
+            <Button type="submit" className="bg-secondary-foreground gap-1">
+              {status === "pending" ? (
+                <Spinner className="text-primary-foreground" />
+              ) : (
+                "Submit"
+              )}
             </Button>
           </form>
         )}
