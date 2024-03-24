@@ -27,7 +27,7 @@ export async function POST(request: Request) {
 
     console.log({ email, company, comments });
     sendEmail({
-      identifier: email,
+      identifier: process.env.EMAIL_SERVER_USER ?? "",
       subject: "Enterprise Request",
       react: EnterpriseRequest({
         email,
