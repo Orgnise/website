@@ -10,10 +10,9 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <Providers>
       <Background />
-      <div className="min-h-screen h-full overflow-y-auto w-full">
+      <div className="h-full min-h-screen w-full overflow-y-auto">
         <Navbar />
         {children}
-        <Footer />
       </div>
     </Providers>
   );

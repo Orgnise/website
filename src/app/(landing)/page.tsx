@@ -13,6 +13,7 @@ export default function Home() {
         <Features2 />
       </MaxWidthWrapper>
       <WaitList />
+      <Footer />
     </main>
   );
 }

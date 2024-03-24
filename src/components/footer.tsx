@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export function Footer() {
   return (
-    <footer className="bg-background/10 p-4 border-t border-border flex flex-row items-center place-content-between text-xs">
+    <footer className="flex flex-row place-content-between items-center border-t border-border bg-background/10 p-4 text-xs">
       <p className="text-muted-foreground/95 ">
         © 2024 Orgnise. All rights reserved.
       </p>

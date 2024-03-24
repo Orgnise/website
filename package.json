@@ -7,12 +7,16 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "email:preview": "email dev",
     "format:write": "prettier --write \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-tabs": "^1.0.4",
+    "@react-email/components": "^0.0.15",
+    "@react-email/render": "0.0.12",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.20",
@@ -21,6 +25,7 @@
     "next": "14.1.4",
     "next-auth": "^4.24.7",
     "next-themes": "^0.3.0",
+    "nodemailer": "^6.9.13",
     "npm": "^10.5.0",
     "react": "^18",
     "react-dom": "^18",
@@ -29,6 +34,7 @@
   },
   "devDependencies": {
     "@types/node": "^20",
+    "@types/nodemailer": "^6.4.14",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.0.1",

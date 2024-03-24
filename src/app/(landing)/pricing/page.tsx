@@ -1,37 +1,46 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 import { Button } from "@/components/ui/button";
-import {
-  BUSINESS_PLAN,
-  FREE_PLAN,
-  PLANS,
-  PRO_PLAN,
-} from "@/components/pricing";
+import { BUSINESS_PLAN, FREE_PLAN, PRO_PLAN } from "@/components/pricing";
 import { CheckCircle2Icon } from "lucide-react";
 import clsx from "clsx";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen overflow-y-auto w-full mb-10">
-      <MaxWidthWrapper>
-        <div className="mt-[10vh] flex flex-col items-center place-content-center mx-auto text-center w-full">
-          <h1 className="text-2xl font-bold">Pricing Plans</h1>
-          <p>Simple pricing. No surprise feed</p>
+    <main className="mb-10 min-h-screen w-full overflow-y-auto">
+      <MaxWidthWrapper className="z-10 pt-10 lg:pt-16">
+        <div className="mx-auto flex w-full flex-col place-content-center items-center text-center">
+          <h1 className="font-display md:text7xl text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[5rem] ">
+            <span className="">
+              Simple,
+              <span className="bg-gradient-to-r from-indigo-800 via-violet-600 to-purple-700 bg-clip-text text-transparent">
+                {" "}
+                and Affordable Pricing Options
+              </span>
+            </span>
+          </h1>
+          <div>
+            <h2 className="mx-auto mt-6 max-w-[600px] text-center text-zinc-600 [text-wrap:balance] md:text-xl">
+              Discover the Perfect Plan for You - Get Started for Free Without
+              Any Credit Card Needed
+            </h2>
+          </div>
 
-          <Tabs defaultValue="monthly" className="my-10 w-full max-w-fit">
-            <TabsList className="bg-secondary-foreground/5 mb-10">
+          <Tabs defaultValue="monthly" className="my-10 w-full ">
+            <TabsList className="mb-10 bg-secondary-foreground/5">
               <TabsTrigger value="monthly">Monthly</TabsTrigger>
               <TabsTrigger value="yearly">Yearly</TabsTrigger>
             </TabsList>
             <TabsContent value="monthly">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:p-10 place-items-center">
+              <div className="grid grid-cols-1 place-items-center gap-6 md:grid-cols-3 lg:p-10">
                 <PlanCard plan={FREE_PLAN} isMonthly />
                 <PlanCard
                   plan={PRO_PLAN}
                   className={
-                    "border border-primary lg:-translate-y-10 shadow-[0px_5px_20px_5px_#88D7FF83]"
+                    "border border-primary shadow-[0px_5px_20px_5px_#88D7FF83] lg:-translate-y-10"
                   }
                   isPopular
                   isMonthly
@@ -40,12 +49,12 @@ export default function Home() {
               </div>
             </TabsContent>
             <TabsContent value="yearly">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:p-10 place-items-center">
+              <div className="grid grid-cols-1 place-items-center gap-6 md:grid-cols-3 lg:p-10">
                 <PlanCard plan={FREE_PLAN} />
                 <PlanCard
                   plan={PRO_PLAN}
                   className={
-                    "border border-primary lg:-translate-y-10 shadow-[0px_5px_20px_5px_#88D7FF83]"
+                    "border border-primary shadow-[0px_5px_20px_5px_#88D7FF83] lg:-translate-y-10"
                   }
                   isPopular
                 />
@@ -54,8 +63,8 @@ export default function Home() {
             </TabsContent>
           </Tabs>
           {/* Enterprise */}
-          <div className="border border-border bg-background p-10 w-full text-left flex flex-row items-center gap-2 max-w-4xl mx-auto rounded-xl">
-            <div className="flex flex-col gap-4 flex-grow">
+          <div className="mx-auto flex w-full max-w-4xl flex-row items-center gap-2 rounded-xl border border-border bg-background p-10 text-left">
+            <div className="flex flex-grow flex-col gap-4">
               <h2 className="text-3xl font-bold ">
                 Orgnise{" "}
                 <span className="bg-gradient-to-r from-indigo-800 via-violet-600 to-purple-700 bg-clip-text text-transparent">
@@ -74,7 +83,7 @@ export default function Home() {
 
             <Link
               href="https://orgnise.in/enterprise"
-              className="inline-flex whitespace-nowrap rounded-full border border-solid  border-primary px-4 py-2  font-bold  hover:bg-primary hover:text-primary-foreground bg-gradient-to-tr from-indigo-800 via-violet-600 to-purple-700  text-primary-foreground"
+              className="inline-flex whitespace-nowrap rounded-full border border-solid  border-primary bg-gradient-to-tr from-indigo-800  via-violet-600  to-purple-700 px-4 py-2 font-bold text-primary-foreground hover:bg-primary  hover:text-primary-foreground"
             >
               Contact us
             </Link>
@@ -103,12 +112,12 @@ function PlanCard({
   return (
     <div
       className={clsx(
-        "relative flex flex-col bg-background rounded-xl shadow-sm p-4 border border-border text-left  w-full max-w-[420px] lg:min-w-[320px]",
+        "relative flex w-full max-w-[420px] flex-col rounded-xl border border-border bg-background p-4  text-left shadow-sm lg:min-w-[320px]",
         className,
       )}
       style={{}}
     >
-      <h2 className="text-base font-bold py-3">{plan.name}</h2>
+      <h2 className="py-3 text-base font-bold">{plan.name}</h2>
 
       <p className="">
         <span className="text-3xl font-bold">
@@ -118,18 +127,18 @@ function PlanCard({
           / per month
         </span>
       </p>
-      <p className="text-sm py-3 text-secondary-foreground/80">
+      <p className="py-3 text-sm text-secondary-foreground/80">
         {plan.tagline}
       </p>
       <hr />
-      <h4 className={clsx("text-base font-bold mt-4", plan.colors.text)}>
+      <h4 className={clsx("mt-4 text-base font-bold", plan.colors.text)}>
         {plan.featureTitle}
       </h4>
-      <ul className="py-3 flex-grow">
+      <ul className="flex-grow py-3">
         {plan.features.map((feature, index) => (
           <li
             key={index}
-            className="text-secondary-foreground/70 text-sm leading-9 flex items-center gap-2"
+            className="flex items-center gap-2 text-sm leading-9 text-secondary-foreground/70"
           >
             <CheckCircle2Icon size={20} className={plan.colors.text} />
             {feature.text ?? ""}
@@ -144,7 +153,7 @@ function PlanCard({
       </Button>
 
       {isPopular && (
-        <div className="absolute -top-5 left-[35%] inline-flex whitespace-nowrap rounded-full border border-solid  border-primary px-4 py-2  font-bold  hover:bg-primary hover:text-primary-foreground bg-gradient-to-tr from-indigo-800 via-violet-600 to-purple-700  text-primary-foreground">
+        <div className="absolute -top-5 left-[35%] inline-flex whitespace-nowrap rounded-full border border-solid  border-primary bg-gradient-to-tr from-indigo-800  via-violet-600  to-purple-700 px-4 py-2 font-bold text-primary-foreground hover:bg-primary  hover:text-primary-foreground">
           Popular
         </div>
       )}

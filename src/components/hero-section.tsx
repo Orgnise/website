@@ -12,7 +12,7 @@ export function HeroSection() {
   return (
     <div>
       <div className="z-10 pt-10 lg:pt-16">
-        <h1 className="font-display text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:text7xl md:leading-[5rem] ">
+        <h1 className="font-display md:text7xl text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[5rem] ">
           <span className="">
             Organize,
             <span className="bg-gradient-to-r from-indigo-800 via-violet-600 to-purple-700 bg-clip-text text-transparent">
@@ -22,12 +22,12 @@ export function HeroSection() {
           </span>
         </h1>
         <div>
-          <h2 className="mt-6 text-center text-zinc-600 md:text-xl max-w-[600px] mx-auto">
+          <h2 className="mx-auto mt-6 max-w-[600px] text-center text-zinc-600 [text-wrap:balance] md:text-xl">
             Bringing your team&apos;s knowledge and projects together in one
             place, simply and fast
           </h2>
         </div>
-        <div className="my-12  flex place-content-center mx-auto">
+        <div className="mx-auto  my-12 flex place-content-center">
           {/* {isLoading ? (
             <div className=" h-14 w-[188px] px-10 py-2"></div>
           ) : session.data ? (
@@ -55,9 +55,9 @@ export function HeroSection() {
           </Link>
         </div>
       </div>
-      <div className=" border-border relative aspect-video w-full rounded-xl border bg-background drop-shadow-[0px_25px_25px_rgba(230,222,255,0.99)] md:drop-shadow-[0px_50px_50px_rgba(230,222,255,0.99)] lg:rounded-[25px]">
+      <div className=" relative aspect-video w-full rounded-xl border border-border bg-background drop-shadow-[0px_25px_25px_rgba(230,222,255,0.99)] md:drop-shadow-[0px_50px_50px_rgba(230,222,255,0.99)] lg:rounded-[25px]">
         <div
-          className="-inset-2 -z-10 absolute blur-xl filter md:blur-3xl opacity-20 rounded-xl"
+          className="absolute -inset-2 -z-10 rounded-xl opacity-20 blur-xl filter md:blur-3xl"
           style={{
             background:
               "linear-gradient(90deg, rgb(68, 255, 154) -0.55%, rgb(68, 176, 255) 22.86%, rgb(139, 68, 255) 48.36%, rgb(255, 102, 68) 73.33%, rgb(235, 255, 112) 99.34%)",
@@ -65,7 +65,7 @@ export function HeroSection() {
         />
         <Image
           src="/_static/hero-section.png"
-          className="bg-background lg:rounded-[25px] object-cover rounded-xl"
+          className="rounded-xl bg-background object-cover lg:rounded-[25px]"
           alt="Hero"
           width={1920}
           height={1080}

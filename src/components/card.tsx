@@ -23,7 +23,7 @@ export const Card2 = ({ className, ...props }: CardProps) => {
 
   return (
     <div
-      className="card group hover:bg-accent h-full"
+      className="card group h-full hover:bg-accent"
       onMouseMove={onMouseMove}
     >
       <div

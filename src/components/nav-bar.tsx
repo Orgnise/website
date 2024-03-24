@@ -18,6 +18,10 @@ export function Navbar() {
       name: "Pricing",
       segment: "/pricing",
     },
+    {
+      name: "Enterprise",
+      segment: "/enterprise",
+    },
   ];
   return (
     <div className="sticky inset-x-0 top-0 z-30 w-full border-b border-border bg-background/10 backdrop-blur-lg transition-all">
@@ -37,7 +41,7 @@ export function Navbar() {
               <h1 className="text-2xl font-bold">Orgnise</h1>
             </Link>
             {/* NAVIGATION */}
-            <nav className="text-md hidden items-center space-x48 font-medium text-secondary-foreground/85 lg:flex">
+            <nav className="text-md space-x48 hidden items-center font-medium text-secondary-foreground/85 lg:flex">
               {tabs.map(({ name, segment }, index) => (
                 <NavLink key={index} segment={segment}>
                   {name}
@@ -60,7 +64,7 @@ export function Navbar() {
           </div>
 
           <div></div>
-          <Link href="#waitlist" className="">
+          <Link href="/#waitlist" className="">
             <Button variant={"default"}>Join Waitlist</Button>
           </Link>
           {/* Login/Sign up/Dashboard CTA */}

@@ -44,12 +44,12 @@ export function WaitList() {
   return (
     <div
       id="waitlist"
-      className="bg-gradient-to-b from-background/10 w-full via-background/80 to-background/10 mx-auto pt-8 pb-20 overflow-hidden  relative"
+      className="relative mx-auto w-full overflow-hidden bg-gradient-to-b from-background/10 via-background/80 to-background/10 pb-20  pt-8"
     >
-      <MaxWidthWrapper className=" flex flex-col place-content-center max-w-md sm:max-w-xl  text-center ">
+      <MaxWidthWrapper className=" flex max-w-md flex-col place-content-center text-center  sm:max-w-xl ">
         <Image
           src="/_static/logo.svg"
-          className="bg-background object-cover w-32 h-32 rounded-[30px]  border p-6  shadow-md"
+          className="h-32 w-32 rounded-[30px] border bg-background  object-cover p-6  shadow-md"
           alt="Hero"
           width={100}
           height={100}
@@ -57,21 +57,21 @@ export function WaitList() {
             boxShadow: "8px -7px 15px 6px rgba(229,229,229,1) inset",
           }}
         />
-        <div className="flex flex-col gap-4 mt-4 place-content-center">
-          <h1 className="mb-3 text-4xl sm:text-5xl lg:text-7xl font-bold">
+        <div className="mt-4 flex flex-col place-content-center gap-4">
+          <h1 className="mb-3 text-4xl font-bold sm:text-5xl lg:text-7xl">
             A better way to align your team
           </h1>
-          <p className="text-md text-secondary-foreground/80 lg:text-md max-w-sm lg:max-w-full mx-auto">
+          <p className="text-md lg:text-md mx-auto max-w-sm text-secondary-foreground/80 lg:max-w-full">
             Join our growing waitlist and we&apos;ll let you in as soon as
             possible
           </p>
           <form
             onSubmit={handleSubmit}
-            className="bg-background rounded flex items-center gap-1 p-1 mx-auto sm:w-3/4 mt-6 shadow-[0px_10px_20px_10px_#E6E6E6AD] border border-border/60"
+            className="mx-auto mt-6 flex items-center gap-1 rounded border border-border/60 bg-background p-1 shadow-[0px_10px_20px_10px_#E6E6E6AD] sm:w-3/4"
           >
             <input
               ref={emailRef}
-              className="flex-grow px-2 py-1 bg-transparent text-md text-secondary-foreground/80 focus:outline-none"
+              className="text-md flex-grow bg-transparent px-2 py-1 text-secondary-foreground/80 focus:outline-none"
               placeholder="Enter your email"
               type="email"
               name="email"
@@ -83,14 +83,14 @@ export function WaitList() {
                 variant={"outline"}
                 type="reset"
                 size={"icon"}
-                className="flex items-center gap-1 text-green-500 border-green-500"
+                className="flex items-center gap-1 border-green-500 text-green-500"
               >
                 <CheckCircle2Icon size={20} />
               </Button>
             ) : (
               <Button className="flex gap-1">
                 {status === "loading" ? (
-                  <span className="flex gap-1 items-center">
+                  <span className="flex items-center gap-1">
                     <Spinner className="text-primary-foreground" />
                   </span>
                 ) : (
