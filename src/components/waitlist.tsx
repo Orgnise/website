@@ -67,7 +67,7 @@ export function WaitList() {
           </p>
           <form
             onSubmit={handleSubmit}
-            className="bg-background rounded flex items-center gap-1 p-1 mx-auto w-3/4 mt-6 shadow-[0px_10px_20px_10px_#E6E6E6AD] border border-border/60"
+            className="bg-background rounded flex items-center gap-1 p-1 mx-auto sm:w-3/4 mt-6 shadow-[0px_10px_20px_10px_#E6E6E6AD] border border-border/60"
           >
             <input
               ref={emailRef}

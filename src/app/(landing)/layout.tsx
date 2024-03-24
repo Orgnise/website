@@ -1,6 +1,8 @@
 import { Background } from "@/components/background";
 import { ReactNode } from "react";
 import Providers from "./providers";
+import { Navbar } from "@/components/nav-bar";
+import { Footer } from "@/components/footer";
 
 export const runtime = "edge";
 
@@ -8,8 +10,10 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <Providers>
       <Background />
-      <div className="Layout relative z-10 flex h-screen w-screen justify-center">
+      <div className="min-h-screen h-full overflow-y-auto w-full">
+        <Navbar />
         {children}
+        <Footer />
       </div>
     </Providers>
   );

@@ -4,10 +4,21 @@ import Image from "next/image";
 import { clsx } from "clsx";
 import Link from "next/link";
 import { Button } from "./ui/button";
+import NavLink from "./ui/navlink";
 export function Navbar() {
   // const session = useSession();
   // const status = session.status;
   // const isLoading = status === "loading";
+  const tabs = [
+    {
+      name: "Features",
+      segment: "/#features",
+    },
+    {
+      name: "Pricing",
+      segment: "/pricing",
+    },
+  ];
   return (
     <div className="sticky inset-x-0 top-0 z-30 w-full border-b border-border bg-background/10 backdrop-blur-lg transition-all">
       <div className="mx-auto w-full px-2.5 lg:px-20">
@@ -26,16 +37,22 @@ export function Navbar() {
               <h1 className="text-2xl font-bold">Orgnise</h1>
             </Link>
             {/* NAVIGATION */}
-            <nav className="text-md hidden items-center space-x-8 font-medium text-secondary-foreground/85 lg:flex">
-              <Link href="/" className="">
+            <nav className="text-md hidden items-center space-x48 font-medium text-secondary-foreground/85 lg:flex">
+              {tabs.map(({ name, segment }, index) => (
+                <NavLink key={index} segment={segment}>
+                  {name}
+                </NavLink>
+              ))}
+              {/* <Link href="/" className="">
                 Home
               </Link>
               <Link href="#features" className="">
                 Features
               </Link>
-              {/* <Link href="#pricing" className="">
+              <Link href="/pricing" className="">
                 Pricing
-              </Link>
+              </Link> */}
+              {/*
               <Link href="#contact" className="">
                 Contact
               </Link> */}
