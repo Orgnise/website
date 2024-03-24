@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     };
 
     console.log({ email, company, comments });
-    sendEmail({
+    await sendEmail({
       identifier: process.env.EMAIL_SERVER_USER ?? "",
       subject: "Enterprise Request",
       react: EnterpriseRequest({
