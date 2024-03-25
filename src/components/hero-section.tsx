@@ -1,9 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
-import { clsx } from "clsx";
 
 export function HeroSection() {
   // const session = useSession();
@@ -64,7 +61,7 @@ export function HeroSection() {
           }}
         />
         <Image
-          src="/_static/hero-section.png"
+          src="/_static/hero-section.webp"
           className="rounded-xl bg-background object-cover lg:rounded-[25px]"
           alt="Hero"
           width={1920}

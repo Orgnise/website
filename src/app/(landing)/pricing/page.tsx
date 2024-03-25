@@ -6,8 +6,11 @@ import { CheckCircle2Icon } from "lucide-react";
 import clsx from "clsx";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import { Footer } from "@/components/footer";
+import { constructMetadata } from "@/lib/utility/construct-metadata";
 
+export const metadata = constructMetadata({
+  title: "Pricing Plans- Orgnise",
+});
 export default function Home() {
   return (
     <main className="mb-10 min-h-screen w-full overflow-y-auto">

@@ -69,7 +69,7 @@ export function Features() {
           <div className="flex flex-col justify-center gap-2">
             <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border  bg-background shadow-sm">
               <Image
-                src="/_static/workspaces.png"
+                src="/_static/workspaces.webp"
                 className="bg-background object-cover "
                 alt="Hero"
                 width={1920}
@@ -92,7 +92,7 @@ export function Features() {
           <div className="flex flex-col justify-center gap-2">
             <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border  bg-background shadow-sm">
               <Image
-                src="/_static/hero-section.png"
+                src="/_static/hero-section.webp"
                 className="bg-background object-cover "
                 alt="Hero"
                 width={1920}
