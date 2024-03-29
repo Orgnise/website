@@ -1,9 +1,28 @@
+import { Card2 } from "@/components/card";
+import { DynamicPattern } from "@/components/pattern/dynamic-pattern";
+import Pattern from "@/components/pattern/pattern";
+import { MotionValue } from "framer-motion";
 import Image from "next/image";
 
 export default function OgPage() {
   return (
-    <div className="relative isolate overflow-hidden">
-      <div className="mx-auto max-w-7xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:pt-40">
+    <div className=" backdrop-blur-sm">
+      <div
+        className="absolute left-0 top-0 h-full w-full"
+        style={{
+          content: '""',
+          backgroundImage: "url(_static/grid.svg)",
+          zIndex: -1,
+          position: "absolute",
+          width: "100%",
+          height: "100%",
+          top: 0,
+          opacity: 0.4,
+          filter: "invert(1)",
+        }}
+      />
+
+      <div className="mx-auto h-screen max-w-screen-2xl px-6 pt-10 sm:pb-32 lg:flex lg:px-8 lg:pt-40">
         <div className="mx-auto max-w-2xl flex-shrink-0 lg:mx-0 lg:max-w-xl lg:pt-8">
           <div className="mt-24 sm:mt-24 lg:mt-20">
             <a

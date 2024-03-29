@@ -3,6 +3,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { constructMetadata } from "@/lib/utility/construct-metadata";
 import { cn } from "@/lib/utils";
 import { inter, satoshi } from "@/styles/font";
+import GTagScript from "@/components/gtag-script";
 
 export const metadata = constructMetadata({});
 
@@ -13,6 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning={true}>
+      <GTagScript />
       <body
         className={cn(
           "h-screen font-sans antialiased",
