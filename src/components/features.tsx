@@ -1,7 +1,8 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Card2 } from "./card";
-
+import clsx from "clsx";
+import { GlowingStarsBackgroundCard } from "./glowing-stars";
 export function Features() {
   return (
     <div
@@ -22,97 +23,104 @@ export function Features() {
           the lookout for new features to add to our platform.
         </p>
       </div>
-      <div className="grid w-full grid-cols-1 gap-32 sm:grid-cols-2">
-        <div className="">
-          <div className="flex flex-col justify-center gap-2">
-            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border border-border  bg-background shadow-sm">
-              <Image
-                src="/_static/create-team-2.png"
-                className="bg-background object-cover "
-                alt="Hero"
-                width={1920}
-                height={1080}
-              />
-            </div>
-            <div className="mt-4">
-              <h2 className="lg:text:6xl mb-3 text-2xl font-bold">Teams</h2>
-              <p className="text-md text-zinc-500 lg:text-lg">
-                Create your team to collaborate, organize all your work,
-                projects and ideas in one place.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="sm:translate-y-1/3">
-          <div className="flex flex-col justify-center gap-2">
-            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border border-border bg-background shadow-sm">
-              <Image
-                src="/_static/invite-team-member-2.png"
-                className="bg-background object-cover "
-                alt="Hero"
-                width={1920}
-                height={1080}
-              />
-            </div>
-            <div className="mt-4">
-              <h2 className="lg:text:6xl mb-3 text-2xl font-bold">
-                Invite team members
-              </h2>
-              <p className="text-md text-zinc-500 lg:text-lg">
-                Easy to invite team members to your team and start
-                collaborating.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="">
-          <div className="flex flex-col justify-center gap-2">
-            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border  border-border bg-background shadow-sm">
-              <Image
-                src="/_static/workspaces.webp"
-                className="bg-background object-cover dark:invert"
-                alt="Hero"
-                width={1920}
-                height={1080}
-              />
-            </div>
-            <div className="mt-4">
-              <h2 className="lg:text:6xl mb-3 text-2xl font-bold">
-                Workspaces
-              </h2>
-              <p className="text-md text-zinc-500 lg:text-lg">
-                Create workspaces to organize your projects, ideas, and more.
-                Invite team members to collaborate on projects, assign them to
-                workspace as per their role.
-              </p>
-            </div>
-          </div>
-        </div>
-        <div className="sm:translate-y-1/3">
-          <div className="flex flex-col justify-center gap-2">
-            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border border-border  bg-background shadow-sm">
-              <Image
-                src="/_static/hero-section.webp"
-                className="bg-background object-cover dark:invert"
-                alt="Hero"
-                width={1920}
-                height={1080}
-              />
-            </div>
-            <div className="mt-4">
-              <h2 className="lg:text:6xl mb-3 text-2xl font-bold">
-                Collections
-              </h2>
-              <p className="text-md text-zinc-500 lg:text-lg">
-                Put all the information related to your project in one place.
-                and allows team members to work together in Orgnise instead of
-                emailing back and forth.
-              </p>
-            </div>
+      <div className="grid w-full grid-cols-1 gap-4 space-y-8 sm:grid-cols-2">
+        <FeatureCard
+          title={"Teams"}
+          description={
+            "A team serves as a collaborative space for you and your team members to work together. It unites all your workspaces, collections, and pages."
+          }
+          image={"/_static/create-team-2.png"}
+          className={"bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5 "}
+        />
+
+        <FeatureCard
+          title={"Workspaces"}
+          description={
+            "A workspace is where you can structure your team's data based on major projects or subjects like design, marketing, or engineering."
+          }
+          image={"/_static/workspaces.png"}
+          className={
+            "bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5 sm:translate-y-1/4"
+          }
+        />
+        <FeatureCard
+          title={"Collections"}
+          description={
+            "Collections bring together pages that are related, enabling you to establish a more intricate hierarchical layout and maintain well-organized content."
+          }
+          image={"/_static/hero-section-zoom.png"}
+          className={"bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5"}
+        />
+        <FeatureCard
+          title={"Notion like editor"}
+          description={
+            "Create rich content with our headless Notion-style WYSIWYG editor that allows you to effortlessly design and format your documents exactly as they will appear."
+          }
+          image={"/_static/rich-editor.png"}
+          className={
+            "bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5 sm:translate-y-1/4"
+          }
+        />
+        <FeatureCard
+          title={"Board view"}
+          description={
+            "With board view, collections can be transformed into columns on a board, enabling you to visualize your workflows by setting up a collection for each stage."
+          }
+          image={"/_static/board-view.png"}
+          className={"bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5"}
+        />
+        <FeatureCard
+          title={"Invite team members"}
+          description={
+            "Easy to invite team members to your team and start collaborating."
+          }
+          image={"/_static/invite-team-member-2.png"}
+          className={
+            "bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5  sm:translate-y-1/4"
+          }
+        />
+      </div>
+    </div>
+  );
+}
+
+interface Prop {
+  title: string;
+  description: string;
+  image: string;
+  className: string;
+}
+function FeatureCard({ title, description, image, className }: Prop) {
+  return (
+    <GlowingStarsBackgroundCard
+      disabledGlow
+      className={cn(
+        "relative h-[440px] transform-gpu overflow-hidden rounded-xl border border-border  lg:p-8 xl:h-[480px]",
+        className,
+      )}
+    >
+      <div className={cn("highlight-white-md bg-gray-750/60 relative z-30 ")}>
+        <h3 className="relative max-w-md text-xl font-semibold text-secondary-foreground  lg:text-2xl">
+          {title}
+        </h3>
+        <p className="relative mt-5 max-w-lg text-base text-secondary-foreground/[85%]">
+          {description}
+        </p>
+
+        <div className="relative -mb-10 -ml-9 -mr-2 mt-8">
+          <div className="relative overflow-hidden rounded-tr-xl border-border/40 shadow-2xl">
+            <Image
+              src={image}
+              className="relative  -mr-px -mt-px rounded-tr-xl  "
+              alt="Hero"
+              width={600}
+              height={400}
+              style={{ color: "transparent" }}
+            />
           </div>
         </div>
       </div>
-    </div>
+    </GlowingStarsBackgroundCard>
   );
 }
 

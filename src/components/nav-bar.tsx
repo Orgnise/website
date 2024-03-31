@@ -29,7 +29,7 @@ export function Navbar() {
     },
   ];
   return (
-    <div className="sticky inset-x-0 top-0 z-30 w-full border-b border-border bg-background/10 backdrop-blur-lg transition-all dark:bg-background">
+    <div className="fixed inset-x-0 top-0 z-30 w-full border-b border-border bg-background/10 backdrop-blur-lg transition-all dark:bg-background">
       <div className="mx-auto w-full px-2.5 lg:px-20">
         <div className="flex h-14 items-center justify-between">
           {/* LOGO */}

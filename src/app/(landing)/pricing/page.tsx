@@ -13,7 +13,7 @@ export const metadata = constructMetadata({
 });
 export default function Home() {
   return (
-    <main className="mb-10 w-full flex-grow">
+    <main className=" w-full flex-grow">
       <MaxWidthWrapper className="z-10 pt-10 lg:pt-16">
         <div className="mx-auto flex w-full flex-col place-content-center items-center text-center">
           <h1 className="font-display md:text7xl text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[5rem] ">
