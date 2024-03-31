@@ -5,7 +5,7 @@ export const runtime = "edge";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div className="h-full min-h-screen w-full overflow-y-auto">
+    <div className="flex  h-full w-full flex-col">
       {children}
       <Footer />
     </div>

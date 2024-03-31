@@ -13,7 +13,7 @@ export const metadata = constructMetadata({
 });
 export default function Home() {
   return (
-    <main className="mb-10 min-h-screen w-full overflow-y-auto">
+    <main className="mb-10 w-full flex-grow">
       <MaxWidthWrapper className="z-10 pt-10 lg:pt-16">
         <div className="mx-auto flex w-full flex-col place-content-center items-center text-center">
           <h1 className="font-display md:text7xl text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[5rem] ">
@@ -26,7 +26,7 @@ export default function Home() {
             </span>
           </h1>
           <div>
-            <h2 className="mx-auto mt-6 max-w-[600px] text-center text-zinc-600 [text-wrap:balance] md:text-xl">
+            <h2 className="mx-auto mt-6 max-w-[600px] text-center text-muted-foreground/95 [text-wrap:balance] md:text-xl">
               Discover the Perfect Plan for You - Get Started for Free Without
               Any Credit Card Needed
             </h2>

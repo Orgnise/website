@@ -30,7 +30,7 @@ export default function EnterpriseForm() {
   }
   return (
     <div className="mx-auto my-10  w-full max-w-xl">
-      <div className="w-full space-y-6 rounded-xl border border-border bg-background p-10 shadow">
+      <div className="w-full space-y-6 rounded-xl border border-border bg-background/80 p-10 shadow">
         {status === "success" ? (
           <div className="flex h-[528px] flex-col place-content-center items-center">
             <CheckCircle2Icon className="text-green-600" size={25} />
@@ -77,7 +77,10 @@ export default function EnterpriseForm() {
                 aria-invalid="true"
               />
             </div>
-            <Button type="submit" className="gap-1 bg-secondary-foreground">
+            <Button
+              type="submit"
+              className="gap-1 bg-secondary-foreground dark:bg-secondary"
+            >
               {status === "pending" ? (
                 <Spinner className="text-primary-foreground" />
               ) : (

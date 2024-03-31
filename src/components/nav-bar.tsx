@@ -5,6 +5,7 @@ import { clsx } from "clsx";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import NavLink from "./ui/navlink";
+import { ModeToggle } from "./toggle-theme";
 export function Navbar() {
   // const session = useSession();
   // const status = session.status;
@@ -22,9 +23,13 @@ export function Navbar() {
       name: "Enterprise",
       segment: "/enterprise",
     },
+    {
+      name: "About",
+      segment: "/about",
+    },
   ];
   return (
-    <div className="sticky inset-x-0 top-0 z-30 w-full border-b border-border bg-background/10 backdrop-blur-lg transition-all">
+    <div className="sticky inset-x-0 top-0 z-30 w-full border-b border-border bg-background/10 backdrop-blur-lg transition-all dark:bg-background">
       <div className="mx-auto w-full px-2.5 lg:px-20">
         <div className="flex h-14 items-center justify-between">
           {/* LOGO */}
@@ -64,9 +69,12 @@ export function Navbar() {
           </div>
 
           <div></div>
-          <Link href="/#waitlist" className="">
-            <Button variant={"default"}>Join Waitlist</Button>
-          </Link>
+          <div className="flex flex-row gap-4">
+            <Link href="/#waitlist" className="">
+              <Button variant={"default"}>Join Waitlist</Button>
+            </Link>
+            <ModeToggle />
+          </div>
           {/* Login/Sign up/Dashboard CTA */}
           {/* {session.data ? (
             <Link

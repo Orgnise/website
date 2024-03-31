@@ -25,7 +25,7 @@ export function Features() {
       <div className="grid w-full grid-cols-1 gap-32 sm:grid-cols-2">
         <div className="">
           <div className="flex flex-col justify-center gap-2">
-            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border  bg-background shadow-sm">
+            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border border-border  bg-background shadow-sm">
               <Image
                 src="/_static/create-team-2.png"
                 className="bg-background object-cover "
@@ -45,7 +45,7 @@ export function Features() {
         </div>
         <div className="sm:translate-y-1/3">
           <div className="flex flex-col justify-center gap-2">
-            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border  bg-background shadow-sm">
+            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border border-border bg-background shadow-sm">
               <Image
                 src="/_static/invite-team-member-2.png"
                 className="bg-background object-cover "
@@ -67,10 +67,10 @@ export function Features() {
         </div>
         <div className="">
           <div className="flex flex-col justify-center gap-2">
-            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border  bg-background shadow-sm">
+            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border  border-border bg-background shadow-sm">
               <Image
                 src="/_static/workspaces.webp"
-                className="bg-background object-cover "
+                className="bg-background object-cover dark:invert"
                 alt="Hero"
                 width={1920}
                 height={1080}
@@ -90,10 +90,10 @@ export function Features() {
         </div>
         <div className="sm:translate-y-1/3">
           <div className="flex flex-col justify-center gap-2">
-            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border  bg-background shadow-sm">
+            <div className="relative  w-full overflow-hidden whitespace-nowrap rounded-2xl border border-border  bg-background shadow-sm">
               <Image
                 src="/_static/hero-section.webp"
-                className="bg-background object-cover "
+                className="bg-background object-cover dark:invert"
                 alt="Hero"
                 width={1920}
                 height={1080}

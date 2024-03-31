@@ -17,7 +17,7 @@ export default function RootLayout({
       <GTagScript />
       <body
         className={cn(
-          "h-screen font-sans antialiased",
+          "h-screen font-sans antialiased dark:bg-background",
           satoshi.variable,
           inter.variable,
         )}

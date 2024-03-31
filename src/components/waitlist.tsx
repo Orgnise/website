@@ -49,13 +49,10 @@ export function WaitList() {
       <MaxWidthWrapper className=" flex max-w-md flex-col place-content-center text-center  sm:max-w-xl ">
         <Image
           src="/_static/logo.svg"
-          className="h-32 w-32 rounded-[30px] border bg-background  object-cover p-6  shadow-md"
+          className="h-32 w-32 rounded-[30px] border border-border  bg-background  object-cover p-6  antialiased  shadow-[8px_-7px_15px_6px_rgba(229,229,229,1)_inset] invert"
           alt="Hero"
           width={100}
           height={100}
-          style={{
-            boxShadow: "8px -7px 15px 6px rgba(229,229,229,1) inset",
-          }}
         />
         <div className="mt-4 flex flex-col place-content-center gap-4">
           <h1 className="mb-3 text-4xl font-bold sm:text-5xl lg:text-7xl">
@@ -67,7 +64,7 @@ export function WaitList() {
           </p>
           <form
             onSubmit={handleSubmit}
-            className="mx-auto mt-6 flex items-center gap-1 rounded border border-border/60 bg-background p-1 shadow-[0px_10px_20px_10px_#E6E6E6AD] sm:w-3/4"
+            className="mx-auto mt-6 flex items-center gap-1 rounded border border-border/60 bg-background p-1 shadow-[0px_10px_20px_10px_#E6E6E6AD] dark:shadow-none sm:w-3/4"
           >
             <input
               ref={emailRef}

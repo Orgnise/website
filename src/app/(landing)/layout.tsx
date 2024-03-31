@@ -10,7 +10,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <Providers>
       <Background />
-      <div className="h-full min-h-screen w-full overflow-y-auto">
+      <div className="flex h-full flex-col">
         <Navbar />
         {children}
       </div>
