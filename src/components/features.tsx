@@ -95,7 +95,7 @@ function FeatureCard({ title, description, image, className }: Prop) {
     <GlowingStarsBackgroundCard
       disabledGlow
       className={cn(
-        "relative h-[440px] transform-gpu overflow-hidden rounded-xl border border-border  lg:p-8 xl:h-[480px]",
+        "relative h-[440px] transform-gpu overflow-hidden rounded-xl border border-border p-4 lg:p-8 xl:h-[480px]",
         className,
       )}
     >

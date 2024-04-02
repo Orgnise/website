@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import clsx from "clsx";
 
 export const GlowingStarsBackgroundCard = ({
   className,
@@ -58,11 +59,11 @@ export const Illustration = ({
     }, 3000);
 
     return () => clearInterval(interval);
-  }, []);
+  }, [disabledGlow]);
 
   return (
     <div
-      className="h-48 w-full p-1"
+      className="h-full w-full p-1"
       style={{
         display: "grid",
         gridTemplateColumns: `repeat(${columns}, 1fr)`,
@@ -75,7 +76,9 @@ export const Illustration = ({
         const staticDelay = starIdx * 0.01;
         return (
           <div
-            key={`matrix-col-${starIdx}}`}
+            key={clsx(`matrix-col-${starIdx}}`, {
+              hidden: starIdx % columns === 0,
+            })}
             className="relative flex items-center justify-center"
           >
             <Star
@@ -102,7 +105,7 @@ const Star = ({ isGlowing, delay }: { isGlowing: boolean; delay: number }) => {
       }}
       animate={{
         scale: isGlowing ? [1, 1.2, 2.5, 2.2, 1.5] : 1,
-        background: isGlowing ? "#fff" : "#666",
+        background: isGlowing ? "#fff" : "#585858",
       }}
       transition={{
         duration: 2,

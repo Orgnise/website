@@ -1,5 +1,6 @@
 import { Footer } from "@/components/footer";
 import { ReactNode } from "react";
+import { Toaster } from "@/components/ui/sonner";
 
 export const runtime = "edge";
 
@@ -8,6 +9,7 @@ export default function Layout({ children }: { children: ReactNode }) {
     <div className="flex min-h-[calc(100vh-56px)] w-full flex-col">
       {children}
       <Footer />
+      <Toaster />
     </div>
   );
 }

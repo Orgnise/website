@@ -1,3 +1,4 @@
+import { GlowingStarsBackgroundCard } from "@/components/glowing-stars";
 import { MaxWidthWrapper } from "@/components/max-width-wrapper";
 import { Meteors } from "@/components/meteors";
 import { OurValues } from "@/components/our-values";
@@ -42,7 +43,9 @@ export default function Home() {
 function GetStartedSection() {
   return (
     <div className="relative isolate mt-32 overflow-hidden border border-l-0 border-r-0 border-primary bg-secondary-foreground px-6 py-8 text-center shadow-2xl dark:border-indigo-900 dark:bg-background sm:rounded-3xl sm:border sm:px-16">
-      <Meteors />
+      <GlowingStarsBackgroundCard>
+        <Meteors />
+      </GlowingStarsBackgroundCard>
       <h2 className="mx-auto max-w-2xl text-balance text-4xl font-bold tracking-tight text-primary-foreground">
         Have everything conveniently located in one central hub.
       </h2>
