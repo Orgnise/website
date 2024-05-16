@@ -1,19 +1,19 @@
 const BUSINESS_PLAN_MODIFIER = ({
   name = "Business",
-  monthly = 49,
-  yearly = 39,
-  team = 1,
+  monthly = 12,
+  yearly = 10,
   workspace = 20,
-  pages = 20,
+  pages = 200,
   users = 12,
+  ids = [],
 }: {
   name: string;
   monthly: number;
   yearly: number;
-  team: number;
   workspace: number;
   pages: number;
   users: number;
+  ids: string[];
 }) => ({
   name: name,
   tagline: "For larger teams with increased usage",
@@ -21,9 +21,9 @@ const BUSINESS_PLAN_MODIFIER = ({
   price: {
     monthly,
     yearly,
+    ids: ids,
   },
   limits: {
-    team,
     workspace,
     pages,
     users,
@@ -63,9 +63,9 @@ export const PLANS = [
     price: {
       monthly: 0,
       yearly: 0,
+      ids: [] as string[],
     },
     limits: {
-      team: 1,
       workspace: 3,
       pages: 30,
       users: 1,
@@ -96,14 +96,14 @@ export const PLANS = [
     name: "Pro",
     tagline: "For startups & small businesses",
     price: {
-      monthly: 19,
-      yearly: 15,
+      monthly: 24,
+      yearly: 19,
+      ids: [] as string[],
     },
     limits: {
-      team: 1,
-      workspace: 3,
-      pages: 35,
-      users: 1,
+      workspace: 10,
+      pages: 200,
+      users: 5,
     },
     colors: {
       bg: "bg-violet-600",
@@ -117,19 +117,19 @@ export const PLANS = [
     featureTitle: "Everything in Free, plus:",
     features: [
       { text: "5 user" },
-      { text: "9 Workspaces" },
-      { text: "70 pages" },
+      { text: "10 Workspaces" },
+      { text: "200 pages" },
       { text: "Email support", footnote: "Basic email support." },
     ],
   },
   BUSINESS_PLAN_MODIFIER({
     name: "Business",
-    monthly: 49,
-    yearly: 39,
-    pages: 150,
-    users: 12,
-    team: 1,
-    workspace: 20,
+    monthly: 59,
+    yearly: 49,
+    users: 10,
+    pages: 600,
+    workspace: 30,
+    ids: [],
   }),
   ,
   {
@@ -140,6 +140,7 @@ export const PLANS = [
     price: {
       monthly: null,
       yearly: null,
+      ids: [] as string[],
     },
     limits: {
       links: null,
@@ -178,3 +179,26 @@ export const PUBLIC_PLANS = [
   BUSINESS_PLAN,
   ENTERPRISE_PLAN,
 ];
+
+export const SELF_SERVE_PAID_PLANS = PLANS.filter(
+  (p) => p!.name !== "Free" && p!.name !== "Enterprise",
+);
+
+export const FREE_WORKSPACES_LIMIT = 2;
+
+export const getPlanFromPriceId = (priceId: string) => {
+  return PLANS.find((plan) => plan?.price!.ids!.includes(priceId)) || null;
+};
+
+export const getPlanDetails = (plan: string) => {
+  return SELF_SERVE_PAID_PLANS.find(
+    (p) => p!.name.toLowerCase() === plan.toLowerCase(),
+  )!;
+};
+
+export const getNextPlan = (plan?: string | null) => {
+  if (!plan) return PRO_PLAN;
+  return PLANS[
+    PLANS.findIndex((p) => p!.name.toLowerCase() === plan.toLowerCase()) + 1
+  ];
+};
