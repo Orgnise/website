@@ -52,19 +52,6 @@ export function Navbar() {
                   {name}
                 </NavLink>
               ))}
-              {/* <Link href="/" className="">
-                Home
-              </Link>
-              <Link href="#features" className="">
-                Features
-              </Link>
-              <Link href="/pricing" className="">
-                Pricing
-              </Link> */}
-              {/*
-              <Link href="#contact" className="">
-                Contact
-              </Link> */}
             </nav>
           </div>
 
@@ -73,7 +60,7 @@ export function Navbar() {
             <Link href="/#waitlist" className="">
               <Button variant={"default"}>Join Waitlist</Button>
             </Link>
-            <ModeToggle />
+            {/* <ModeToggle /> */}
           </div>
           {/* Login/Sign up/Dashboard CTA */}
           {/* {session.data ? (
