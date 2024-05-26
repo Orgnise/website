@@ -146,6 +146,14 @@ export function Footer() {
                     Terms
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                    href="/refund-policy"
+                  >
+                    Refund Policy
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
