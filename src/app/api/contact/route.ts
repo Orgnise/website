@@ -1,7 +1,7 @@
 import { HOME_DOMAIN } from "@/lib/constants";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { sendEmail } from "../../../../emails";
-import EnterpriseRequest from "../../../../emails/enterprise-request";
+import Query from "../../../../emails/query";
 
 // Add and setting up the OPTIONS method
 export async function OPTIONS(request: Request) {
@@ -19,23 +19,19 @@ export async function OPTIONS(request: Request) {
 // API to save waitlist email
 export async function POST(request: Request) {
   try {
-    const { email, company, comments, companySize, name } = (await request.json()) as {
+    const { email, comments, name } = (await request.json()) as {
       email: string;
-      company: string;
       comments: string;
       name: string;
-      companySize: string;
     };
 
     await sendEmail({
       identifier: process.env.EMAIL_SERVER_USER ?? "",
-      subject: "Enterprise Request",
-      react: EnterpriseRequest({
-        email,
-        company,
-        comment: comments,
+      subject: "New Query for Orgnise",
+      react: Query({
         name,
-        companySize,
+        email,
+        comment: comments,
       }),
     });
     return NextResponse.json({ status: "OK" }, { status: 200 });

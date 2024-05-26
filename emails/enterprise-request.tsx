@@ -12,13 +12,17 @@ import {
 } from "@react-email/components";
 
 export default function EnterpriseRequest({
+  name = "John Doe",
   email = "john@doe.io",
   company = "Acme Inc.",
+  companySize = "Not specified",
   comment = "We're a product based saas company that has huge team. We're looking for a knowledge base management platform with the infrastructure that can handle our scale.",
 }: {
+  name: string;
   email: string;
   company: string;
   comment: string;
+  companySize?: string;
 }) {
   return (
     <Html>
@@ -39,14 +43,17 @@ export default function EnterpriseRequest({
             <Heading className="mx-0 my-7 p-0 text-center text-xl font-semibold text-black">
               New Enterprise Request
             </Heading>
+            <Text className="text-sm leading-6 text-black">Name: {name}</Text>
 
             <Text className="text-sm leading-6 text-black">
               {" "}
               Email: {email}
             </Text>
-
             <Text className="text-sm leading-6 text-black">
               Company: {company}
+            </Text>
+            <Text className="text-sm leading-6 text-black">
+              Company Size: {companySize}
             </Text>
             <Text className="text-sm leading-6 text-black">
               Comment: {comment}

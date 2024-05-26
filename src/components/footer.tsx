@@ -26,7 +26,7 @@ export function Footer() {
               © 2024 Orgnise. All rights reserved.
             </p>
             <div className="flex flex-1 space-x-4 sm:items-end">
-              <a target="_blank" href="https://x.com/orgniseapp">
+              <a target="_blank" href="https://go.orgnise.in/twitter">
                 <svg
                   width="16"
                   height="16"
@@ -39,7 +39,7 @@ export function Footer() {
                 </svg>
               </a>
               <div className="h-4 w-px bg-gray-100 dark:bg-white/10"></div>
-              <a target="_blank" href="https://github.com/orgnise">
+              <a target="_blank" href="https://git.new/orgnise">
                 <svg
                   width="19"
                   height="18"
@@ -56,10 +56,7 @@ export function Footer() {
                 </svg>
               </a>
               <div className="h-4 w-px bg-gray-100 dark:bg-white/10"></div>
-              <Link
-                target="_blank"
-                href="https://www.linkedin.com/company/orgnise/"
-              >
+              <Link target="_blank" href="https://go.orgnise.in/linkedin">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
@@ -118,6 +115,14 @@ export function Footer() {
                     About
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                    href="/contact"
+                  >
+                    Contact us
+                  </Link>
+                </li>
               </ul>
             </div>
             <div>
@@ -152,6 +157,7 @@ export function Footer() {
                   <Link
                     className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
                     href="https://github.com/orgs/Orgnise/projects/1"
+                    target="_blank"
                   >
                     Roadmap
                   </Link>
@@ -159,7 +165,8 @@ export function Footer() {
                 <li>
                   <Link
                     className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="https://cal.com/orgnise/30min"
+                    href="https://go.orgnise.in/book-demo"
+                    target="_blank"
                   >
                     Book a demo
                   </Link>

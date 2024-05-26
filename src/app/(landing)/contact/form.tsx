@@ -5,15 +5,8 @@ import { Button } from "@/components/ui/button";
 import { Spinner } from "@/components/ui/loader";
 import { useState } from "react";
 import { CheckCircle2Icon } from "lucide-react";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 
-export default function EnterpriseForm() {
+export default function ContactUsForm() {
   type FormStatus = "idle" | "pending" | "success" | "error";
   const [status, setStatus] = useState<FormStatus>("idle");
   async function onSubmit(e: any) {
@@ -21,7 +14,7 @@ export default function EnterpriseForm() {
     setStatus("pending");
     const form = new FormData(e.target);
     const rawFormData = Object.fromEntries(form);
-    const res = await fetch("api/enterprise", {
+    const res = await fetch("api/contact", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,21 +44,12 @@ export default function EnterpriseForm() {
           <form onSubmit={onSubmit} className="grid gap-5 p-7 text-left">
             <div>
               <label
-                htmlFor="company"
-                className="mb-2 block text-xs font-medium text-gray-500"
-              >
-                COMPANY NAME
-              </label>
-              <Input required type="text" name="company" />
-            </div>
-            <div>
-              <label
                 htmlFor="name"
                 className="mb-2 block text-xs font-medium text-gray-500"
               >
-                YOUR FULL NAME
+                YOUR NAME
               </label>
-              <Input required autoComplete="name" type="text" name="name" />
+              <Input required type="text" name="name" />
             </div>
             <div>
               <label
@@ -76,26 +60,6 @@ export default function EnterpriseForm() {
               </label>
               <Input required autoComplete="email" type="email" name="email" />
             </div>
-            <div>
-              <label
-                htmlFor="companySize"
-                className="mb-2 block text-xs font-medium text-gray-500"
-              >
-                Company Size
-              </label>
-              <Select name="companySize">
-                <SelectTrigger className="w-full gap-1 border border-border px-2 ">
-                  <SelectValue placeholder="Please select" />
-                </SelectTrigger>
-                <SelectContent className="border-border">
-                  <SelectItem value="1-10">1-10</SelectItem>
-                  <SelectItem value="11-50">11-50</SelectItem>
-                  <SelectItem value="51-200">51-200</SelectItem>
-                  <SelectItem value="500+">500+</SelectItem>
-                </SelectContent>
-              </Select>
-            </div>
-
             <div>
               <label
                 htmlFor="comments"
@@ -109,7 +73,7 @@ export default function EnterpriseForm() {
                 required
                 rows={6}
                 maxLength={1000}
-                placeholder="We're a product based saas company that has huge team. We're looking for a knowledge base management platform with the infrastructure that can handle our scale."
+                placeholder="Tell us what you're looking for"
                 aria-invalid="true"
               />
             </div>
