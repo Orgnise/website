@@ -7,7 +7,7 @@ export function Footer() {
         © 2024 Orgnise. All rights reserved.
       </p>
       <span className="flex items-center gap-8">
-        <Link href={`#policy`}>Privacy</Link>
+        <Link href={`/policy`}>Privacy</Link>
         <Link href={`#terms`}>Terms of Service</Link>
       </span>
     </footer>
