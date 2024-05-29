@@ -9,14 +9,32 @@ import RolesAndPermission from "./roles-and-permission/content.mdx";
 import ManageAcount from "./manage-your-account/content.mdx";
 import ProjectMigration from "./project-migration/content.mdx";
 import WorkspaceManagementEnhancement from "./workspace-management-enhancement/content.mdx";
+import StripeIntegration from "./stripe-integration/content.mdx";
+import PlanBasedLimit from "./plan-based-limit/content.mdx";
 
 
 <MaxWidthWrapper className="bg-background flex-grow">
     <ChangeLogPageHeader/>
     <ChangeLogList>
-    <ChangelogArticle 
+      <ChangelogArticle 
+          time={'MAY 25, 2024'} 
+          link={'/changelog/stripe-integration'} 
+          title="Stripe Integration"
+          imageLink="https://pub-3152a61af92e4405922f4ec571534d9b.r2.dev/website%2Fupgrade-plan.png"
+          >
+          <StripeIntegration/>
+      </ChangelogArticle>
+      <ChangelogArticle 
+          time={'MAY 25, 2024'} 
+          link={'/changelog/plan-based-limit'} 
+          title="Plan-Based Usage Limits"
+          imageLink="https://pub-3152a61af92e4405922f4ec571534d9b.r2.dev/website%2Fresourse-usage.png"
+          >
+          <PlanBasedLimit/>
+      </ChangelogArticle>
+      <ChangelogArticle 
           time={'MAY 12, 2024'} 
-          link={'/changelog'} 
+          link={'/changelog/workspace-management-enhancement'} 
           title="Workspace Management Enhancements"
           >
           <WorkspaceManagementEnhancement/>

@@ -33,7 +33,7 @@ export default function ChangelogArticle({
             <Image
               src={imageLink}
               alt={title ?? "Changelog Image"}
-              className="aspect-video w-full rounded-lg border border-gray-100 object-cover md:h-96"
+              className="aspect-video w-full rounded-lg border border-gray-100 object-cover"
               unoptimized
               width={766}
               height={382}
