@@ -1,7 +1,79 @@
 import Image from "next/image";
 import Link from "next/link";
 
+type FooterLink = {
+  title: string;
+  url: string;
+};
+
+type FooterSection = {
+  header: string;
+  links: FooterLink[];
+};
+
 export function Footer() {
+  const links = [
+    {
+      header: "Product",
+      links: [
+        {
+          title: "Features",
+          url: "/docs",
+        },
+        {
+          title: "Pricing",
+          url: "/pricing",
+        },
+        {
+          title: "Enterprise",
+          url: "/enterprise",
+        },
+        {
+          title: "Changelog",
+          url: "/changelog",
+        },
+        {
+          title: "Contact us",
+          url: "/contact",
+        },
+
+        {
+          title: "About",
+          url: "/about",
+        },
+      ],
+    },
+    {
+      header: "Legal",
+      links: [
+        {
+          title: "Privacy",
+          url: "/privacy",
+        },
+        {
+          title: "Terms",
+          url: "/terms",
+        },
+        {
+          title: "Refund Policy",
+          url: "/refund-policy",
+        },
+      ],
+    },
+    {
+      header: "Status",
+      links: [
+        {
+          title: "Roadmap",
+          url: "https://github.com/orgs/Orgnise/projects/1",
+        },
+        {
+          title: "Book a demo",
+          url: "https://go.orgnise.in/book-demo",
+        },
+      ],
+    },
+  ] as FooterSection[];
   return (
     <footer className="">
       <div className="mx-auto w-full max-w-screen-xl  border border-border bg-background/70 px-2.5 pb-4 pt-16 backdrop-blur-lg md:rounded-t-2xl lg:px-20">
@@ -78,117 +150,29 @@ export function Footer() {
 
           {/* LINKS */}
           <div className="grid flex-1 grid-cols-3 gap-8">
-            <div>
-              <label className="text-sm font-semibold text-gray-800 dark:text-gray-300">
-                Product
-              </label>
-              <ul className="mt-5 space-y-3.5">
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="/docs"
-                  >
-                    Features
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="/pricing"
-                  >
-                    Pricing
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="/enterprise"
-                  >
-                    Enterprise
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="/about"
-                  >
-                    About
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="/contact"
-                  >
-                    Contact us
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="/changelog"
-                  >
-                    Changelog
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <label className="text-sm font-semibold text-gray-800 dark:text-gray-300">
-                Legal
-              </label>
-              <ul className="mt-5 space-y-3.5">
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="/privacy"
-                  >
-                    Privacy
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="/terms"
-                  >
-                    Terms
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="/refund-policy"
-                  >
-                    Refund Policy
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <label className="text-sm font-semibold text-gray-800 dark:text-gray-300">
-                Status
-              </label>
-              <ul className="mt-5 space-y-3.5">
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="https://github.com/orgs/Orgnise/projects/1"
-                    target="_blank"
-                  >
-                    Roadmap
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
-                    href="https://go.orgnise.in/book-demo"
-                    target="_blank"
-                  >
-                    Book a demo
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            {links.map((key, index) => (
+              <div key={index}>
+                {
+                  <div>
+                    <label className="text-sm font-semibold text-gray-800 dark:text-gray-300">
+                      {key.header}
+                    </label>
+                    <ul className="mt-5 space-y-3.5">
+                      {key.links.map((link, index) => (
+                        <li key={index}>
+                          <Link
+                            className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                            href={link.url}
+                          >
+                            {link.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                }
+              </div>
+            ))}
           </div>
         </div>
       </div>
