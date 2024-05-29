@@ -59,8 +59,8 @@ export function WaitList() {
             A better way to align your team
           </h1>
           <p className="text-md lg:text-md mx-auto max-w-sm text-secondary-foreground/80 lg:max-w-full">
-            Join our growing waitlist and we&apos;ll let you in as soon as
-            possible
+            Join the waitlist to be part of our growing community and we&apos;ll
+            let you in as soon as possible
           </p>
           <form
             onSubmit={handleSubmit}

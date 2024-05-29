@@ -10,7 +10,7 @@ export function MaxWidthWrapper({
   return (
     <div
       className={cn(
-        "mx-auto flex w-full max-w-7xl flex-col items-center px-5",
+        "mx-auto flex w-full max-w-screen-xl flex-col items-center px-0 lg:px-20",
         className,
       )}
     >

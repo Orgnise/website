@@ -27,6 +27,10 @@ export function Navbar() {
       name: "About",
       segment: "/about",
     },
+    {
+      name: "ChangeLog",
+      segment: "/changelog",
+    }
   ];
   return (
     <div className="fixed inset-x-0 top-0 z-30 w-full border-b border-border bg-background/10 backdrop-blur-lg transition-all dark:bg-background">

@@ -1,0 +1,25 @@
+import { TwitterIcon } from "@/components";
+import { MaxWidthWrapper } from "@/components";
+import { constructMetadata } from "@/lib/utility/construct-metadata";
+import ChangeLogPageHeader from "@/components/changelog/change-log-header";
+import Changelog from "../../../components/changelog/changelog-article";
+import ChangeLogList from "@/components/changelog/change-log-list"
+import RolesAndPermission from "./roles-and-permission/content.mdx";
+import ChangelogArticle from "@/components/changelog/changelog-article"
+
+
+<MaxWidthWrapper className="bg-background flex-grow">
+    <ChangeLogPageHeader/>
+    <ChangeLogList>
+      <ChangelogArticle time={'APR 12, 2024'} link={'/changelog/roles-and-permission'} title="Added roles and permission on team level">
+        <RolesAndPermission/>
+      </ChangelogArticle>
+    </ChangeLogList>
+</MaxWidthWrapper>
+    
+
+
+
+
+
+

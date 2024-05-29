@@ -17,3 +17,5 @@ export * from "./pricing-plan-card";
 export * from "./theme-provider";
 export * from "./toggle-theme";
 export * from "./waitlist";
+export * from "./icons";
+export * from "./changelog"
