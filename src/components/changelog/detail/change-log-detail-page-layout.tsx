@@ -1,15 +1,19 @@
 import { MaxWidthWrapper, ProsArticle } from "@/components";
+import Image from "next/image";
 
 interface Props {
   children: React.ReactNode;
   title?: string;
   time?: string;
   link?: string;
+  imageLink?: string;
 }
+
 export default function ChangelogDetailPageLayout({
   children,
   time,
   title,
+  imageLink,
 }: Props) {
   return (
     <MaxWidthWrapper>
@@ -37,6 +41,18 @@ export default function ChangelogDetailPageLayout({
             <h1 className="text-2xl font-bold tracking-tight text-gray-800 sm:text-3xl">
               {title}
             </h1>
+            {imageLink && (
+              <div className="overflow-hidden rounded-xl border border-border bg-gray-50/50 p-2">
+                <Image
+                  src={imageLink}
+                  alt={title ?? "Changelog Image"}
+                  className="aspect-video h-8 w-full rounded-lg border border-gray-100 object-cover md:h-96"
+                  unoptimized
+                  width={766}
+                  height={382}
+                />
+              </div>
+            )}
           </div>
           <ProsArticle className="p-0 px-5 sm:pt-0 lg:px-0">
             {children}

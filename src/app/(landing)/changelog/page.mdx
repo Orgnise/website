@@ -5,13 +5,27 @@ import ChangeLogPageHeader from "@/components/changelog/change-log-header";
 import Changelog from "../../../components/changelog/changelog-article";
 import ChangeLogList from "@/components/changelog/change-log-list"
 import RolesAndPermission from "./roles-and-permission/content.mdx";
+import ManageAcount from "./manage-your-account/content.mdx";
 import ChangelogArticle from "@/components/changelog/changelog-article"
 
 
 <MaxWidthWrapper className="bg-background flex-grow">
     <ChangeLogPageHeader/>
     <ChangeLogList>
-      <ChangelogArticle time={'APR 12, 2024'} link={'/changelog/roles-and-permission'} title="Added roles and permission on team level">
+      <ChangelogArticle 
+        time={'APR 13, 2024'} 
+        link={'/changelog/manage-your-account'} 
+        title="Manage Your Account: Update Information and Delete Your Account"
+        imageLink="https://pub-3152a61af92e4405922f4ec571534d9b.r2.dev/website%2Fupdate-profile.png"
+        >
+          <ManageAcount/>
+      </ChangelogArticle>
+      <ChangelogArticle 
+        time={'APR 12, 2024'} 
+        link={'/changelog/roles-and-permission'} 
+        title="Added roles and permission on team level"
+        imageLink="https://pub-3152a61af92e4405922f4ec571534d9b.r2.dev/website%2Fteam-users.png"
+        >
         <RolesAndPermission/>
       </ChangelogArticle>
     </ChangeLogList>

@@ -1,16 +1,19 @@
 import { ProsArticle } from "@/components";
+import Image from "next/image";
 
 interface Props {
   children: React.ReactNode;
   title?: string;
   time?: string;
   link?: string;
+  imageLink?: string;
 }
 export default function ChangelogArticle({
   children,
   time,
   title,
   link,
+  imageLink,
 }: Props) {
   return (
     <div className="grid py-10 md:grid-cols-4 md:px-5 md:py-20 xl:px-0">
@@ -22,6 +25,21 @@ export default function ChangelogArticle({
         </a>
       </div>
       <div className="flex flex-col gap-6 md:col-span-3">
+        {imageLink && (
+          <a
+            href={link ?? "#"}
+            className="overflow-hidden rounded-xl border border-border bg-gray-50/50 p-2"
+          >
+            <Image
+              src={imageLink}
+              alt={title ?? "Changelog Image"}
+              className="aspect-video w-full rounded-lg border border-gray-100 object-cover md:h-96"
+              unoptimized
+              width={766}
+              height={382}
+            />
+          </a>
+        )}
         <a
           className="group mx-5 flex items-center space-x-3 md:mx-0 md:hidden"
           href={link ?? "#"}
