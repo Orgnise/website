@@ -4,9 +4,10 @@ import { constructMetadata } from "@/lib/utility/construct-metadata";
 import ChangeLogPageHeader from "@/components/changelog/change-log-header";
 import Changelog from "../../../components/changelog/changelog-article";
 import ChangeLogList from "@/components/changelog/change-log-list"
+import ChangelogArticle from "@/components/changelog/changelog-article"
 import RolesAndPermission from "./roles-and-permission/content.mdx";
 import ManageAcount from "./manage-your-account/content.mdx";
-import ChangelogArticle from "@/components/changelog/changelog-article"
+import ProjectMigration from "./project-migration/content.mdx";
 
 
 <MaxWidthWrapper className="bg-background flex-grow">
@@ -27,6 +28,14 @@ import ChangelogArticle from "@/components/changelog/changelog-article"
         imageLink="https://pub-3152a61af92e4405922f4ec571534d9b.r2.dev/website%2Fteam-users.png"
         >
         <RolesAndPermission/>
+      </ChangelogArticle>
+      <ChangelogArticle 
+        time={'MAR 22, 2024'} 
+        link={'/changelog/project-migration'} 
+        title="Project Migration Enhances Performance and User Experience"
+        
+        >
+        <ProjectMigration/>
       </ChangelogArticle>
     </ChangeLogList>
 </MaxWidthWrapper>
