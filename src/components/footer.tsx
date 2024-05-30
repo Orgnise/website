@@ -18,7 +18,7 @@ export function Footer() {
       links: [
         {
           title: "Features",
-          url: "/docs",
+          url: "/#features",
         },
         {
           title: "Pricing",
