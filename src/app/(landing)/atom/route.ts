@@ -1,4 +1,4 @@
-import { allBlogPosts, allChangelogPosts } from "contentlayer/generated";
+import { allChangelogPosts } from "content-collections";
 
 export async function GET() {
   return new Response(
@@ -9,7 +9,7 @@ export async function GET() {
         <link href="https://orgnise.in/atom" rel="self"/>
         <link href="https://orgnise.in/"/>
         <updated>${new Date().toISOString()}</updated>
-        <id>https://orgnise.in/</id>${[...allBlogPosts, ...allChangelogPosts]
+        <id>https://orgnise.in/</id>${[...allChangelogPosts]
       .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
       .map((post) => {
         return `
