@@ -50,4 +50,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withContentCollections(withMDX(nextConfig));
+module.exports = withContentCollections(withContentlayer(withMDX(nextConfig)));

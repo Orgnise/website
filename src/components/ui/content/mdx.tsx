@@ -1,21 +1,20 @@
-import Link from "next/link";
-import { useMDXComponent } from "next-contentlayer/hooks";
-import "react-medium-image-zoom/dist/styles.css";
-import HelpArticleLink from "./help-article-link";
-import CategoryCard from "./category-card";
-import { ListChecks } from "lucide-react";
-import ZoomImage from "./zoom-image";
-import { cn } from "@/lib/utils";
 import BlurImage from "@/components/blur-image";
+import ExpandingArrow from "@/components/icons/expanding-arrow";
 import { HELP_CATEGORIES, POPULAR_ARTICLES } from "@/lib/constants";
 import { formatDate } from "@/lib/functions/utils";
-import ExpandingArrow from "@/components/icons/expanding-arrow";
+import { cn } from "@/lib/utils";
+import { ListChecks } from "lucide-react";
+import { useMDXComponent } from "next-contentlayer/hooks";
+import Link from "next/link";
+import "react-medium-image-zoom/dist/styles.css";
+import CategoryCard from "./category-card";
 import CopyBox from "./copy-box";
+import HelpArticleLink from "./help-article-link";
+import ZoomImage from "./zoom-image";
 
-import { inter } from "@/styles/font";
 import remarkGfm from "remark-gfm";
 
-import Markdown from "react-markdown";
+import { MDXContent } from "@content-collections/mdx/react";
 import { allChangelogPosts, allHelpPosts } from "content-collections";
 
 const CustomLink = (props: any) => {
@@ -175,51 +174,27 @@ const components = {
   ),
 };
 
-// interface MDXProps {
-//   code: string;
-//   images?: { alt: string; src: string; blurDataURL: string }[];
-//   tweets?: any[];
-//   className?: string;
-// }
-
-// export function MDX({ code, images, className }: MDXProps) {
-//   const Component = useMDXComponent(code);
-
-//   const MDXImage = (props: any) => {
-//     if (!images) return null;
-//     const blurDataURL = images.find(
-//       (image) => image.src === props.src,
-//     )?.blurDataURL;
-
-//     return (
-//       <ZoomImage {...props} blurDataURL={blurDataURL} unoptimized={true} />
-//     );
-//   };
-
-//   return (
-//     <article
-//       data-mdx-container
-// className={cn(
-//   "prose-headings:font-display prose prose-gray max-w-none transition-all prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold",
-//   className,
-// )}
-//     >
-//       <Component
-//         components={{
-//           ...components,
-//           Image: MDXImage,
-//         }}
-//       />
-//     </article>
-//   );
-// }
-
-interface MDXProps {
+interface MDXProps2 {
   markdown: string;
-  images?: { src: string; blurDataURL: string }[];
+  images?: { alt: string; src: string; blurDataURL: string }[];
+  tweets?: any[];
   className?: string;
 }
-export function MDX({ markdown, className, images }: MDXProps) {
+
+export function MDX2({ markdown, images, className }: MDXProps) {
+  const Component = useMDXComponent(markdown);
+
+  const MDXImage = (props: any) => {
+    if (!images) return null;
+    const blurDataURL = images.find(
+      (image) => image.src === props.src,
+    )?.blurDataURL;
+
+    return (
+      <ZoomImage {...props} blurDataURL={blurDataURL} unoptimized={true} />
+    );
+  };
+
   return (
     <article
       data-mdx-container
@@ -228,7 +203,30 @@ export function MDX({ markdown, className, images }: MDXProps) {
         className,
       )}
     >
-      <Markdown
+      <Component
+        components={{
+          ...components,
+          Image: MDXImage,
+        }}
+      />
+    </article>
+  );
+}
+interface MDXProps {
+  markdown: string;
+  images?: { src: string; blurDataURL: string }[];
+  className?: string;
+}
+export async function MDX({ markdown, className, images }: MDXProps) {
+  return (
+    <article
+      data-mdx-container
+      className={cn(
+        "prose-headings:font-display prose prose-gray max-w-none transition-all prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold",
+        className,
+      )}
+    >
+      {/* <Markdown
         remarkPlugins={[remarkGfm]}
         components={{
           ...components,
@@ -249,7 +247,27 @@ export function MDX({ markdown, className, images }: MDXProps) {
         }}
       >
         {markdown}
-      </Markdown>
+      </Markdown> */}
+      <MDXContent
+        code={markdown}
+        remarkPlugins={(p: any) => [remarkGfm(p)]}
+        components={{
+          ...components,
+          Image: (props: any) => {
+            const blurDataURL = images?.find(
+              (image) => image.src === props.src,
+            )?.blurDataURL;
+
+            return (
+              <ZoomImage
+                {...props}
+                blurDataURL={blurDataURL}
+                unoptimized={true}
+              />
+            );
+          },
+        }}
+      />
     </article>
   );
 }

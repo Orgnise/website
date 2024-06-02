@@ -12,6 +12,7 @@
     "format": "prettier \"**/*.{css,js,json,jsx,ts,tsx}\""
   },
   "dependencies": {
+    "@content-collections/mdx": "^0.1.3",
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
     "@next/mdx": "^14.2.3",
@@ -51,6 +52,7 @@
   },
   "devDependencies": {
     "@content-collections/core": "^0.5.0",
+    "@content-collections/markdown": "^0.1.0",
     "@content-collections/next": "^0.2.0",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",

@@ -55,10 +55,7 @@ export default function ChangelogLogsList() {
                   {post.title}
                 </h2>
               </Link>
-              <MDX
-                markdown={post.content}
-                className="mx-5 sm:prose-lg md:mx-0"
-              />
+              <MDX markdown={post.mdx} className="mx-5 sm:prose-lg md:mx-0" />
               {/* {post.} */}
               <article
                 data-mdx-container

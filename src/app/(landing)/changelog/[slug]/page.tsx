@@ -124,7 +124,7 @@ export default async function ChangelogPost({
               </Link>
             </div>
           </div>
-          <MDX markdown={post.content} className="mx-5 sm:prose-lg md:mx-0" />
+          <MDX markdown={post.mdx} className="mx-5 sm:prose-lg md:mx-0" />
           {/* {post.content} */}
         </div>
       </MaxWidthWrapper>

@@ -106,7 +106,8 @@ export default async function HelpArticle({
               <p className="text-gray-500">{data.summary}</p>
               <Author username={data.author} updatedAt={data.updatedAt} />
             </div>
-            <MDX markdown={data.content} images={images} />
+            <MDX markdown={data.mdx} images={images} />
+
             {relatedArticles.length > 0 && (
               <div className="flex flex-col space-y-4 border-t border-gray-200 pt-8">
                 <h2 className="font-display text-xl font-bold sm:text-2xl">
