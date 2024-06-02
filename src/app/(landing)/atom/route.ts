@@ -14,10 +14,10 @@ export async function GET() {
       .map((post) => {
         return `
         <entry>
-            <id>https://orgnise.in/${post.type === "BlogPost" ? "blog" : "changelog"
+            <id>https://orgnise.in/changelog"
           }/${post.slug}</id>
             <title>${post.title}</title>
-            <link href="https://orgnise.in/${post.type === "BlogPost" ? "blog" : "changelog"
+            <link href="https://orgnise.in/changelog"
           }/${post.slug}"/>
             <updated>${post.publishedAt}</updated>
             <author><name>${post.author}</name></author>
