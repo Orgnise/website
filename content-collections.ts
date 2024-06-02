@@ -14,6 +14,7 @@ const changelogPost = defineCollection({
   transform: (post) => {
     return {
       ...post,
+      type: 'ChangelogPost',
       slug: post._meta.filePath.replace('.mdx', ''),
     };
   },
@@ -38,6 +39,7 @@ const HelpPost = defineCollection({
     const slugger = new GithubSlugger();
     return {
       ...post,
+      type: 'HelpPost',
       slug: post._meta.filePath.replace('.mdx', ''),
       images: post.content.match(/(?<=<Image[^>]*\bsrc=")[^"]+(?="[^>]*\/>)/g) || [],
       tableOfContents: headings?.map((heading: any) => {

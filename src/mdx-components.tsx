@@ -1,5 +1,4 @@
 import HelpArticleLink from "@/components/ui/content/help-article-link";
-import { allBlogPosts, allChangelogPosts } from "contentlayer/generated";
 import { Link, ListChecks } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
 import ExpandingArrow from "./components/icons/expanding-arrow";
@@ -9,6 +8,7 @@ import { HELP_CATEGORIES } from "./lib/constants";
 import { HELP_ARTICLES, getPopularArticles } from "./lib/constants/constants";
 import { formatDate } from "./lib/functions/utils";
 import { cn } from "./lib/utils";
+import { allChangelogPosts } from "content-collections";
 
 const CustomLink = (props: any) => {
   const href = props.href;
@@ -104,7 +104,7 @@ const MdxComponents: MDXComponents = {
   ),
   Changelog: (props: any) => (
     <ul className="not-prose grid list-none rounded-xl border border-gray-200 bg-white p-4">
-      {[...allBlogPosts, ...allChangelogPosts]
+      {[...allChangelogPosts]
         .filter((post) => post.publishedAt <= props.before)
         .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
         .slice(0, props.count)

@@ -10,7 +10,6 @@ import HelpArticleLink from "@/components/ui/content/help-article-link";
 import TableOfContents from "@/components/table-of-contents";
 import Feedback from "@/components/feedback";
 import Author from "@/components/ui/content/author";
-// import { HelpPost, allHelpPosts } from "contentlayer/generated";
 import { MDX } from "@/components/ui/content/mdx";
 import { HelpPost, allHelpPosts } from "content-collections";
 

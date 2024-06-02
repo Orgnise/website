@@ -5,11 +5,6 @@ import HelpArticleLink from "./help-article-link";
 import CategoryCard from "./category-card";
 import { ListChecks } from "lucide-react";
 import ZoomImage from "./zoom-image";
-import {
-  allBlogPosts,
-  allChangelogPosts,
-  allHelpPosts,
-} from "contentlayer/generated";
 import { cn } from "@/lib/utils";
 import BlurImage from "@/components/blur-image";
 import { HELP_CATEGORIES, POPULAR_ARTICLES } from "@/lib/constants";
@@ -21,6 +16,7 @@ import { inter } from "@/styles/font";
 import remarkGfm from "remark-gfm";
 
 import Markdown from "react-markdown";
+import { allChangelogPosts, allHelpPosts } from "content-collections";
 
 const CustomLink = (props: any) => {
   const href = props.href;
@@ -148,7 +144,7 @@ const components = {
   ),
   Changelog: (props: any) => (
     <ul className="not-prose grid list-none rounded-xl border border-gray-200 bg-white p-4">
-      {[...allBlogPosts, ...allChangelogPosts]
+      {[...allChangelogPosts]
         .filter((post) => post.publishedAt <= props.before)
         .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
         .slice(0, props.count)

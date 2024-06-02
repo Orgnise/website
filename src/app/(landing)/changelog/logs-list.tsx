@@ -1,8 +1,5 @@
 import { MDX } from "@/components/ui/content";
-import ZoomImage from "@/components/ui/content/zoom-image";
-import { getBlurDataURL } from "@/lib/functions";
 import { formatDate } from "@/lib/functions/utils";
-// import { allChangelogPosts } from "contentlayer/generated";
 import { allChangelogPosts } from "content-collections";
 import Image from "next/image";
 import Link from "next/link";

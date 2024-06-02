@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-// import { allChangelogPosts } from "contentlayer/generated";
 import Link from "next/link";
 import { constructMetadata } from "@/lib/utility/construct-metadata";
 import { MaxWidthWrapper, TwitterIcon } from "@/components";
