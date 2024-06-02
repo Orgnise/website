@@ -135,7 +135,7 @@ export const PLANS = [
   {
     name: "Enterprise",
     tagline:
-      "Custom tailored plans for large enterprises. Whether you're running a SMS campaign with millions of short links or a large marketing campaign with billions of clicks, we've got you covered.",
+      "Tailored plans for large corporations are available. Whether you are managing a multinational company or a local business, it is important to have a plan that fits your specific needs and goals. Our team of experts will work with you to create a customized strategy that maximizes efficiency and drives success in your industry.",
     link: "https://organise.in/enterprise",
     price: {
       monthly: null,

@@ -1,4 +1,21 @@
-const withMDX = require("@next/mdx")();
+const nextMDX = require("@next/mdx");
+const { withContentlayer } = require("next-contentlayer");
+
+// const rehypePrettyCode = require("rehype-pretty-code");
+
+/** @type {import('rehype-pretty-code').Options} */
+const options = {
+  // See Options section below.
+};
+
+const withMDX = nextMDX({
+  reactStrictMode: true,
+  swcMinify: true,
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [],
+  },
+});
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -32,4 +49,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withMDX(nextConfig);
+module.exports = withContentlayer(withMDX(nextConfig));

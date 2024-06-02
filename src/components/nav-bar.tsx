@@ -6,7 +6,18 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import NavLink from "./ui/navlink";
 import { ModeToggle } from "./toggle-theme";
+import { useEffect, useState } from "react";
 export function Navbar() {
+  const [top, setTop] = useState<boolean>(true);
+  useEffect(() => {
+    const handleScroll = () => setTop(window.scrollY <= 50);
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   // const session = useSession();
   // const status = session.status;
   // const isLoading = status === "loading";
@@ -24,16 +35,21 @@ export function Navbar() {
       segment: "/enterprise",
     },
     {
-      name: "About",
-      segment: "/about",
+      name: "Help",
+      segment: "/help",
     },
     {
       name: "ChangeLog",
       segment: "/changelog",
-    }
+    },
   ];
   return (
-    <div className="fixed inset-x-0 top-0 z-30 w-full border-b border-border bg-background/10 backdrop-blur-lg transition-all dark:bg-background">
+    <div
+      className={clsx("fixed inset-x-0 top-0 z-30 w-full transition-all", {
+        "border-b border-border bg-background/10 backdrop-blur-lg dark:bg-background":
+          !top,
+      })}
+    >
       <div className="mx-auto w-full px-2.5 lg:px-20">
         <div className="flex h-14 items-center justify-between">
           {/* LOGO */}
@@ -41,7 +57,7 @@ export function Navbar() {
             <Link href="/" className="flex items-center gap-1">
               <Image
                 src="/_static/logo.svg"
-                alt="Vercel Logo"
+                alt="Orgnise Logo"
                 className="dark:invert"
                 width={30}
                 height={30}

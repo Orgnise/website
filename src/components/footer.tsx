@@ -41,6 +41,10 @@ export function Footer() {
           title: "About",
           url: "/about",
         },
+        {
+          title: "Help",
+          url: "/help",
+        },
       ],
     },
     {
@@ -76,14 +80,14 @@ export function Footer() {
   ] as FooterSection[];
   return (
     <footer className="">
-      <div className="mx-auto w-full max-w-screen-xl  border border-border bg-background/70 px-2.5 pb-4 pt-16 backdrop-blur-lg md:rounded-t-2xl lg:px-20">
+      <div className="mx-auto w-full max-w-screen-xl border border-border bg-background/70 px-2.5 pb-4 pt-16 backdrop-blur-lg md:rounded-t-2xl lg:px-20">
         <div className="w-full space-y-8 sm:flex sm:space-y-0">
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-1">
               <Image
                 src="/_static/logo.svg"
                 alt="Orgnise Logo"
-                className=" dark:invert"
+                className="dark:invert"
                 width={30}
                 height={30}
                 priority
@@ -121,8 +125,8 @@ export function Footer() {
                   className="h-[18px] w-[18px] fill-gray-500 hover:fill-gray-700 dark:hover:fill-gray-300"
                 >
                   <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M9.18063 0C4.11532 0 0.0205078 4.125 0.0205078 9.22819C0.0205078 13.3074 2.64419 16.7604 6.28394 17.9826C6.739 18.0744 6.90569 17.784 6.90569 17.5397C6.90569 17.3258 6.89069 16.5924 6.89069 15.8284C4.34257 16.3785 3.81194 14.7283 3.81194 14.7283C3.40244 13.6588 2.79569 13.3839 2.79569 13.3839C1.96169 12.8186 2.85644 12.8186 2.85644 12.8186C3.78157 12.8797 4.26701 13.7659 4.26701 13.7659C5.08582 15.1714 6.40525 14.7742 6.93607 14.5297C7.01182 13.9339 7.25463 13.5214 7.51244 13.2922C5.48013 13.0783 3.34188 12.2839 3.34188 8.73919C3.34188 7.73081 3.70563 6.90581 4.28201 6.26419C4.19107 6.03506 3.87251 5.08763 4.37313 3.81956C4.37313 3.81956 5.14657 3.57506 6.8905 4.76681C7.63715 4.56481 8.40714 4.46205 9.18063 4.46119C9.95407 4.46119 10.7425 4.56825 11.4706 4.76681C13.2147 3.57506 13.9881 3.81956 13.9881 3.81956C14.4888 5.08763 14.17 6.03506 14.0791 6.26419C14.6706 6.90581 15.0194 7.73081 15.0194 8.73919C15.0194 12.2839 12.8811 13.0629 10.8336 13.2922C11.1674 13.5825 11.4554 14.1324 11.4554 15.0034C11.4554 16.2409 11.4404 17.2341 11.4404 17.5395C11.4404 17.784 11.6073 18.0744 12.0621 17.9827C15.7019 16.7603 18.3256 13.3074 18.3256 9.22819C18.3406 4.125 14.2308 0 9.18063 0Z"
                   ></path>
                 </svg>

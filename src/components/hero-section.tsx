@@ -9,12 +9,12 @@ export function HeroSection() {
   return (
     <div>
       <div className="z-10 pt-10 lg:pt-16">
-        <h1 className="font-display md:text7xl text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[5rem] ">
+        <h1 className="font-display md:text7xl text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[5rem]">
           <span className="">
-            Organize,
+            Create,
             <span className="bg-gradient-to-r from-indigo-800 via-violet-600 to-purple-700 bg-clip-text text-transparent">
               {" "}
-              collaborate and create
+              Collaborate and Organize
             </span>
           </span>
         </h1>
@@ -24,7 +24,7 @@ export function HeroSection() {
             place, simply and fast
           </h2>
         </div>
-        <div className="mx-auto  my-12 flex place-content-center">
+        <div className="mx-auto my-12 flex place-content-center">
           {/* {isLoading ? (
             <div className=" h-14 w-[188px] px-10 py-2"></div>
           ) : session.data ? (
@@ -44,7 +44,7 @@ export function HeroSection() {
           )} */}
           <Link
             href="#waitlist"
-            className="flex flex-row items-center rounded-full border border-solid  border-primary px-10 py-3  font-bold text-primary hover:bg-primary hover:text-primary-foreground"
+            className="flex flex-row items-center rounded-full border border-solid border-primary px-10 py-3 font-bold text-primary hover:bg-primary hover:text-primary-foreground"
           >
             {/* <Button variant={"default"}> */}
             Get Early Access
@@ -52,7 +52,7 @@ export function HeroSection() {
           </Link>
         </div>
       </div>
-      <div className=" relative aspect-video w-full rounded-xl border border-border bg-background drop-shadow-[0px_25px_25px_rgba(230,222,255,0.99)] dark:drop-shadow-none md:drop-shadow-[0px_50px_50px_rgba(230,222,255,0.99)] lg:rounded-[25px]">
+      <div className="relative aspect-video w-full rounded-xl border border-border bg-background drop-shadow-[0px_25px_25px_rgba(230,222,255,0.99)] dark:drop-shadow-none md:drop-shadow-[0px_50px_50px_rgba(230,222,255,0.99)] lg:rounded-[25px]">
         <div
           className="absolute -inset-2 -z-10 rounded-xl opacity-20 blur-xl filter md:blur-3xl"
           style={{
