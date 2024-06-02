@@ -1,5 +1,6 @@
 const nextMDX = require("@next/mdx");
 const { withContentlayer } = require("next-contentlayer");
+const { withContentCollections } = require("@content-collections/next");
 
 // const rehypePrettyCode = require("rehype-pretty-code");
 
@@ -49,4 +50,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withContentlayer(withMDX(nextConfig));
+module.exports = withContentCollections(withMDX(nextConfig));

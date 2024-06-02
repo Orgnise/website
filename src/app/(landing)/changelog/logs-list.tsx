@@ -1,10 +1,12 @@
-import { MDX } from "@/components/ui/content/mdx";
+import { MDX } from "@/components/ui/content";
 import ZoomImage from "@/components/ui/content/zoom-image";
 import { getBlurDataURL } from "@/lib/functions";
 import { formatDate } from "@/lib/functions/utils";
-import { allChangelogPosts } from "contentlayer/generated";
+// import { allChangelogPosts } from "contentlayer/generated";
+import { allChangelogPosts } from "content-collections";
 import Image from "next/image";
 import Link from "next/link";
+import Markdown from "react-markdown";
 
 export default function ChangelogLogsList() {
   return (
@@ -56,7 +58,17 @@ export default function ChangelogLogsList() {
                   {post.title}
                 </h2>
               </Link>
-              <MDX code={post.body.code} className="mx-5 sm:prose-lg md:mx-0" />
+              <MDX
+                markdown={post.content}
+                className="mx-5 sm:prose-lg md:mx-0"
+              />
+              {/* {post.} */}
+              <article
+                data-mdx-container
+                className="prose-headings:font-display prose prose-gray max-w-none transition-all prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold"
+              >
+                <Markdown>{post.content}</Markdown>
+              </article>
             </div>
           </div>
         ))}

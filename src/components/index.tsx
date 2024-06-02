@@ -22,3 +22,4 @@ export * from "./theme-provider";
 export * from "./table-of-contents";
 export * from "./toggle-theme";
 export * from "./waitlist";
+export * from "./ui";

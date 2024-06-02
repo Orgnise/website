@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { allChangelogPosts } from "contentlayer/generated";
+// import { allChangelogPosts } from "contentlayer/generated";
 import Link from "next/link";
 import { constructMetadata } from "@/lib/utility/construct-metadata";
 import { MaxWidthWrapper, TwitterIcon } from "@/components";
@@ -8,10 +8,11 @@ import { formatDate } from "@/lib/functions/utils";
 import BlurImage from "@/components/blur-image";
 import Author from "@/components/ui/content/author";
 import { getBlurDataURL } from "@/lib/functions";
-import { MDX } from "@/components/ui/content/mdx";
 import Facebook from "@/components/icons/facebook";
 import Linkedin from "@/components/icons/linkedin";
 import ZoomImage from "@/components/ui/content/zoom-image";
+import { allChangelogPosts } from "content-collections";
+import { MDX } from "@/components/ui/content/mdx";
 
 export async function generateStaticParams() {
   return allChangelogPosts.map((post) => ({
@@ -124,7 +125,8 @@ export default async function ChangelogPost({
               </Link>
             </div>
           </div>
-          <MDX code={post.body.code} className="mx-5 sm:prose-lg md:mx-0" />
+          <MDX markdown={post.content} className="mx-5 sm:prose-lg md:mx-0" />
+          {/* {post.content} */}
         </div>
       </MaxWidthWrapper>
     </div>

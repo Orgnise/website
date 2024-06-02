@@ -6,57 +6,6 @@ import remarkGfm from "remark-gfm";
 import { capitalize } from "./src/lib/functions/utils";
 
 
-export const BlogPost = defineDocumentType(() => ({
-  name: "BlogPost",
-  filePathPattern: `**/blog/*.mdx`,
-  contentType: "mdx",
-  fields: {
-    title: {
-      type: "string",
-      required: true,
-    },
-    seoTitle: {
-      type: "string",
-    },
-    publishedAt: {
-      type: "string",
-      required: true,
-    },
-    summary: {
-      type: "string",
-      required: true,
-    },
-    seoDescription: {
-      type: "string",
-    },
-    image: {
-      type: "string",
-      required: true,
-    },
-    author: {
-      type: "string",
-      required: true,
-    },
-    categories: {
-      type: "list",
-      of: {
-        type: "enum",
-        options: ["company", "education"],
-        default: "company",
-      },
-      required: true,
-    },
-    related: {
-      type: "list",
-      of: {
-        type: "string",
-      },
-    },
-  },
-  // @ts-ignore
-  computedFields: computedFields("blog"),
-}));
-
 export const ChangelogPost = defineDocumentType(() => ({
   name: "ChangelogPost",
   filePathPattern: `**/changelog/*.mdx`,
@@ -210,7 +159,7 @@ const computedFields = (
 
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [BlogPost, ChangelogPost, HelpPost],
+  documentTypes: [ChangelogPost, HelpPost],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [

@@ -10,8 +10,9 @@ import HelpArticleLink from "@/components/ui/content/help-article-link";
 import TableOfContents from "@/components/table-of-contents";
 import Feedback from "@/components/feedback";
 import Author from "@/components/ui/content/author";
-import { HelpPost, allHelpPosts } from "contentlayer/generated";
+// import { HelpPost, allHelpPosts } from "contentlayer/generated";
 import { MDX } from "@/components/ui/content/mdx";
+import { HelpPost, allHelpPosts } from "content-collections";
 
 export async function generateStaticParams() {
   return allHelpPosts.map((post) => ({
@@ -106,7 +107,7 @@ export default async function HelpArticle({
               <p className="text-gray-500">{data.summary}</p>
               <Author username={data.author} updatedAt={data.updatedAt} />
             </div>
-            <MDX code={data.body.code} images={images} />
+            <MDX markdown={data.content} images={images} />
             {relatedArticles.length > 0 && (
               <div className="flex flex-col space-y-4 border-t border-gray-200 pt-8">
                 <h2 className="font-display text-xl font-bold sm:text-2xl">
