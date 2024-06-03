@@ -1,0 +1,54 @@
+---
+title: Roles and Permissions in Orgnise
+updatedAt: 2024-06-02
+summary: Roles and permissions are a way to control access to your workspace and collections.
+author: thealphamerc
+categories:
+  - role
+---
+
+On the team level, the roles and permissions assigned to your team members determine the level of control they have over various aspects of the team, including basic team settings, billing, and more. This allows you to tailor their access and responsibilities to their specific needs and roles within the team.
+
+## Team Roles
+
+1. **Owner**: Owners have the highest level of permissions, including the ability to delete teams.
+2. **Moderator**: Moderators have a high level of permissions, particularly for workspaces, and can permanently delete entire workspaces.
+3. **Member**: Members are on paid plans with sufficient permissions for daily tasks but cannot perform risky actions like deleting workspaces or teams.
+4. **Guest**: Guests on paid plans lack access to team settings and cannot create or view existing workspaces without explicit invitation.
+
+
+|                                           |  Owner          |Moderator| Member    | Guest    |
+| ------------------------------------------| ----------------|---------| --------- |----------|
+| Invite, manage, remove team members       | ✅ | ✅ | ✖️ | ✖️ |
+| Configure billing                         | ✅ | ✖️  | ✖️ | ✖️ |
+| Update team info                          | ✅ | ✅ | ✖️ | ✖️ |
+| Delete team                               | ✅ | ✖️  | ✖️ | ✖️ |
+| Create workspaces                         | ✅ | ✅ | ✖️ | ✖️ |
+| Update workspaces info                    | ✅ | ✅ | ✖️ | ✖️ |
+| Automatically added to public workspace   | ✅ | ✅ | ✅ | ✖️ |
+| Get added to public or private workspace  | ✅ | ✅ | ✅ | ✅ |
+| Delete workspaces                         | ✅ | ✅ | ✖️  | ✖️ |
+
+## Workspace Roles
+
+On the workspace level, Moderator or Admin of a team can decide which members of your team are allowed to add or edit content and who will only need to view it or comment on it.
+
+
+### To manage workspace roles
+Assign the following roles to the workspace members:
+
+- **Editor**: Editors have full access within the scope of a workspace. They can invite new members, modify all workspace content, and manage settings. However, guest editors have limited access.
+
+- **Reader**: Readers have limited access to a workspace. They can view content but cannot invite new members, modify content, or manage settings.
+
+
+|                                     |  Editor         | Reader|
+| ----------------------------------  | ----------------|---------|
+| View content                        |  ✅ |  ✅ |
+| Create content                      |  ✅ |  ✖️ |
+| Edit content                        |  ✅ |  ✖️ |
+| Delete content                      |  ✅ |  ✖️ |
+| Update workspace info               |  ✅ (except guests) |  ✖️ |
+| Update workspace visibility         |  ✅ (except guests)|  ✖️ |
+| Add amd remove workspace members    |  ✅ (except guests)|  ✖️ |
+| Update workspace members role       |  ✅ (except guests)|  ✖️ |

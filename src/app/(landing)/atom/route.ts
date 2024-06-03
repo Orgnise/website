@@ -1,4 +1,4 @@
-import { allChangelogPosts } from "content-collections";
+import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
 
 export async function GET() {
   return new Response(

@@ -1,6 +1,6 @@
 import { MDX } from "@/components/ui/content";
 import { formatDate } from "@/lib/functions/utils";
-import { allChangelogPosts } from "content-collections";
+import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
 import Image from "next/image";
 import Link from "next/link";
 import Markdown from "react-markdown";
@@ -55,14 +55,14 @@ export default function ChangelogLogsList() {
                   {post.title}
                 </h2>
               </Link>
-              <MDX markdown={post.mdx} className="mx-5 sm:prose-lg md:mx-0" />
+              <MDX code={post.body.code} className="mx-5 sm:prose-lg md:mx-0" />
               {/* {post.} */}
-              <article
+              {/* <article
                 data-mdx-container
                 className="prose-headings:font-display prose prose-gray max-w-none transition-all prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold"
               >
-                <Markdown>{post.content}</Markdown>
-              </article>
+                <Markdown>{post.body.raw}</Markdown>
+              </article> */}
             </div>
           </div>
         ))}

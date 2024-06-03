@@ -4,18 +4,20 @@ import { HELP_CATEGORIES, POPULAR_ARTICLES } from "@/lib/constants";
 import { formatDate } from "@/lib/functions/utils";
 import { cn } from "@/lib/utils";
 import { ListChecks } from "lucide-react";
-import { useMDXComponent } from "next-contentlayer/hooks";
+import { MDXLayoutRenderer } from "pliny/mdx-components.js";
 import Link from "next/link";
 import "react-medium-image-zoom/dist/styles.css";
 import CategoryCard from "./category-card";
 import CopyBox from "./copy-box";
 import HelpArticleLink from "./help-article-link";
 import ZoomImage from "./zoom-image";
+// import { allCoreContent, sortPosts } from "pliny/utils/contentlayer";
+import type { MDXComponents } from "mdx/types";
 
 import remarkGfm from "remark-gfm";
 
-import { MDXContent } from "@content-collections/mdx/react";
-import { allChangelogPosts, allHelpPosts } from "content-collections";
+// import { MDXContent } from "@content-collections/mdx/react";
+import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
 
 const CustomLink = (props: any) => {
   const href = props.href;
@@ -150,7 +152,7 @@ const components = {
         .map((post) => (
           <li key={post.slug}>
             <Link
-              href={`/${post.type === "BlogPost" ? "blog" : "changelog"}/${
+              href={`/${post.type === "ChangelogPost" ? "changelog" : "blog"}/${
                 post.slug
               }`}
               className="group flex items-center justify-between rounded-lg px-2 py-3 transition-colors hover:bg-purple-100 active:bg-purple-200 sm:px-4"
@@ -181,9 +183,44 @@ interface MDXProps2 {
   className?: string;
 }
 
-export function MDX2({ markdown, images, className }: MDXProps) {
-  const Component = useMDXComponent(markdown);
+// export function MDX2({ markdown, images, className }: MDXProps) {
+//   const Component = useMDXComponent(markdown);
 
+// const MDXImage = (props: any) => {
+//   if (!images) return null;
+//   const blurDataURL = images.find(
+//     (image) => image.src === props.src,
+//   )?.blurDataURL;
+
+//   return (
+//     <ZoomImage {...props} blurDataURL={blurDataURL} unoptimized={true} />
+//   );
+// };
+
+//   return (
+//     <article
+//       data-mdx-container
+//       className={cn(
+//         "prose-headings:font-display prose prose-gray max-w-none transition-all prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold",
+//         className,
+//       )}
+//     >
+//       <Component
+//         components={{
+//           ...components,
+//           Image: MDXImage,
+//         }}
+//       />
+//     </article>
+//   );
+// }
+interface MDXProps {
+  markdown?: string;
+  code: string;
+  images?: { src: string; blurDataURL: string }[];
+  className?: string;
+}
+export async function MDX({ markdown, code, className, images }: MDXProps) {
   const MDXImage = (props: any) => {
     if (!images) return null;
     const blurDataURL = images.find(
@@ -194,30 +231,6 @@ export function MDX2({ markdown, images, className }: MDXProps) {
       <ZoomImage {...props} blurDataURL={blurDataURL} unoptimized={true} />
     );
   };
-
-  return (
-    <article
-      data-mdx-container
-      className={cn(
-        "prose-headings:font-display prose prose-gray max-w-none transition-all prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold",
-        className,
-      )}
-    >
-      <Component
-        components={{
-          ...components,
-          Image: MDXImage,
-        }}
-      />
-    </article>
-  );
-}
-interface MDXProps {
-  markdown: string;
-  images?: { src: string; blurDataURL: string }[];
-  className?: string;
-}
-export async function MDX({ markdown, className, images }: MDXProps) {
   return (
     <article
       data-mdx-container
@@ -248,7 +261,12 @@ export async function MDX({ markdown, className, images }: MDXProps) {
       >
         {markdown}
       </Markdown> */}
-      <MDXContent
+      <MDXLayoutRenderer
+        code={code}
+        components={{ ...components, Image: MDXImage }}
+        // toc={post.toc}
+      />
+      {/* <MDXContent
         code={markdown}
         remarkPlugins={(p: any) => [remarkGfm(p)]}
         components={{
@@ -267,7 +285,7 @@ export async function MDX({ markdown, className, images }: MDXProps) {
             );
           },
         }}
-      />
+      /> */}
     </article>
   );
 }

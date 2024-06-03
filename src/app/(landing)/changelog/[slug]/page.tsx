@@ -10,7 +10,7 @@ import { getBlurDataURL } from "@/lib/functions";
 import Facebook from "@/components/icons/facebook";
 import Linkedin from "@/components/icons/linkedin";
 import ZoomImage from "@/components/ui/content/zoom-image";
-import { allChangelogPosts } from "content-collections";
+import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
 import { MDX } from "@/components/ui/content/mdx";
 
 export async function generateStaticParams() {
@@ -124,7 +124,7 @@ export default async function ChangelogPost({
               </Link>
             </div>
           </div>
-          <MDX markdown={post.mdx} className="mx-5 sm:prose-lg md:mx-0" />
+          <MDX code={post.body.code} className="mx-5 sm:prose-lg md:mx-0" />
           {/* {post.content} */}
         </div>
       </MaxWidthWrapper>

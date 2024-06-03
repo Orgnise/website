@@ -8,7 +8,7 @@ import { HELP_CATEGORIES } from "./lib/constants";
 import { HELP_ARTICLES, getPopularArticles } from "./lib/constants/constants";
 import { formatDate } from "./lib/functions/utils";
 import { cn } from "./lib/utils";
-import { allChangelogPosts } from "content-collections";
+import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
 
 const CustomLink = (props: any) => {
   const href = props.href;
@@ -111,7 +111,7 @@ const MdxComponents: MDXComponents = {
         .map((post) => (
           <li key={post.slug}>
             <Link
-              href={`/${post.type === "BlogPost" ? "blog" : "changelog"}/${
+              href={`/${post.type === "ChangelogPost" ? "changelog" : "blog"}/${
                 post.slug
               }`}
               className="group flex items-center justify-between rounded-lg px-2 py-3 transition-colors hover:bg-purple-100 active:bg-purple-200 sm:px-4"

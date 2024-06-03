@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { allHelpPosts } from "content-collections";
+import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Metadata } from "next";
