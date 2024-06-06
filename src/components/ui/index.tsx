@@ -1,5 +1,5 @@
 export * from "./button";
-export * from "./content";
+// export * from "./content";
 export * from "./dropdown-menu";
 export * from "./input";
 export * from "./loader";

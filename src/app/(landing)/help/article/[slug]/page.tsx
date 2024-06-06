@@ -1,25 +1,21 @@
-import { ChevronRight } from "lucide-react";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import { Metadata } from "next";
-import { constructMetadata } from "@/lib/utility/construct-metadata";
-import { HELP_CATEGORIES } from "@/lib/constants";
-import { getBlurDataURL } from "@/lib/functions";
 import { MaxWidthWrapper } from "@/components";
-import HelpArticleLink from "@/components/ui/content/help-article-link";
-import TableOfContents from "@/components/table-of-contents";
 import Feedback from "@/components/feedback";
 import Author from "@/components/ui/content/author";
-import { MDX } from "@/components/ui/content/mdx";
-import {
-  HelpPost,
-  allChangelogPosts,
-  allHelpPosts,
-} from "contentlayer/generated";
+import { HELP_CATEGORIES } from "@/lib/constants";
+import { AllHelpPosts } from "@/lib/content";
+import { constructMetadata } from "@/lib/utility/construct-metadata";
+import { ChevronRight } from "lucide-react";
+import { Metadata } from "next";
+import { serialize } from "next-mdx-remote/serialize";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+export const runtime = "nodejs";
 
 export async function generateStaticParams() {
+  const allHelpPosts = await AllHelpPosts();
   return allHelpPosts.map((post) => ({
-    slug: post.slug,
+    slug: post.name,
   }));
 }
 
@@ -28,12 +24,13 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata | undefined> {
-  const post = allHelpPosts.find((post) => post.slug === params.slug);
+  const allHelpPosts = await AllHelpPosts();
+  const post = allHelpPosts.find((post) => post.name === params.slug);
   if (!post) {
     return;
   }
 
-  const { title, summary } = post;
+  const { title, summary } = post.data;
 
   return constructMetadata({
     title: `${title} - Orgnise Help Center`,
@@ -51,28 +48,31 @@ export default async function HelpArticle({
     slug: string;
   };
 }) {
-  const data = allHelpPosts.find((post) => post.slug === params.slug);
-  if (!data) {
+  const allHelpPosts = await AllHelpPosts();
+  const article = allHelpPosts.find((article) => article.name === params.slug);
+  if (!article) {
     notFound();
   }
+  const mdxSource = await serialize(article.raw)
   const category = HELP_CATEGORIES.find(
-    (category) => data.categories[0] === category.slug,
+    (category) => article.data.categories[0] === category.slug,
   )!;
 
-  const [images] = await Promise.all([
-    await Promise.all(
-      data.images.map(async (src: string) => ({
-        src,
-        blurDataURL: await getBlurDataURL(src),
-      })),
-    ),
-  ]);
 
-  const relatedArticles =
-    ((data.related &&
-      data.related
-        .map((slug) => allHelpPosts.find((post) => post.slug === slug))
-        .filter(Boolean)) as HelpPost[]) || [];
+  // const [images] = await Promise.all([
+  //   await Promise.all(
+  //     data.images.map(async (src: string) => ({
+  //       src,
+  //       blurDataURL: await getBlurDataURL(src),
+  //     })),
+  //   ),
+  // ]);
+
+  // const relatedArticles =
+  //   ((data.related &&
+  //     data.related
+  //       .map((slug) => allHelpPosts.find((post) => post.slug === slug))
+  //       .filter(Boolean)) as HelpPost[]) || [];
 
   return (
     <>
@@ -95,24 +95,34 @@ export default async function HelpArticle({
               </Link>
               <ChevronRight className="h-4 w-4 text-gray-400" />
               <Link
-                href={`/help/article/${data.slug}`}
+                href={`/help/article/${article.name}`}
                 className="truncate text-sm font-medium text-gray-500 hover:text-gray-800"
               >
-                {data.title}
+                {article.data.title}
               </Link>
             </div>
             <div className="flex flex-col space-y-4">
-              <Link href={`/help/article/${data.slug}`}>
+              <Link href={`/help/article/${article.name}`}>
                 <h1 className="font-display text-3xl font-bold !leading-snug sm:text-4xl">
-                  {data.title}
+                  {article.data.title}
                 </h1>
               </Link>
-              <p className="text-gray-500">{data.summary}</p>
-              <Author username={data.author} updatedAt={data.updatedAt} />
+              <p className="text-gray-500">{article.data.summary}</p>
+              <Author username={article.data.author} updatedAt={article.data.updatedAt} />
             </div>
-            <MDX code={data.body.code} images={images} />
+            {/* <MDX code={data.body.code} images={images} /> */}
+            {/* <MDX3
+                mdxSource={mdxSource}
+                className="mx-5 sm:prose-lg md:mx-0"
+              /> */}
+              <article
+            data-mdx-container
+            className="prose-headings:font-display prose prose-gray max-w-none transition-all prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold"
+          >
+              {article.content}
+          </article>
 
-            {relatedArticles.length > 0 && (
+            {/* {relatedArticles.length > 0 && (
               <div className="flex flex-col space-y-4 border-t border-gray-200 pt-8">
                 <h2 className="font-display text-xl font-bold sm:text-2xl">
                   Related Articles
@@ -123,10 +133,10 @@ export default async function HelpArticle({
                   ))}
                 </div>
               </div>
-            )}
+            )} */}
             <Feedback />
           </div>
-          <div className="sticky top-20 col-span-1 hidden flex-col space-y-10 divide-y divide-border self-start sm:flex">
+          {/* <div className="sticky top-20 col-span-1 hidden flex-col space-y-10 divide-y divide-border self-start sm:flex">
             {data.tableOfContents.length > 0 && (
               <TableOfContents items={data.tableOfContents} />
             )}
@@ -139,7 +149,7 @@ export default async function HelpArticle({
                 Have question? Contact us ↗
               </Link>
             </div>
-          </div>
+          </div> */}
         </MaxWidthWrapper>
       </div>
     </>

@@ -8,7 +8,7 @@ import { HELP_CATEGORIES } from "./lib/constants";
 import { HELP_ARTICLES, getPopularArticles } from "./lib/constants/constants";
 import { formatDate } from "./lib/functions/utils";
 import { cn } from "./lib/utils";
-import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
+// import { allChangelogPosts } from "./lib/content";
 
 const CustomLink = (props: any) => {
   const href = props.href;
@@ -104,7 +104,7 @@ const MdxComponents: MDXComponents = {
   ),
   Changelog: (props: any) => (
     <ul className="not-prose grid list-none rounded-xl border border-gray-200 bg-white p-4">
-      {[...allChangelogPosts]
+      {/* {[...allChangelogPosts]
         .filter((post) => post.publishedAt <= props.before)
         .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
         .slice(0, props.count)
@@ -130,7 +130,7 @@ const MdxComponents: MDXComponents = {
               <ExpandingArrow className="-ml-4 h-4 w-4 text-gray-400 group-hover:text-purple-600" />
             </Link>
           </li>
-        ))}
+        ))} */}
     </ul>
   ),
 };

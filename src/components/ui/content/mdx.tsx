@@ -4,20 +4,31 @@ import { HELP_CATEGORIES, POPULAR_ARTICLES } from "@/lib/constants";
 import { formatDate } from "@/lib/functions/utils";
 import { cn } from "@/lib/utils";
 import { ListChecks } from "lucide-react";
-import { MDXLayoutRenderer } from "pliny/mdx-components.js";
 import Link from "next/link";
 import "react-medium-image-zoom/dist/styles.css";
 import CategoryCard from "./category-card";
 import CopyBox from "./copy-box";
 import HelpArticleLink from "./help-article-link";
 import ZoomImage from "./zoom-image";
-// import { allCoreContent, sortPosts } from "pliny/utils/contentlayer";
-import type { MDXComponents } from "mdx/types";
 
-import remarkGfm from "remark-gfm";
+
+
+import { compileMDX } from "next-mdx-remote/rsc";
+
+
+type Components = Parameters<typeof compileMDX>[0]["components"];
+
+// export const components: Components = {
+//   a: ({ children, href }) => {
+//     return <Link href={href ?? ""}>{children}</Link>;
+//   },
+// };
+
+// import { allCoreContent, sortPosts } from "pliny/utils/contentlayer";
+// import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 
 // import { MDXContent } from "@content-collections/mdx/react";
-import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
+// import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
 
 const CustomLink = (props: any) => {
   const href = props.href;
@@ -37,7 +48,7 @@ const CustomLink = (props: any) => {
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 };
 
-const components = {
+export const MdxComponents = {
   h2: (props: any) => (
     <h2 className="text-2xl underline-offset-4 hover:underline" {...props} />
   ),
@@ -115,12 +126,12 @@ const components = {
   CopyBox,
   HelpArticles: (props: { articles: string[] }) => (
     <div className="not-prose grid gap-2 rounded-xl border border-gray-200 bg-white p-4">
-      {(props.articles || POPULAR_ARTICLES).map((slug) => (
+      {/* {(props.articles || POPULAR_ARTICLES).map((slug) => (
         <HelpArticleLink
           key={slug}
           article={allHelpPosts.find((post) => post.slug === slug)!}
         />
-      ))}
+      ))} */}
     </div>
   ),
   HelpCategories: () => (
@@ -145,7 +156,7 @@ const components = {
   ),
   Changelog: (props: any) => (
     <ul className="not-prose grid list-none rounded-xl border border-gray-200 bg-white p-4">
-      {[...allChangelogPosts]
+      {/* {[...allChangelogPosts]
         .filter((post) => post.publishedAt <= props.before)
         .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
         .slice(0, props.count)
@@ -171,9 +182,21 @@ const components = {
               <ExpandingArrow className="-ml-4 h-4 w-4 text-gray-400 group-hover:text-purple-600" />
             </Link>
           </li>
-        ))}
+        ))} */}
     </ul>
   ),
+  Image: (props: any) => {
+    
+  // if (!props.images) return null;
+  // const blurDataURL = images.find(
+  //   (image) => image.src === props.src,
+  // )?.blurDataURL;
+
+  return (
+    <ZoomImage {...props}  unoptimized={true} />
+  );
+
+  }
 };
 
 interface MDXProps2 {
@@ -219,8 +242,15 @@ interface MDXProps {
   code: string;
   images?: { src: string; blurDataURL: string }[];
   className?: string;
+  mdxSource: any; // MDXRemoteSerializeResult;
 }
-export async function MDX({ markdown, code, className, images }: MDXProps) {
+export async function MDX({
+  markdown,
+  code,
+  mdxSource,
+  className,
+  images,
+}: MDXProps) {
   const MDXImage = (props: any) => {
     if (!images) return null;
     const blurDataURL = images.find(
@@ -261,11 +291,12 @@ export async function MDX({ markdown, code, className, images }: MDXProps) {
       >
         {markdown}
       </Markdown> */}
-      <MDXLayoutRenderer
+      {/* <MDXLayoutRenderer
         code={code}
         components={{ ...components, Image: MDXImage }}
         // toc={post.toc}
-      />
+      /> */}
+      {/* <MDXRemote components={MdxComponents} {...mdxSource} /> */}
       {/* <MDXContent
         code={markdown}
         remarkPlugins={(p: any) => [remarkGfm(p)]}

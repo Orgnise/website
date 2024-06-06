@@ -1,12 +1,14 @@
-import { notFound } from "next/navigation";
-import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
-import Link from "next/link";
-import { ChevronRight } from "lucide-react";
-import { Metadata } from "next";
-import { HELP_CATEGORIES, POPULAR_ARTICLES } from "@/lib/constants";
-import { constructMetadata } from "@/lib/utility/construct-metadata";
 import { MaxWidthWrapper } from "@/components";
 import HelpArticleLink from "@/components/ui/content/help-article-link";
+import { HELP_CATEGORIES, POPULAR_ARTICLES } from "@/lib/constants";
+import { AllHelpPosts } from "@/lib/content";
+import { constructMetadata } from "@/lib/utility/construct-metadata";
+import { ChevronRight } from "lucide-react";
+import { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+
+export const runtime = "nodejs";
 
 export async function generateStaticParams() {
   return HELP_CATEGORIES.map((category) => ({
@@ -26,6 +28,7 @@ export async function generateMetadata({
     return;
   }
 
+
   const { title, description } = category;
 
   return constructMetadata({
@@ -37,7 +40,7 @@ export async function generateMetadata({
   });
 }
 
-export default function HelpCategory({
+export default async function HelpCategory({
   params,
 }: {
   params: {
@@ -50,12 +53,14 @@ export default function HelpCategory({
   if (!data) {
     notFound();
   }
+  const allHelpPosts = await AllHelpPosts();
+  
   const articles = allHelpPosts
-    .filter((post) => post.categories.includes(data.slug))
+    .filter((post) => post.data.categories.includes(data.slug))
     // order by POPULAR_ARTICLES
     .reduce(
       (acc, curr) => {
-        if (POPULAR_ARTICLES.includes(curr.slug)) {
+        if (POPULAR_ARTICLES.includes(curr.name)) {
           acc.unshift(curr);
         } else {
           acc.push(curr);
@@ -95,7 +100,7 @@ export default function HelpCategory({
           {articles.length > 0 ? (
             <div className="grid gap-2 rounded-xl border border-gray-200 bg-background p-4">
               {articles.map((article) => (
-                <HelpArticleLink key={article.slug} article={article} />
+                <HelpArticleLink key={article.name} article={{slug:article.name,title:article.data.title}} />
               ))}
             </div>
           ) : (

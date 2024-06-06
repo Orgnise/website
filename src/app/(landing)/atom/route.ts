@@ -1,6 +1,7 @@
-import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
+import { allChangelogPosts } from "@/lib/content";
 
 export async function GET() {
+  const allPost = await allChangelogPosts();
   return new Response(
     `<?xml version="1.0" encoding="utf-8"?>
     <feed xmlns="http://www.w3.org/2005/Atom">
@@ -9,18 +10,18 @@ export async function GET() {
         <link href="https://orgnise.in/atom" rel="self"/>
         <link href="https://orgnise.in/"/>
         <updated>${new Date().toISOString()}</updated>
-        <id>https://orgnise.in/</id>${[...allChangelogPosts]
-      .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+        <id>https://orgnise.in/</id>${[...allPost]
+      .sort((a, b) => b.data.publishedAt.localeCompare(a.data.publishedAt))
       .map((post) => {
         return `
         <entry>
             <id>https://orgnise.in/changelog"
-          }/${post.slug}</id>
-            <title>${post.title}</title>
+          }/${post.name}</id>
+            <title>${post.data.title}</title>
             <link href="https://orgnise.in/changelog"
-          }/${post.slug}"/>
-            <updated>${post.publishedAt}</updated>
-            <author><name>${post.author}</name></author>
+          }/${post.name}"/>
+            <updated>${post.data.publishedAt}</updated>
+            <author><name>${post.data.author}</name></author>
         </entry>`;
       })
       .join("")}

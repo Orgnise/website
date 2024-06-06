@@ -3,6 +3,9 @@ import { constructMetadata } from "@/lib/utility/construct-metadata";
 import { Rss } from "lucide-react";
 import Link from "next/link";
 import ChangelogLogsList from "./logs-list";
+import { allChangelogPosts } from "@/lib/content";
+
+export const runtime = "nodejs";
 
 export const metadata = constructMetadata({
   title: "Changelog - Orgnise",
@@ -12,6 +15,7 @@ export const metadata = constructMetadata({
 });
 
 export default async function Changelog() {
+  const allChangeLogPost = await allChangelogPosts();
   return (
     <div className="min-h-[50vh] border-t border-border bg-gradient-to-b from-background/80 to-background/50 backdrop-blur-lg">
       <MaxWidthWrapper className="px-0">
@@ -43,7 +47,7 @@ export default async function Changelog() {
             </Link>
           </div>
         </div>
-        <ChangelogLogsList />
+        <ChangelogLogsList allChangeLogPost={allChangeLogPost} />
       </MaxWidthWrapper>
     </div>
   );

@@ -1,21 +1,28 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import Link from "next/link";
-import { constructMetadata } from "@/lib/utility/construct-metadata";
 import { MaxWidthWrapper, TwitterIcon } from "@/components";
-import { formatDate } from "@/lib/functions/utils";
-import BlurImage from "@/components/blur-image";
-import Author from "@/components/ui/content/author";
-import { getBlurDataURL } from "@/lib/functions";
 import Facebook from "@/components/icons/facebook";
 import Linkedin from "@/components/icons/linkedin";
+import Author from "@/components/ui/content/author";
 import ZoomImage from "@/components/ui/content/zoom-image";
-import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
-import { MDX } from "@/components/ui/content/mdx";
+import { getBlurDataURL } from "@/lib/functions";
+import { formatDate } from "@/lib/functions/utils";
+import { constructMetadata } from "@/lib/utility/construct-metadata";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+// import { allChangelogPosts, allHelpPosts } from "contentlayer/generated";
+// import { MDX } from "@/components/ui/content/mdx";
+// import MDX2 from "@/components/ui/content/mdx2";
+
+import { serialize } from 'next-mdx-remote/serialize';
+
+import { allChangelogPosts } from "@/lib/content";
+
+export const runtime = "nodejs";
 
 export async function generateStaticParams() {
-  return allChangelogPosts.map((post) => ({
-    slug: post.slug,
+  const allChangeLogPost = await allChangelogPosts();
+  return allChangeLogPost.map((post) => ({
+    slug: post.name,
   }));
 }
 
@@ -24,12 +31,14 @@ export async function generateMetadata({
 }: {
   params: { slug: string };
 }): Promise<Metadata | undefined> {
-  const post = allChangelogPosts.find((post) => post.slug === params.slug);
+  const allChangeLogPost = await allChangelogPosts();
+
+  const post = allChangeLogPost.find((post) => post.name === params.slug);
   if (!post) {
     return;
   }
 
-  const { title, summary: description, image } = post;
+  const { title, summary: description, image } = post.data;
 
   return constructMetadata({
     title,
@@ -43,10 +52,15 @@ export default async function ChangelogPost({
 }: {
   params: { slug: string };
 }) {
-  const post = allChangelogPosts.find((post) => post.slug === params.slug);
+  const allChangeLogPost = await allChangelogPosts();
+  const data = allChangeLogPost.find((post) => post.name === params.slug);
+  const post = data?.data;
   if (!post) {
     notFound();
   }
+  // const source = 'Some **mdx** text, with a component <Test />'
+  const mdxSource = await serialize(data.raw)
+
 
   return (
     <div className="min-h-[50vh] border-t border-border bg-gradient-to-b from-background/80 to-background/50 backdrop-blur-lg">
@@ -98,7 +112,7 @@ export default async function ChangelogPost({
             <Author username={post.author} />
             <div className="flex items-center space-x-6">
               <Link
-                href={`https://twitter.com/intent/tweet?text=${post.title}&url=https://orgnise.in/changelog/${post.slug}&via=${post.author}`}
+                href={`https://twitter.com/intent/tweet?text=${post.title}&url=https://orgnise.in/changelog/${data.name}&via=${post.author}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-all hover:scale-110"
@@ -107,7 +121,7 @@ export default async function ChangelogPost({
               </Link>
               <Link
                 href={`
-            http://www.linkedin.com/shareArticle?mini=true&url=https://orgnise.in/changelog/${post.slug}`}
+            http://www.linkedin.com/shareArticle?mini=true&url=https://orgnise.in/changelog/${data.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-all hover:scale-110"
@@ -115,7 +129,7 @@ export default async function ChangelogPost({
                 <Linkedin className="h-6 w-6" fill="black" />
               </Link>
               <Link
-                href={`https://www.facebook.com/sharer/sharer.php?u=https://orgnise.in/changelog/${post.slug}`}
+                href={`https://www.facebook.com/sharer/sharer.php?u=https://orgnise.in/changelog/${data.name}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-all hover:scale-110"
@@ -124,8 +138,18 @@ export default async function ChangelogPost({
               </Link>
             </div>
           </div>
-          <MDX code={post.body.code} className="mx-5 sm:prose-lg md:mx-0" />
-          {/* {post.content} */}
+          {/* <MDX3
+            content={data.raw}
+            mdxSource={mdxSource}
+            className="mx-5 sm:prose-lg md:mx-0"
+          /> */}
+          <article
+            data-mdx-container
+            className="prose-headings:font-display prose prose-gray max-w-none transition-all prose-headings:relative prose-headings:scroll-mt-20 prose-headings:font-bold"
+          >
+              {data.content}
+          </article>
+
         </div>
       </MaxWidthWrapper>
     </div>

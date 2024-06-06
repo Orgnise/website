@@ -1,5 +1,4 @@
 const nextMDX = require("@next/mdx");
-const { withContentlayer } = require("next-contentlayer2");
 
 // const rehypePrettyCode = require("rehype-pretty-code");
 
@@ -70,8 +69,9 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configure `pageExtensions` to include MDX files
+  basePath: "",
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-
+  transpilePackages: ["next-mdx-remote"],
   images: {
     remotePatterns: [
       {
@@ -99,4 +99,4 @@ const nextConfig = {
   },
 };
 
-module.exports = withContentlayer(withMDX(nextConfig));
+module.exports = withMDX(nextConfig);
