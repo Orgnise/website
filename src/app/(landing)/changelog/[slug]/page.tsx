@@ -1,22 +1,57 @@
-import type { Metadata } from "next";
-import { notFound } from "next/navigation";
-import { allChangelogPosts } from "contentlayer/generated";
-import Link from "next/link";
-import { constructMetadata } from "@/lib/utility/construct-metadata";
 import { MaxWidthWrapper, TwitterIcon } from "@/components";
-import { formatDate } from "@/lib/functions/utils";
-import BlurImage from "@/components/blur-image";
-import Author from "@/components/ui/content/author";
-import { getBlurDataURL } from "@/lib/functions";
-import { MDX } from "@/components/ui/content/mdx";
 import Facebook from "@/components/icons/facebook";
 import Linkedin from "@/components/icons/linkedin";
+import Author from "@/components/ui/content/author";
+import { MDX } from "@/components/ui/content/mdx";
 import ZoomImage from "@/components/ui/content/zoom-image";
+import { getBlurDataURL } from "@/lib/functions";
+import { formatDate } from "@/lib/functions/utils";
+import { constructMetadata } from "@/lib/utility/construct-metadata";
+import { ChangelogPost, allChangelogPosts } from "contentlayer/generated";
+import type { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 
 export async function generateStaticParams() {
   return allChangelogPosts.map((post) => ({
     slug: post.slug,
   }));
+}
+
+// return the next and previous articles
+function getNextAndPrevArticles(
+  article: ChangelogPost,
+  
+): {
+  previousArticle: ChangelogPost | undefined;
+  nextArticle: ChangelogPost | undefined;
+} {
+  let previousArticle: ChangelogPost | undefined;
+  let nextArticle: ChangelogPost | undefined;
+
+  
+  //get the next and previous articles from the articles list
+  if (!previousArticle) {
+    const currentArticleIndex = allChangelogPosts
+        .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).findIndex(
+      (a: ChangelogPost) => a.slug === article.slug,
+    );
+    if (currentArticleIndex > 0) {
+      previousArticle = allChangelogPosts[currentArticleIndex - 1];
+    }
+  }
+
+  if (!nextArticle) {
+    const currentArticleIndex = allChangelogPosts
+        .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).findIndex(
+      (a: ChangelogPost) => a.slug === article.slug,
+    );
+    if (currentArticleIndex < allChangelogPosts.length - 1) {
+      nextArticle = allChangelogPosts[currentArticleIndex + 1];
+    }
+  }
+
+  return { previousArticle, nextArticle };
 }
 
 export async function generateMetadata({
@@ -38,7 +73,7 @@ export async function generateMetadata({
   });
 }
 
-export default async function ChangelogPost({
+export default async function ChangelogPostPage({
   params,
 }: {
   params: { slug: string };
@@ -47,6 +82,10 @@ export default async function ChangelogPost({
   if (!post) {
     notFound();
   }
+
+  const { previousArticle, nextArticle } = getNextAndPrevArticles(
+    post
+  );
 
   return (
     <div className="min-h-[50vh] border-t border-border bg-gradient-to-b from-background/80 to-background/50 backdrop-blur-lg">
@@ -125,6 +164,26 @@ export default async function ChangelogPost({
             </div>
           </div>
           <MDX code={post.body.code} className="mx-5 sm:prose-lg md:mx-0" />
+          <div>
+            { nextArticle && <div className="mt-10 flex justify-end border-t border-gray-200 pt-5">
+              <a
+                className="text-sm text-gray-500 transition-colors hover:text-gray-800"
+                href={`/changelog/${nextArticle?.slug}`}
+              >
+                <p>{nextArticle?.title} →</p>
+              </a>
+            </div>}
+            {
+              !nextArticle && previousArticle && <div className="mt-10 flex justify-start border-t border-gray-200 pt-5">
+                <a
+                  className="text-sm text-gray-500 transition-colors hover:text-gray-800"
+                  href={`/changelog/${previousArticle?.slug}`}
+                >
+                  <p>← {previousArticle?.title}</p>
+                </a>
+              </div>
+            }
+          </div>
         </div>
       </MaxWidthWrapper>
     </div>

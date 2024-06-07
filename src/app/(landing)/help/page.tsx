@@ -1,14 +1,11 @@
-import { TwitterIcon } from "@/components";
 import { MaxWidthWrapper } from "@/components";
-import { constructMetadata } from "@/lib/utility/construct-metadata";
-import ChangeLogPageHeader from "@/components/changelog/change-log-header";
 import PlainPageHeader from "@/components/plain-page-header";
-import { HELP_CATEGORIES } from "@/lib/constants";
 import CategoryCard from "@/components/ui/content/category-card";
+import { HELP_CATEGORIES } from "@/lib/constants";
 
 export default function HelpPage() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-[50vh] border-t border-border bg-gradient-to-b from-background/80 to-background/50 backdrop-blur-lg">
       <div className="mx-auto w-full border-b bg-background">
         <MaxWidthWrapper className="w-full flex-grow">
           <PlainPageHeader
