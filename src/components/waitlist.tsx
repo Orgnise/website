@@ -46,7 +46,7 @@ export function WaitList() {
       id="waitlist"
       className="relative mx-auto w-full overflow-hidden bg-gradient-to-b from-background/10 via-background/80 to-background/10 pb-20 pt-8"
     >
-      <MaxWidthWrapper className="flex max-w-md flex-col place-content-center text-center sm:max-w-xl">
+      <MaxWidthWrapper className="flex max-w-md flex-col items-center text-center sm:max-w-xl">
         <Image
           src="/_static/logo.svg"
           className="h-32 w-32 rounded-[30px] border border-border bg-background object-cover p-6 antialiased shadow-[8px_-7px_15px_6px_rgba(229,229,229,1)_inset] dark:border-gray-500 dark:invert"

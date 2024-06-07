@@ -11,6 +11,7 @@ import { ChangelogPost, allChangelogPosts } from "contentlayer/generated";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import LoadingChangelog from "./loading";
 
 export async function generateStaticParams() {
   return allChangelogPosts.map((post) => ({
@@ -19,23 +20,18 @@ export async function generateStaticParams() {
 }
 
 // return the next and previous articles
-function getNextAndPrevArticles(
-  article: ChangelogPost,
-  
-): {
+function getNextAndPrevArticles(article: ChangelogPost): {
   previousArticle: ChangelogPost | undefined;
   nextArticle: ChangelogPost | undefined;
 } {
   let previousArticle: ChangelogPost | undefined;
   let nextArticle: ChangelogPost | undefined;
 
-  
   //get the next and previous articles from the articles list
   if (!previousArticle) {
     const currentArticleIndex = allChangelogPosts
-        .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).findIndex(
-      (a: ChangelogPost) => a.slug === article.slug,
-    );
+      .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+      .findIndex((a: ChangelogPost) => a.slug === article.slug);
     if (currentArticleIndex > 0) {
       previousArticle = allChangelogPosts[currentArticleIndex - 1];
     }
@@ -43,9 +39,8 @@ function getNextAndPrevArticles(
 
   if (!nextArticle) {
     const currentArticleIndex = allChangelogPosts
-        .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt)).findIndex(
-      (a: ChangelogPost) => a.slug === article.slug,
-    );
+      .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+      .findIndex((a: ChangelogPost) => a.slug === article.slug);
     if (currentArticleIndex < allChangelogPosts.length - 1) {
       nextArticle = allChangelogPosts[currentArticleIndex + 1];
     }
@@ -83,10 +78,7 @@ export default async function ChangelogPostPage({
     notFound();
   }
 
-  const { previousArticle, nextArticle } = getNextAndPrevArticles(
-    post
-  );
-
+  const { previousArticle, nextArticle } = getNextAndPrevArticles(post);
   return (
     <div className="min-h-[50vh] border-t border-border bg-gradient-to-b from-background/80 to-background/50 backdrop-blur-lg">
       <MaxWidthWrapper className="my-20 grid px-0 md:grid-cols-4">
@@ -165,16 +157,18 @@ export default async function ChangelogPostPage({
           </div>
           <MDX code={post.body.code} className="mx-5 sm:prose-lg md:mx-0" />
           <div>
-            { nextArticle && <div className="mt-10 flex justify-end border-t border-gray-200 pt-5">
-              <a
-                className="text-sm text-gray-500 transition-colors hover:text-gray-800"
-                href={`/changelog/${nextArticle?.slug}`}
-              >
-                <p>{nextArticle?.title} →</p>
-              </a>
-            </div>}
-            {
-              !nextArticle && previousArticle && <div className="mt-10 flex justify-start border-t border-gray-200 pt-5">
+            {nextArticle && (
+              <div className="mt-10 flex justify-end border-t border-gray-200 pt-5">
+                <a
+                  className="text-sm text-gray-500 transition-colors hover:text-gray-800"
+                  href={`/changelog/${nextArticle?.slug}`}
+                >
+                  <p>{nextArticle?.title} →</p>
+                </a>
+              </div>
+            )}
+            {!nextArticle && previousArticle && (
+              <div className="mt-10 flex justify-start border-t border-gray-200 pt-5">
                 <a
                   className="text-sm text-gray-500 transition-colors hover:text-gray-800"
                   href={`/changelog/${previousArticle?.slug}`}
@@ -182,7 +176,7 @@ export default async function ChangelogPostPage({
                   <p>← {previousArticle?.title}</p>
                 </a>
               </div>
-            }
+            )}
           </div>
         </div>
       </MaxWidthWrapper>

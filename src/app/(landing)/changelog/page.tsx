@@ -3,6 +3,7 @@ import { constructMetadata } from "@/lib/utility/construct-metadata";
 import { Rss } from "lucide-react";
 import Link from "next/link";
 import ChangelogLogsList from "./logs-list";
+import ChangelogListPlaceholder from "./loading";
 
 export const metadata = constructMetadata({
   title: "Changelog - Orgnise",
