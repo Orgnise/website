@@ -1,5 +1,7 @@
 import { allChangelogPosts } from "@/lib/content";
 
+export const runtime = "nodejs";
+
 export async function GET() {
   const allPost = await allChangelogPosts();
   return new Response(
