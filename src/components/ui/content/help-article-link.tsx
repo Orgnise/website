@@ -1,4 +1,4 @@
-import ExpandingArrow from "@/components/icons/expanding-arrow";
+import {ExpandingArrow} from "@/components/icons";
 import Link from "next/link";
 
 interface Props {

@@ -1,4 +1,4 @@
-export default function LinkedIn({
+export  function LinkedIn({
   className,
   fill = "#027ab5",
 }: {

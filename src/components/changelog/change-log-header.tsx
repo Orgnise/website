@@ -1,4 +1,4 @@
-import { TwitterIcon } from "@/components/icons/twitter-icon";
+import { TwitterIcon } from "@/components/icons";
 import PlainPageHeader from "../plain-page-header";
 
 export default function ChangeLogPageHeader() {

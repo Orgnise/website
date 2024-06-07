@@ -1,6 +1,5 @@
 import { MaxWidthWrapper, TwitterIcon } from "@/components";
-import Facebook from "@/components/icons/facebook";
-import Linkedin from "@/components/icons/linkedin";
+import {Facebook,LinkedIn} from "@/components/icons";
 import Author from "@/components/ui/content/author";
 import ZoomImage from "@/components/ui/content/zoom-image";
 import { getBlurDataURL } from "@/lib/functions";
@@ -126,7 +125,7 @@ export default async function ChangelogPost({
                 rel="noopener noreferrer"
                 className="transition-all hover:scale-110"
               >
-                <Linkedin className="h-6 w-6" fill="black" />
+                <LinkedIn className="h-6 w-6" fill="black" />
               </Link>
               <Link
                 href={`https://www.facebook.com/sharer/sharer.php?u=https://orgnise.in/changelog/${data.name}`}

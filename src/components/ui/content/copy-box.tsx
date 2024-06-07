@@ -1,7 +1,6 @@
 "use client";
 
-import Copy from "@/components/icons/copy";
-import Tick from "@/components/icons/tick";
+import {Copy,Tick} from "@/components/icons";
 import { useState } from "react";
 import { toast } from "sonner";
 

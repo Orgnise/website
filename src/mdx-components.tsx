@@ -1,12 +1,11 @@
 import HelpArticleLink from "@/components/ui/content/help-article-link";
 import { Link, ListChecks } from "lucide-react";
 import type { MDXComponents } from "mdx/types";
-import ExpandingArrow from "./components/icons/expanding-arrow";
 import CategoryCard from "./components/ui/content/category-card";
 import ZoomImage from "./components/ui/content/zoom-image";
 import { HELP_CATEGORIES } from "./lib/constants";
+
 import { HELP_ARTICLES, getPopularArticles } from "./lib/constants/constants";
-import { formatDate } from "./lib/functions/utils";
 import { cn } from "./lib/utils";
 // import { allChangelogPosts } from "./lib/content";
 
