@@ -7,12 +7,12 @@ export function Features() {
   return (
     <div
       id="features"
-      className="mb-10 w-full bg-gradient-to-b from-background/10 via-background/80 to-background/10 sm:my-32 "
+      className="mb-10 w-full bg-gradient-to-b from-background/10 via-background/80 to-background/10 sm:my-32"
     >
       <div className="mx-auto my-14 sm:max-w-2xl lg:my-20">
         <div className="flex items-end justify-center">
           <div className="relative z-10">
-            <h2 className="font-display text-center text-4xl font-extrabold  sm:text-5xl">
+            <h2 className="font-display text-center text-4xl font-extrabold sm:text-5xl">
               Features
             </h2>
           </div>
@@ -30,7 +30,7 @@ export function Features() {
             "A team serves as a collaborative space for you and your team members to work together. It unites all your workspaces, collections, and pages."
           }
           image={"/_static/create-team-2.png"}
-          className={"bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5 "}
+          className={"bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5"}
         />
 
         <FeatureCard
@@ -76,7 +76,7 @@ export function Features() {
           }
           image={"/_static/invite-team-member-2.png"}
           className={
-            "bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5  sm:translate-y-1/4"
+            "bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5 sm:translate-y-1/4"
           }
         />
       </div>
@@ -99,8 +99,8 @@ function FeatureCard({ title, description, image, className }: Prop) {
         className,
       )}
     >
-      <div className={cn("highlight-white-md bg-gray-750/60 relative z-30 ")}>
-        <h3 className="relative max-w-md text-xl font-semibold text-secondary-foreground  lg:text-2xl">
+      <div className={cn("highlight-white-md bg-gray-750/60 relative z-30")}>
+        <h3 className="relative max-w-md text-xl font-semibold text-secondary-foreground lg:text-2xl">
           {title}
         </h3>
         <p className="relative mt-5 max-w-lg text-base text-secondary-foreground/[85%]">
@@ -111,7 +111,7 @@ function FeatureCard({ title, description, image, className }: Prop) {
           <div className="relative overflow-hidden rounded-tr-xl border-border/40 shadow-2xl">
             <Image
               src={image}
-              className="relative  -mr-px -mt-px rounded-tr-xl  "
+              className="relative -mr-px -mt-px rounded-tr-xl"
               alt="Hero"
               width={600}
               height={400}
@@ -130,7 +130,7 @@ export function Features2() {
       <div>
         <div className="mx-auto my-14 lg:my-20">
           <div className="flex items-end justify-center">
-            <h2 className="font-display text-center text-4xl font-extrabold  sm:text-5xl">
+            <h2 className="font-display text-center text-4xl font-extrabold sm:text-5xl">
               Centralize all your needs
             </h2>
           </div>
@@ -138,7 +138,7 @@ export function Features2() {
             Easily manage knowledge, projects, idea-sharing, and beyond.
           </p>
         </div>
-        <div className="grid w-full grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-2 ">
+        <div className="grid w-full grid-cols-1 gap-10 sm:grid-cols-3 sm:gap-2">
           <Card
             className="bg-gradient-to-tl to-[rgba(132,114,83,0.19)]"
             title="One Tool, One Solution"
@@ -146,7 +146,7 @@ export function Features2() {
           />
 
           <Card
-            className="bg-gradient-to-b to-[rgba(255,102,68,0.07)] "
+            className="bg-gradient-to-b to-[rgba(255,102,68,0.07)]"
             imageClassName="rotate-180 -translate-y-64"
             title="Simply Easy Space"
             description="Experience a platform that is straightforward and user-friendly,free from unnecessary complexities or distractions"

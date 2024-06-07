@@ -19,13 +19,14 @@ export async function OPTIONS(request: Request) {
 // API to save waitlist email
 export async function POST(request: Request) {
   try {
-    const { email, company, comments, companySize, name } = (await request.json()) as {
-      email: string;
-      company: string;
-      comments: string;
-      name: string;
-      companySize: string;
-    };
+    const { email, company, comments, companySize, name } =
+      (await request.json()) as {
+        email: string;
+        company: string;
+        comments: string;
+        name: string;
+        companySize: string;
+      };
 
     await sendEmail({
       identifier: process.env.EMAIL_SERVER_USER ?? "",

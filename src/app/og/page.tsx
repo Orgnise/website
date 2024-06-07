@@ -6,7 +6,7 @@ import Image from "next/image";
 
 export default function OgPage() {
   return (
-    <div className=" backdrop-blur-sm">
+    <div className="backdrop-blur-sm">
       <div
         className="absolute left-0 top-0 h-full w-full"
         style={{

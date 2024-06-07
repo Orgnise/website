@@ -10,20 +10,22 @@ export async function GET() {
         <link href="https://orgnise.in/"/>
         <updated>${new Date().toISOString()}</updated>
         <id>https://orgnise.in/</id>${[...allBlogPosts, ...allChangelogPosts]
-      .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
-      .map((post) => {
-        return `
+          .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+          .map((post) => {
+            return `
         <entry>
-            <id>https://orgnise.in/${post.type === "BlogPost" ? "blog" : "changelog"
-          }/${post.slug}</id>
+            <id>https://orgnise.in/${
+              post.type === "BlogPost" ? "blog" : "changelog"
+            }/${post.slug}</id>
             <title>${post.title}</title>
-            <link href="https://orgnise.in/${post.type === "BlogPost" ? "blog" : "changelog"
-          }/${post.slug}"/>
+            <link href="https://orgnise.in/${
+              post.type === "BlogPost" ? "blog" : "changelog"
+            }/${post.slug}"/>
             <updated>${post.publishedAt}</updated>
             <author><name>${post.author}</name></author>
         </entry>`;
-      })
-      .join("")}
+          })
+          .join("")}
     </feed>`,
     {
       headers: {

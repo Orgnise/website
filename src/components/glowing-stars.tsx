@@ -26,7 +26,7 @@ export const GlowingStarsBackgroundCard = ({
       }}
       className={cn("h-full w-full", className)}
     >
-      <div className="absolute  inset-0">
+      <div className="absolute inset-0">
         <Illustration mouseEnter={mouseEnter} disabledGlow={disabledGlow} />
       </div>
       <div className="">{children}</div>
@@ -134,7 +134,7 @@ const Glow = ({ delay }: { delay: number }) => {
       exit={{
         opacity: 0,
       }}
-      className="absolute  left-1/2 z-10 h-[4px] w-[4px] -translate-x-1/2 rounded-full bg-indigo-500 shadow-2xl shadow-blue-200 blur-[1px]"
+      className="absolute left-1/2 z-10 h-[4px] w-[4px] -translate-x-1/2 rounded-full bg-indigo-500 shadow-2xl shadow-blue-200 blur-[1px]"
     />
   );
 };

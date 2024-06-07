@@ -5,7 +5,6 @@ import rehypeSlug from "rehype-slug";
 import remarkGfm from "remark-gfm";
 import { capitalize } from "./src/lib/functions/utils";
 
-
 export const BlogPost = defineDocumentType(() => ({
   name: "BlogPost",
   filePathPattern: `**/blog/*.mdx`,
@@ -141,9 +140,7 @@ export const HelpPost = defineDocumentType(() => ({
   computedFields: computedFields("help"),
 }));
 
-const computedFields = (
-  type: "blog" | "changelog" | "help",
-) => ({
+const computedFields = (type: "blog" | "changelog" | "help") => ({
   slug: {
     type: "string",
     resolve: (doc: any) => doc._raw.flattenedPath.replace(`${type}/`, ""),

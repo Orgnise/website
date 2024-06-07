@@ -18,10 +18,10 @@ export default function ChangelogDetailPageLayout({
   return (
     <MaxWidthWrapper>
       <div className="grid py-10 md:grid-cols-4 md:px-5 md:py-20 xl:px-0">
-        <div className="sticky top-20  hidden self-start md:col-span-1 md:block">
+        <div className="sticky top-20 hidden self-start md:col-span-1 md:block">
           <a
             href={"/changelog"}
-            className="text-sm  text-gray-500 transition-colors hover:text-gray-800 "
+            className="text-sm text-gray-500 transition-colors hover:text-gray-800"
           >
             ← Back to Changelog
           </a>
@@ -32,11 +32,11 @@ export default function ChangelogDetailPageLayout({
             <div className="flex flex-col">
               <a
                 href={"/changelog"}
-                className="my-5  text-sm text-gray-500 transition-colors hover:text-gray-800 md:hidden"
+                className="my-5 text-sm text-gray-500 transition-colors hover:text-gray-800 md:hidden"
               >
                 ← Back to Changelog
               </a>
-              <time className="text-sm  text-gray-500">{time}</time>
+              <time className="text-sm text-gray-500">{time}</time>
             </div>
             <h1 className="text-2xl font-bold tracking-tight text-gray-800 sm:text-3xl">
               {title}
@@ -46,7 +46,7 @@ export default function ChangelogDetailPageLayout({
                 <Image
                   src={imageLink}
                   alt={title ?? "Changelog Image"}
-                  className="aspect-video  w-full rounded-lg border border-gray-100 object-cover"
+                  className="aspect-video w-full rounded-lg border border-gray-100 object-cover"
                   unoptimized
                   width={766}
                   height={382}

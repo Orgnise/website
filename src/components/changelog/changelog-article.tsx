@@ -19,7 +19,7 @@ export default function ChangelogArticle({
     <div className="grid py-10 md:grid-cols-4 md:px-5 md:py-20 xl:px-0">
       <div className="sticky top-20 hidden self-start md:col-span-1 md:block">
         <a href={link ?? "#"} className="">
-          <time className="text-sm  text-gray-500 transition-colors hover:text-gray-800">
+          <time className="text-sm text-gray-500 transition-colors hover:text-gray-800">
             {time}
           </time>
         </a>
@@ -44,7 +44,7 @@ export default function ChangelogArticle({
           className="group mx-5 flex items-center space-x-3 md:mx-0 md:hidden"
           href={link ?? "#"}
         >
-          <time className="text-sm  text-gray-500 transition-colors hover:text-gray-800 ">
+          <time className="text-sm text-gray-500 transition-colors hover:text-gray-800">
             {time}
           </time>
         </a>

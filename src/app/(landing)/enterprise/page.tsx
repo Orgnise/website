@@ -11,7 +11,7 @@ export default function Home() {
     <div className="w-full flex-grow">
       <MaxWidthWrapper className="z-10 pt-10 lg:pt-16">
         <div className="mx-auto flex w-full max-w-xl flex-col place-content-center items-center text-center">
-          <h1 className="font-display md:text9xl text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[3rem] ">
+          <h1 className="font-display md:text9xl text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[3rem]">
             <span className="">
               Enterprise-scale
               <span className="bg-gradient-to-r from-indigo-800 via-violet-600 to-purple-700 bg-clip-text text-transparent">

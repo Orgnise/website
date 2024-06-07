@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { useMDXComponent } from "next-contentlayer/hooks";
 import "react-medium-image-zoom/dist/styles.css";

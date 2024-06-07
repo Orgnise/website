@@ -11,10 +11,10 @@ export const metadata = constructMetadata({
 });
 export default function Home() {
   return (
-    <main className=" w-full flex-grow">
+    <main className="w-full flex-grow">
       <MaxWidthWrapper className="z-10 pt-10 lg:pt-16">
         <div className="mx-auto flex w-full flex-col place-content-center items-center text-center">
-          <h1 className="font-display md:text7xl text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[5rem] ">
+          <h1 className="font-display md:text7xl text-center text-4xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[5rem]">
             <span className="">
               Simple,
               <span className="bg-gradient-to-r from-indigo-800 via-violet-600 to-purple-700 bg-clip-text text-transparent">
@@ -30,7 +30,7 @@ export default function Home() {
             </h2>
           </div>
 
-          <Tabs defaultValue="monthly" className="my-10 w-full ">
+          <Tabs defaultValue="monthly" className="my-10 w-full">
             <TabsList className="mb-10 bg-secondary-foreground/5">
               <TabsTrigger value="monthly">Monthly</TabsTrigger>
               <TabsTrigger value="yearly">Yearly</TabsTrigger>
@@ -66,7 +66,7 @@ export default function Home() {
           {/* Enterprise */}
           <div className="mx-auto flex w-full max-w-4xl flex-row items-center gap-2 rounded-xl border border-border bg-background p-10 text-left">
             <div className="flex flex-grow flex-col gap-4">
-              <h2 className="text-3xl font-bold ">
+              <h2 className="text-3xl font-bold">
                 Orgnise{" "}
                 <span className="bg-gradient-to-r from-indigo-800 via-violet-600 to-purple-700 bg-clip-text text-transparent">
                   Enterprise
@@ -84,7 +84,7 @@ export default function Home() {
 
             <Link
               href="https://orgnise.in/enterprise"
-              className="inline-flex whitespace-nowrap rounded-full border border-solid  border-primary bg-gradient-to-tr from-indigo-800  via-violet-600  to-purple-700 px-4 py-2 font-bold text-primary-foreground hover:bg-primary  hover:text-primary-foreground"
+              className="inline-flex whitespace-nowrap rounded-full border border-solid border-primary bg-gradient-to-tr from-indigo-800 via-violet-600 to-purple-700 px-4 py-2 font-bold text-primary-foreground hover:bg-primary hover:text-primary-foreground"
             >
               Contact us
             </Link>

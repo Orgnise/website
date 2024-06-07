@@ -36,7 +36,7 @@ export default function EnterpriseForm() {
     }
   }
   return (
-    <div className="mx-auto my-10  w-full max-w-xl">
+    <div className="mx-auto my-10 w-full max-w-xl">
       <div className="w-full space-y-6 rounded-xl border border-border bg-background/80 p-10 shadow">
         {status === "success" ? (
           <div className="flex h-[528px] flex-col place-content-center items-center">
@@ -84,7 +84,7 @@ export default function EnterpriseForm() {
                 Company Size
               </label>
               <Select name="companySize">
-                <SelectTrigger className="w-full gap-1 border border-border px-2 ">
+                <SelectTrigger className="w-full gap-1 border border-border px-2">
                   <SelectValue placeholder="Please select" />
                 </SelectTrigger>
                 <SelectContent className="border-border">

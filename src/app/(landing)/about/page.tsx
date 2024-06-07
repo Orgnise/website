@@ -16,7 +16,7 @@ export default function Home() {
     <main className="mb-10 w-full flex-grow overflow-y-auto">
       <MaxWidthWrapper className="z-10 pt-10 lg:pt-16">
         <div className="mx-auto flex w-full max-w-4xl flex-col place-content-center items-center text-center">
-          <h1 className="font-display  text-center text-5xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[3rem] ">
+          <h1 className="font-display text-center text-5xl font-bold tracking-[-0.02em] drop-shadow-sm md:leading-[3rem]">
             <span className="">
               Orgnise
               <span className="bg-gradient-to-r from-indigo-800 via-violet-600 to-purple-700 bg-clip-text text-transparent">
@@ -26,7 +26,7 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="mx-auto mt-6  w-full text-center text-muted-foreground/95  md:text-xl">
+          <p className="mx-auto mt-6 w-full text-center text-muted-foreground/95 md:text-xl">
             At Orgnise, we believe that every business should have access to the
             best tools and resources to help them grow. Orgnise is designed to
             support your business growth by offering the necessary tools and
@@ -51,7 +51,7 @@ function GetStartedSection() {
       </h2>
       <ul
         role="list"
-        className="mx-auto my-10 grid max-w-xl grid-cols-1 gap-x-8 gap-y-3  text-sm leading-7 text-primary-foreground sm:grid-cols-3"
+        className="mx-auto my-10 grid max-w-xl grid-cols-1 gap-x-8 gap-y-3 text-sm leading-7 text-primary-foreground sm:grid-cols-3"
       >
         <li className="flex flex-row items-center justify-center gap-x-3 font-bold">
           <CheckCircle2 size={15} />
@@ -67,7 +67,7 @@ function GetStartedSection() {
         </li>
       </ul>
       <Link href={"/pricing"} className="flex-grow-0">
-        <Button className=" gap-2">
+        <Button className="gap-2">
           <span>Get started</span>
           <ArrowRight size={18} />
         </Button>

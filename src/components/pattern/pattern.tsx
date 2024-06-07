@@ -1,6 +1,6 @@
 export default function Pattern() {
   return (
-    <div className="absolute inset-x-0 top-0 h-96 rotate-180 text-gray-500/20 opacity-50 [mask-image:linear-gradient(to_bottom,transparent,white)] z-0">
+    <div className="absolute inset-x-0 top-0 z-0 h-96 rotate-180 text-gray-500/20 opacity-50 [mask-image:linear-gradient(to_bottom,transparent,white)]">
       <svg
         className="absolute inset-0 h-full w-full"
         xmlns="http://www.w3.org/2000/svg"
@@ -26,12 +26,12 @@ export default function Pattern() {
 
 export function Pattern2({ children }: { children?: React.ReactNode }) {
   return (
-    <div className="relative  overflow-hidden">
+    <div className="relative overflow-hidden">
       <div className="pointer-events-none">
         <div className="absolute inset-0 rounded-2xl transition duration-300 [mask-image:linear-gradient(white,transparent)] group-hover:opacity-50">
           <svg
             aria-hidden="true"
-            className=" absolute  inset-y-[-20%] h-[160%] w-full fill-black/[0.03] stroke-black/5"
+            className="absolute inset-y-[-20%] h-[160%] w-full fill-black/[0.03] stroke-black/5"
           >
             <defs>
               <pattern
@@ -67,7 +67,7 @@ export function Pattern2({ children }: { children?: React.ReactNode }) {
           </svg>
         </div>
       </div>
-      <div className=" w-full">{children}</div>
+      <div className="w-full">{children}</div>
     </div>
   );
 }

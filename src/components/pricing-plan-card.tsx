@@ -21,7 +21,7 @@ export function PricingPlanCard({
   return (
     <div
       className={clsx(
-        "relative flex w-full max-w-[420px] flex-col rounded-xl border border-border bg-background p-4  text-left shadow-sm lg:min-w-[320px]",
+        "relative flex w-full max-w-[420px] flex-col rounded-xl border border-border bg-background p-4 text-left shadow-sm lg:min-w-[320px]",
         className,
       )}
       style={{}}
@@ -66,7 +66,7 @@ export function PricingPlanCard({
       </Button>
 
       {isPopular && (
-        <div className="absolute -top-5 left-[35%] inline-flex whitespace-nowrap rounded-full border border-solid  border-primary bg-gradient-to-tr from-indigo-800  via-violet-600  to-purple-700 px-4 py-2 font-bold text-primary-foreground hover:bg-primary  hover:text-primary-foreground">
+        <div className="absolute -top-5 left-[35%] inline-flex whitespace-nowrap rounded-full border border-solid border-primary bg-gradient-to-tr from-indigo-800 via-violet-600 to-purple-700 px-4 py-2 font-bold text-primary-foreground hover:bg-primary hover:text-primary-foreground">
           Popular
         </div>
       )}
