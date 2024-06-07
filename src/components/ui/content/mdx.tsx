@@ -1,14 +1,11 @@
-import BlurImage from "@/components/blur-image";
-import ExpandingArrow from "@/components/icons/expanding-arrow";
-import { HELP_CATEGORIES, POPULAR_ARTICLES } from "@/lib/constants";
-import { formatDate } from "@/lib/functions/utils";
+import { BlurImage } from "@/components";
+import { HELP_CATEGORIES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { ListChecks } from "lucide-react";
 import Link from "next/link";
 import "react-medium-image-zoom/dist/styles.css";
 import CategoryCard from "./category-card";
 import CopyBox from "./copy-box";
-import HelpArticleLink from "./help-article-link";
 import ZoomImage from "./zoom-image";
 
 
