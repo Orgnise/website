@@ -29,6 +29,10 @@ export function Footer() {
           url: "/enterprise",
         },
         {
+          title: "Use Cases",
+          url: "/use-cases",
+        },
+        {
           title: "Changelog",
           url: "/changelog",
         },

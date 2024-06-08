@@ -59,12 +59,14 @@ export async function generateMetadata({
     return;
   }
 
-  const { title, summary: description, image } = post;
+  const { title, summary: description, image, } = post;
 
   return constructMetadata({
     title,
     description,
-    image,
+    image:image ?? `/api/og?title=${encodeURIComponent(
+      title,
+    )}&summary=${encodeURIComponent(description)}`,
   });
 }
 

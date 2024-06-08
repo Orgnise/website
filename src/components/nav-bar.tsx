@@ -39,6 +39,10 @@ export function Navbar() {
       segment: "/help",
     },
     {
+      name: "Use Cases",
+      segment: "/use-cases",
+    },
+    {
       name: "ChangeLog",
       segment: "/changelog",
     },

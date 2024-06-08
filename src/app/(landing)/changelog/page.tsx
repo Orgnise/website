@@ -9,7 +9,7 @@ export const metadata = constructMetadata({
   title: "Changelog - Orgnise",
   description:
     "All the latest updates, improvements, and fixes to Orgnise - the link management tool for modern marketing teams.",
-  // image: "/api/og/changelog",
+  image: "/api/og",
 });
 
 export default async function Changelog() {

@@ -140,7 +140,30 @@ export const HelpPost = defineDocumentType(() => ({
   computedFields: computedFields("help"),
 }));
 
-const computedFields = (type: "blog" | "changelog" | "help") => ({
+export const UseCasePost = defineDocumentType(() => ({
+  name: "UseCasePost",
+  filePathPattern: `**/use-cases/*.mdx`,
+  contentType: "mdx",
+  fields: {
+    title: {
+      type: "string",
+      required: true,
+    },
+    summary: {
+      type: "string",
+      required: true,
+    },
+    image: {
+      type: "string",
+      required: false,
+    }
+  },
+  // @ts-ignore
+  computedFields: computedFields("use-cases"),
+}));
+
+
+const computedFields = (type: "blog" | "changelog" | "help" | "use-cases") => ({
   slug: {
     type: "string",
     resolve: (doc: any) => doc._raw.flattenedPath.replace(`${type}/`, ""),
@@ -207,7 +230,7 @@ const computedFields = (type: "blog" | "changelog" | "help") => ({
 
 export default makeSource({
   contentDirPath: "content",
-  documentTypes: [BlogPost, ChangelogPost, HelpPost],
+  documentTypes: [BlogPost, ChangelogPost, HelpPost, UseCasePost],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
