@@ -12,7 +12,7 @@ import {
   allHelpPosts,
 } from "contentlayer/generated";
 import { cn } from "@/lib/utils";
-import BlurImage from "@/components/blur-image";
+import {BlurImage} from "@/components/";
 import { HELP_CATEGORIES, POPULAR_ARTICLES } from "@/lib/constants";
 import { formatDate } from "@/lib/functions/utils";
 import ExpandingArrow from "@/components/icons/expanding-arrow";

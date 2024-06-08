@@ -7,7 +7,7 @@ import { HELP_CATEGORIES } from "@/lib/constants";
 import { getBlurDataURL } from "@/lib/functions";
 import { MaxWidthWrapper } from "@/components";
 import HelpArticleLink from "@/components/ui/content/help-article-link";
-import TableOfContents from "@/components/table-of-contents";
+import {TableOfContents} from "@/components/";
 import Feedback from "@/components/feedback";
 import Author from "@/components/ui/content/author";
 import { HelpPost, allHelpPosts } from "contentlayer/generated";

@@ -1,6 +1,6 @@
 "use client";
 
-import BlurImage from "@/components/blur-image";
+import {BlurImage} from "@/components";
 import useMediaQuery from "@/lib/hooks/use-media-query";
 import { cn } from "@/lib/utils";
 import clsx from "clsx";
