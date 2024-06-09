@@ -157,6 +157,10 @@ export const UseCasePost = defineDocumentType(() => ({
       type: "string",
       required: false,
     },
+    updatedAt: {
+      type: "string",
+      required: true,
+    },
   },
   // @ts-ignore
   computedFields: computedFields("use-cases"),
