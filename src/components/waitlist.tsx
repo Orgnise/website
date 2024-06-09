@@ -6,8 +6,10 @@ import { useRef, useState } from "react";
 import { APP_DOMAIN } from "@/lib/constants";
 import { Spinner } from "./ui/loader";
 import { CheckCircle2Icon } from "lucide-react";
+import { track } from "@/lib/utility/analytics/tracking";
 
 export function WaitList() {
+  track("waitlist-email-submit", { place: "waitlist-section" });
   type Status = "idle" | "loading" | "success" | "error";
   const [status, setStatus] = useState<Status>("idle");
   const emailRef = useRef<HTMLInputElement>(null);
@@ -30,8 +32,10 @@ export function WaitList() {
           setTimeout(() => {
             setStatus("idle");
           }, 3000);
+          track("waitlist-email-submitted", { place: "waitlist-section" });
         } else {
           setStatus("error");
+          track("waitlist-email-submit-failed", { place: "waitlist-section" });
         }
       })
       .catch(() => {
@@ -74,6 +78,11 @@ export function WaitList() {
               name="email"
               autoComplete="email"
               required
+              onClick={() => {
+                track("join-waitlist-input-box-clicked", {
+                  place: "waitlist-section",
+                });
+              }}
             />
             {status === "success" ? (
               <Button

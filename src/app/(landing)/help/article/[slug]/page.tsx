@@ -7,11 +7,12 @@ import { HELP_CATEGORIES } from "@/lib/constants";
 import { getBlurDataURL } from "@/lib/functions";
 import { MaxWidthWrapper } from "@/components";
 import HelpArticleLink from "@/components/ui/content/help-article-link";
-import {TableOfContents} from "@/components/";
+import { TableOfContents } from "@/components/";
 import Feedback from "@/components/feedback";
 import Author from "@/components/ui/content/author";
 import { HelpPost, allHelpPosts } from "contentlayer/generated";
 import { MDX } from "@/components/ui/content/mdx";
+import { ClientLink } from "@/components/client-link";
 
 export async function generateStaticParams() {
   return allHelpPosts.map((post) => ({
@@ -76,33 +77,47 @@ export default async function HelpArticle({
         <MaxWidthWrapper className="grid max-w-screen-lg grid-cols-4 gap-10 px-2.5 py-10">
           <div className="col-span-4 flex flex-col space-y-8 sm:col-span-3 sm:pr-10">
             <div className="flex items-center space-x-2">
-              <Link
+              <ClientLink
                 href="/help"
                 className="whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-800"
+                trackEvent={{
+                  event: "help-all-categories-clicked",
+                  data: {
+                    href: "/help",
+                    cta: "All Categories",
+                    origin: "Help Article page",
+                  },
+                }}
               >
                 All Categories
-              </Link>
+              </ClientLink>
               <ChevronRight className="h-4 w-4 text-gray-400" />
-              <Link
+              <ClientLink
                 href={`/help/category/${category.slug}`}
                 className="whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-800"
+                trackEvent={{
+                  event: "help-sub-categories-clicked",
+                  data: {
+                    href: `/help/category/${category.slug}`,
+                    cta: category.slug,
+                    origin: "Help Article page",
+                  },
+                }}
               >
                 {category.title}
-              </Link>
+              </ClientLink>
               <ChevronRight className="h-4 w-4 text-gray-400" />
-              <Link
+              <ClientLink
                 href={`/help/article/${data.slug}`}
                 className="truncate text-sm font-medium text-gray-500 hover:text-gray-800"
               >
                 {data.title}
-              </Link>
+              </ClientLink>
             </div>
             <div className="flex flex-col space-y-4">
-              <Link href={`/help/article/${data.slug}`}>
-                <h1 className="font-display text-3xl font-bold !leading-snug sm:text-4xl">
-                  {data.title}
-                </h1>
-              </Link>
+              <h1 className="font-display text-3xl font-bold !leading-snug sm:text-4xl">
+                {data.title}
+              </h1>
               <p className="text-gray-500">{data.summary}</p>
               <Author username={data.author} updatedAt={data.updatedAt} />
             </div>
@@ -114,7 +129,18 @@ export default async function HelpArticle({
                 </h2>
                 <div className="grid gap-2 rounded-xl border border-gray-200 bg-white p-4">
                   {relatedArticles.map((article) => (
-                    <HelpArticleLink key={article.slug} article={article} />
+                    <HelpArticleLink
+                      key={article.slug}
+                      article={article}
+                      trackEvent={{
+                        event: `help-article-${article.slug}-clicked` as any,
+                        data: {
+                          title: article.title,
+                          path: `/help/article/${article.slug}`,
+                          origin: "Help Article page",
+                        },
+                      }}
+                    />
                   ))}
                 </div>
               </div>
@@ -126,13 +152,22 @@ export default async function HelpArticle({
               <TableOfContents items={data.tableOfContents} />
             )}
             <div className="flex justify-center pt-5">
-              <Link
+              <ClientLink
                 href={`http://orgnise.in/contact`}
                 rel="noopener noreferrer"
                 className="text-xs text-gray-500 transition-colors hover:text-gray-800"
+                trackEvent={{
+                  event: "help-article-contact-us-link-clicked",
+                  data: {
+                    title: data.title,
+                    path: `/help/article/${data.slug}`,
+                    origin: "Help Article page",
+                    source: "contact-us-cta",
+                  },
+                }}
               >
                 Have question? Contact us ↗
-              </Link>
+              </ClientLink>
             </div>
           </div>
         </MaxWidthWrapper>

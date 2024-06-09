@@ -4,8 +4,7 @@ import { formatDate } from "@/lib/functions/utils";
 
 export const runtime = "edge";
 
-export  async function GET(req: NextRequest) {
-  
+export async function GET(req: NextRequest) {
   const post = allChangelogPosts.sort((a, b) => {
     if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
       return -1;
@@ -120,7 +119,7 @@ function Logo() {
 
 function BrandLabel({ className }: { className?: string }) {
   return (
-    <span tw={("font-mono font-bold pl-2")}>
+    <span tw={"font-mono font-bold pl-2"}>
       <h1>Orgnise</h1>
     </span>
   );

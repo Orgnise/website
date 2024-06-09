@@ -1,4 +1,5 @@
 "use client";
+import { track } from "@/lib/utility/analytics/tracking";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -44,6 +45,9 @@ export function HeroSection() {
           )} */}
           <Link
             href="#waitlist"
+            onClick={() => {
+              track("get-early-access-CTA-clicked", { place: "hero-section" });
+            }}
             className="flex flex-row items-center rounded-full border border-solid border-primary px-10 py-3 font-bold text-primary hover:bg-primary hover:text-primary-foreground"
           >
             {/* <Button variant={"default"}> */}

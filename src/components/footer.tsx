@@ -1,9 +1,12 @@
+import { TrackingEvents } from "@/lib/utility/analytics/events-type";
 import Image from "next/image";
 import Link from "next/link";
+import { ClientLink } from "./client-link";
 
 type FooterLink = {
   title: string;
   url: string;
+  trackEvent: TrackingEvents[number];
 };
 
 type FooterSection = {
@@ -12,42 +15,50 @@ type FooterSection = {
 };
 
 export function Footer() {
-  const links = [
+  const links: FooterSection[] = [
     {
       header: "Product",
       links: [
         {
           title: "Features",
           url: "/#features",
+          trackEvent: "footer-features-clicked",
         },
         {
           title: "Pricing",
           url: "/pricing",
+          trackEvent: "footer-pricing-clicked",
         },
         {
           title: "Enterprise",
           url: "/enterprise",
+          trackEvent: "footer-enterprise-clicked",
         },
         {
           title: "Use Cases",
           url: "/use-cases",
+          trackEvent: "footer-usecase-clicked",
         },
         {
           title: "Changelog",
           url: "/changelog",
+          trackEvent: "footer-changelog-clicked",
         },
         {
           title: "Contact us",
           url: "/contact",
+          trackEvent: "footer-contact-us-clicked",
         },
 
         {
           title: "About",
           url: "/about",
+          trackEvent: "footer-about-clicked",
         },
         {
           title: "Help",
           url: "/help",
+          trackEvent: "footer-help-clicked",
         },
       ],
     },
@@ -57,14 +68,17 @@ export function Footer() {
         {
           title: "Privacy",
           url: "/privacy",
+          trackEvent: "footer-privacy-policy-clicked",
         },
         {
           title: "Terms",
           url: "/terms",
+          trackEvent: "footer-terms-of-service-clicked",
         },
         {
           title: "Refund Policy",
           url: "/refund-policy",
+          trackEvent: "footer-refund-policy-clicked",
         },
       ],
     },
@@ -74,14 +88,16 @@ export function Footer() {
         {
           title: "Roadmap",
           url: "https://github.com/orgs/Orgnise/projects/1",
+          trackEvent: "footer-roadmap-clicked",
         },
         {
           title: "Book a demo",
           url: "https://go.orgnise.in/book-demo",
+          trackEvent: "footer-book-a-demo-clicked",
         },
       ],
     },
-  ] as FooterSection[];
+  ];
   return (
     <footer className="">
       <div className="mx-auto w-full max-w-screen-xl border border-border bg-background/70 px-2.5 pb-4 pt-16 backdrop-blur-lg md:rounded-t-2xl lg:px-20">
@@ -168,12 +184,16 @@ export function Footer() {
                     <ul className="mt-5 space-y-3.5">
                       {key.links.map((link, index) => (
                         <li key={index}>
-                          <Link
-                            className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                          <ClientLink
                             href={link.url}
+                            className="text-sm text-gray-500 hover:text-gray-700 dark:hover:text-gray-300"
+                            trackEvent={{
+                              event: link.trackEvent,
+                              data: { source: "footer" },
+                            }}
                           >
                             {link.title}
-                          </Link>
+                          </ClientLink>
                         </li>
                       ))}
                     </ul>

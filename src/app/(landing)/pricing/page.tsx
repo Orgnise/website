@@ -5,6 +5,7 @@ import { BUSINESS_PLAN, FREE_PLAN, PRO_PLAN } from "@/components/pricing";
 import { PricingPlanCard } from "@/components/pricing-plan-card";
 import { constructMetadata } from "@/lib/utility/construct-metadata";
 import Link from "next/link";
+import { ClientLink } from "@/components/client-link";
 
 export const metadata = constructMetadata({
   title: "Pricing Plans- Orgnise",
@@ -32,8 +33,18 @@ export default function Home() {
 
           <Tabs defaultValue="monthly" className="my-10 w-full">
             <TabsList className="mb-10 bg-secondary-foreground/5">
-              <TabsTrigger value="monthly">Monthly</TabsTrigger>
-              <TabsTrigger value="yearly">Yearly</TabsTrigger>
+              <TabsTrigger
+                value="monthly"
+                trackEvent={{ event: "pricing-monthly-tab-clicked" }}
+              >
+                Monthly
+              </TabsTrigger>
+              <TabsTrigger
+                value="yearly"
+                trackEvent={{ event: "pricing-monthly-tab-clicked" }}
+              >
+                Yearly
+              </TabsTrigger>
             </TabsList>
             <TabsContent value="monthly">
               <div className="grid grid-cols-1 place-items-center gap-6 md:grid-cols-3 lg:p-10">
@@ -82,12 +93,13 @@ export default function Home() {
               </p>
             </div>
 
-            <Link
+            <ClientLink
               href="https://orgnise.in/enterprise"
               className="inline-flex whitespace-nowrap rounded-full border border-solid border-primary bg-gradient-to-tr from-indigo-800 via-violet-600 to-purple-700 px-4 py-2 font-bold text-primary-foreground hover:bg-primary hover:text-primary-foreground"
+              trackEvent={{ event: "pricing-enterprise-contact-us-clicked" }}
             >
               Contact us
-            </Link>
+            </ClientLink>
           </div>
 
           <p className="my-20 text-secondary-foreground/80">

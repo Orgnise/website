@@ -4,7 +4,7 @@ import useCurrentAnchor from "@/lib/hooks/use-current-anchor";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
-export  function TableOfContents({
+export function TableOfContents({
   items,
 }: {
   items: {

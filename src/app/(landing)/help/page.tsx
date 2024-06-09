@@ -31,6 +31,14 @@ export default function HelpPage() {
                   [1, 3],
                 ],
               }}
+              trackEvent={{
+                event: `help-${category.slug}-clicked` as any,
+                data: {
+                  category: category.slug,
+                  href: `/help/category/${category.slug}`,
+                  name: category.title,
+                },
+              }}
             />
           ))}
         </div>

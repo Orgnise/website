@@ -1,4 +1,4 @@
-import {BlurImage} from "@/components/";
+import { BlurImage } from "@/components/";
 import { timeAgo } from "@/lib/functions";
 import Link from "next/link";
 

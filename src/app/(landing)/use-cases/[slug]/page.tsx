@@ -1,5 +1,6 @@
 import { MaxWidthWrapper } from "@/components";
 import { TableOfContents } from "@/components/";
+import { ClientLink } from "@/components/client-link";
 import Feedback from "@/components/feedback";
 import { MDX } from "@/components/ui/content/mdx";
 import { getBlurDataURL } from "@/lib/functions";
@@ -48,7 +49,7 @@ export default async function UseCase({
   if (!data) {
     notFound();
   }
-  
+
   const [images] = await Promise.all([
     await Promise.all(
       data.images.map(async (src: string) => ({
@@ -58,19 +59,26 @@ export default async function UseCase({
     ),
   ]);
 
-
   return (
     <>
       <div className="min-h-[50vh] border-t border-border bg-gradient-to-b from-background/40 to-background/20 backdrop-blur-lg">
-        <MaxWidthWrapper className="grid max-w-screen-lg  px-2.5 py-10">
-          <div className="col-span-4 flex flex-col space-y-8  sm:pr-10">
+        <MaxWidthWrapper className="grid max-w-screen-lg px-2.5 py-10">
+          <div className="col-span-4 flex flex-col space-y-8 sm:pr-10">
             <div className="flex items-center space-x-2">
-              <Link
+              <ClientLink
+                trackEvent={{
+                  event: "usecase-article-clicked",
+                  data: {
+                    usecase: data.title,
+                    path: `/use-cases/${data.slug}`,
+                    cta: "All Use-cases",
+                  },
+                }}
                 href="/use-cases"
                 className="whitespace-nowrap text-sm font-medium text-gray-500 hover:text-gray-800"
               >
                 All Use-cases
-              </Link>
+              </ClientLink>
               <ChevronRight className="h-4 w-4 text-gray-400" />
               <Link
                 href={`/help/article/${data.slug}`}

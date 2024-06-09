@@ -1,5 +1,5 @@
 import { HOME_DOMAIN } from "@/lib/constants";
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { sendEmail } from "../../../../emails";
 import EnterpriseRequest from "../../../../emails/enterprise-request";
 

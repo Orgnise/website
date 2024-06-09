@@ -1,4 +1,5 @@
 import { MaxWidthWrapper } from "@/components";
+import { ClientLink } from "@/components/client-link";
 import PlainPageHeader from "@/components/plain-page-header";
 import { USE_CASES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
@@ -17,7 +18,7 @@ export default function HelpPage() {
         </MaxWidthWrapper>
       </div>
       <MaxWidthWrapper className="bg-gradient-to-b from-background/50 to-transparent pb-20 pt-10 backdrop-blur">
-        <div className="not-prose grid gap-4 py-6 md:grid-cols-2 lg:grid-cols-3 px-2">
+        <div className="not-prose grid gap-4 px-2 py-6 md:grid-cols-2 lg:grid-cols-3">
           {USE_CASES.map((usecase) => (
             <FeatureCard
               key={usecase.slug}
@@ -25,7 +26,6 @@ export default function HelpPage() {
               name={usecase.title}
               description={usecase.description}
               icon={usecase.icon}
-             
             />
           ))}
         </div>
@@ -34,7 +34,6 @@ export default function HelpPage() {
   );
 }
 
-
 interface Prop {
   name: string;
   description: string;
@@ -42,27 +41,34 @@ interface Prop {
   className?: string;
   href: string;
 }
-function FeatureCard({ name, description, icon, className ,href}: Prop) {
+function FeatureCard({ name, description, icon, className, href }: Prop) {
   return (
     <div
       className={cn(
-        "group relative transform-gpu overflow-hidden rounded-xl border border-border  transition-shadow hover:shadow-md hover:shadow-gray-900/5 hover:border-primary/15 " ,
+        "group relative transform-gpu overflow-hidden rounded-xl border border-border transition-shadow hover:border-primary/15 hover:shadow-md hover:shadow-gray-900/5",
         className,
       )}
     >
-      <div className={cn("bg-gradient-to-t from-white to-background backdrop-blur-lg/10 p-4 lg:p-8")}>
-      {icon}
+      <div
+        className={cn(
+          "backdrop-blur-lg/10 bg-gradient-to-t from-white to-background p-4 lg:p-8",
+        )}
+      >
+        {icon}
         <h3 className="mt-4 font-semibold leading-7 text-gray-900">
-          <Link href={href}>
+          <ClientLink
+            href={href}
+            trackEvent={{
+              event: "usecase-article-clicked",
+              data: { usecase: name, path: href },
+            }}
+          >
             <span className="absolute inset-0 rounded-2xl" />
             {name}
-          </Link>
+          </ClientLink>
         </h3>
         <p className="mt-1 text-sm text-gray-600">{description}</p>
-       
       </div>
     </div>
   );
 }
-
-

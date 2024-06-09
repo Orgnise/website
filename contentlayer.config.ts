@@ -156,12 +156,11 @@ export const UseCasePost = defineDocumentType(() => ({
     image: {
       type: "string",
       required: false,
-    }
+    },
   },
   // @ts-ignore
   computedFields: computedFields("use-cases"),
 }));
-
 
 const computedFields = (type: "blog" | "changelog" | "help" | "use-cases") => ({
   slug: {

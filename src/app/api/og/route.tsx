@@ -4,8 +4,7 @@ import { NextRequest } from "next/server";
 
 export const runtime = "edge";
 
-export  async function GET(req: NextRequest) {
-
+export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
 
   const title = searchParams.get("title") || "Help Center";
@@ -92,13 +91,12 @@ export  async function GET(req: NextRequest) {
   );
 }
 
-
- const truncate = (str: string | null, length: number) => {
+const truncate = (str: string | null, length: number) => {
   if (!str || str.length <= length) return str;
   return `${str.slice(0, length - 3)}...`;
 };
 
- function Logo() {
+function Logo() {
   return (
     <svg
       version="1.1"

@@ -4,6 +4,8 @@ import Link from "next/link";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 
 import { useId } from "react";
+import { TrackingEvents } from "@/lib/utility/analytics/events-type";
+import { ClientLink } from "@/components/client-link";
 
 function GridPattern({
   width,
@@ -101,6 +103,7 @@ export default function CategoryCard({
   description,
   icon,
   pattern,
+  trackEvent,
 }: {
   href: string;
   name: string;
@@ -109,6 +112,10 @@ export default function CategoryCard({
   pattern: {
     y: number;
     squares: [number, number][];
+  };
+  trackEvent?: {
+    event: TrackingEvents[number];
+    data?: { [key: string]: any };
   };
 }) {
   let mouseX = useMotionValue(0);
@@ -131,10 +138,10 @@ export default function CategoryCard({
       <div className="relative rounded-2xl p-6 pt-16">
         {icon}
         <h3 className="mt-4 font-semibold leading-7 text-gray-900">
-          <Link href={href}>
+          <ClientLink href={href} trackEvent={trackEvent}>
             <span className="absolute inset-0 rounded-2xl" />
             {name}
-          </Link>
+          </ClientLink>
         </h3>
         <p className="mt-1 text-sm text-gray-600">{description}</p>
       </div>

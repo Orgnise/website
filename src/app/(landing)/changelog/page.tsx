@@ -4,6 +4,7 @@ import { Rss } from "lucide-react";
 import Link from "next/link";
 import ChangelogLogsList from "./logs-list";
 import ChangelogListPlaceholder from "./loading";
+import { ClientLink } from "@/components/client-link";
 
 export const metadata = constructMetadata({
   title: "Changelog - Orgnise",
@@ -28,20 +29,26 @@ export default async function Changelog() {
           </div>
           <div className="absolute bottom-2 right-0 flex items-center space-x-2">
             <p className="text-sm text-gray-500">Subscribe to updates →</p>
-            <Link
+            <ClientLink
               href="https://twitter.com/orgniseapp"
               className="rounded-full bg-accent p-2 transition-colors hover:bg-gray-200"
               target="_blank"
               rel="noopener noreferrer"
+              trackEvent={{
+                event: "changelog-twitter-subscribe-clicked",
+              }}
             >
               <TwitterIcon className="h-4 w-4" />
-            </Link>
-            <Link
+            </ClientLink>
+            <ClientLink
               href="/atom"
               className="rounded-full bg-accent p-2 transition-colors hover:bg-gray-200"
+              trackEvent={{
+                event: "changelog-rss-feed-clicked",
+              }}
             >
               <Rss className="h-4 w-4 text-gray-500" />
-            </Link>
+            </ClientLink>
           </div>
         </div>
         <ChangelogLogsList />

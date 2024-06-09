@@ -12,12 +12,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { track } from "@/lib/utility/analytics/tracking";
 
 export default function EnterpriseForm() {
   type FormStatus = "idle" | "pending" | "success" | "error";
   const [status, setStatus] = useState<FormStatus>("idle");
   async function onSubmit(e: any) {
     e.preventDefault();
+    track("enterprise-form-submit");
     setStatus("pending");
     const form = new FormData(e.target);
     const rawFormData = Object.fromEntries(form);
@@ -30,8 +32,10 @@ export default function EnterpriseForm() {
     });
     if (res.ok) {
       setStatus("success");
+      track("enterprise-form-submitted");
     } else {
       setStatus("error");
+      track("enterprise-form-failed");
       console.log("Unable to submit request");
     }
   }

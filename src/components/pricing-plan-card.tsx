@@ -6,6 +6,8 @@ import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { FREE_PLAN } from "./pricing";
+import { track } from "@/lib/utility/analytics/tracking";
+import { TrackingEvents } from "@/lib/utility/analytics/events-type";
 
 export function PricingPlanCard({
   plan,
@@ -59,7 +61,9 @@ export function PricingPlanCard({
         variant={"outline"}
         onClick={() => {
           toast.success("Feature coming soon");
-          console.log("Feature coming soon");
+          const name =
+            `pricing-${plan.name!.toLowerCase()}-CTA-choose-plan-clicked` as TrackingEvents[number];
+          track(name);
         }}
       >
         Choose Plan

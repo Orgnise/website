@@ -1,12 +1,12 @@
 "use client";
-import { useSession } from "next-auth/react";
-import Image from "next/image";
+import { TrackingEvents } from "@/lib/utility/analytics/events-type";
+import { track } from "@/lib/utility/analytics/tracking";
 import { clsx } from "clsx";
+import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import NavLink from "./ui/navlink";
-import { ModeToggle } from "./toggle-theme";
-import { useEffect, useState } from "react";
 export function Navbar() {
   const [top, setTop] = useState<boolean>(true);
   useEffect(() => {
@@ -18,35 +18,46 @@ export function Navbar() {
     };
   }, []);
 
+  type tabs = {
+    name: string;
+    segment: string;
+    trackEvent: TrackingEvents[number];
+  }[];
   // const session = useSession();
   // const status = session.status;
   // const isLoading = status === "loading";
-  const tabs = [
+  const tabs: tabs = [
     {
       name: "Features",
       segment: "/#features",
+      trackEvent: "menu-features-clicked",
     },
     {
       name: "Pricing",
       segment: "/pricing",
+      trackEvent: "menu-pricing-clicked",
     },
     {
       name: "Enterprise",
       segment: "/enterprise",
-    },
-    {
-      name: "Help",
-      segment: "/help",
+      trackEvent: "menu-enterprise-clicked",
     },
     {
       name: "Use Cases",
       segment: "/use-cases",
+      trackEvent: "menu-usecase-clicked",
+    },
+    {
+      name: "Help",
+      segment: "/help",
+      trackEvent: "menu-help-clicked",
     },
     {
       name: "ChangeLog",
       segment: "/changelog",
+      trackEvent: "menu-changelog-clicked",
     },
-  ];
+  ] as const;
   return (
     <div
       className={clsx("fixed inset-x-0 top-0 z-30 w-full transition-all", {
@@ -58,7 +69,13 @@ export function Navbar() {
         <div className="flex h-14 items-center justify-between">
           {/* LOGO */}
           <div className="flex items-center space-x-10">
-            <Link href="/" className="flex items-center gap-1">
+            <Link
+              href="/"
+              className="flex items-center gap-1"
+              onClick={() => {
+                track("menu-logo-clicked", { place: "navbar" });
+              }}
+            >
               <Image
                 src="/_static/logo.svg"
                 alt="Orgnise Logo"
@@ -71,8 +88,14 @@ export function Navbar() {
             </Link>
             {/* NAVIGATION */}
             <nav className="text-md space-x48 hidden items-center font-medium text-secondary-foreground/85 lg:flex">
-              {tabs.map(({ name, segment }, index) => (
-                <NavLink key={index} segment={segment}>
+              {tabs.map(({ name, segment, trackEvent }, index) => (
+                <NavLink
+                  key={index}
+                  segment={segment}
+                  onClick={() => {
+                    track(trackEvent, { place: "navbar" });
+                  }}
+                >
                   {name}
                 </NavLink>
               ))}
@@ -81,7 +104,13 @@ export function Navbar() {
 
           <div></div>
           <div className="flex flex-row gap-4">
-            <Link href="/#waitlist" className="">
+            <Link
+              href="/#waitlist"
+              className=""
+              onClick={() => {
+                track("menu-join-waitlist-clicked", { place: "navbar" });
+              }}
+            >
               <Button variant={"default"}>Join Waitlist</Button>
             </Link>
             {/* <ModeToggle /> */}

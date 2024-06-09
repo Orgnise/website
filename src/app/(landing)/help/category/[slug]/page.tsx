@@ -7,6 +7,7 @@ import { HELP_CATEGORIES, POPULAR_ARTICLES } from "@/lib/constants";
 import { constructMetadata } from "@/lib/utility/construct-metadata";
 import { MaxWidthWrapper } from "@/components";
 import HelpArticleLink from "@/components/ui/content/help-article-link";
+import { ClientLink } from "@/components/client-link";
 
 export async function generateStaticParams() {
   return HELP_CATEGORIES.map((category) => ({
@@ -70,12 +71,20 @@ export default function HelpCategory({
       <div className="from-bg-background min-h-[50vh] border-t border-border bg-gradient-to-b to-transparent backdrop-blur-lg">
         <MaxWidthWrapper className="flex max-w-screen-lg flex-col py-10">
           <div className="flex items-center space-x-2">
-            <Link
+            <ClientLink
               href="/help"
               className="text-sm font-medium text-gray-500 hover:text-gray-800"
+              trackEvent={{
+                event: "help-all-categories-clicked",
+                data: {
+                  origin: "Help Article page",
+                  href: "/help",
+                  cta: "All Categories",
+                },
+              }}
             >
               All Categories
-            </Link>
+            </ClientLink>
             <ChevronRight className="h-4 w-4 text-gray-400" />
             <Link
               href={`/help/category/${data.slug}`}
@@ -95,7 +104,18 @@ export default function HelpCategory({
           {articles.length > 0 ? (
             <div className="grid gap-2 rounded-xl border border-gray-200 bg-background p-4">
               {articles.map((article) => (
-                <HelpArticleLink key={article.slug} article={article} />
+                <HelpArticleLink
+                  key={article.slug}
+                  article={article}
+                  trackEvent={{
+                    event: `help-article-${article.slug}-clicked` as any,
+                    data: {
+                      title: article.title,
+                      path: `/help/article/${article.slug}`,
+                      origin: "Help Category page",
+                    },
+                  }}
+                />
               ))}
             </div>
           ) : (
