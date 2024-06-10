@@ -1,4 +1,5 @@
 import { MaxWidthWrapper } from "@/components";
+import DotPattern from "@/components/pattern/dot-background";
 import PlainPageHeader from "@/components/plain-page-header";
 import CategoryCard from "@/components/ui/content/category-card";
 import { HELP_CATEGORIES } from "@/lib/constants";
@@ -6,7 +7,7 @@ import { HELP_CATEGORIES } from "@/lib/constants";
 export default function HelpPage() {
   return (
     <div className="min-h-[50vh] border-t border-border bg-gradient-to-b from-background/80 to-background/50 backdrop-blur-lg">
-      <div className="mx-auto w-full border-b bg-background">
+      <DotPattern className="mx-auto w-full border-b">
         <MaxWidthWrapper className="w-full flex-grow">
           <PlainPageHeader
             title="Help Center"
@@ -14,7 +15,7 @@ export default function HelpPage() {
             className="border-none bg-transparent"
           />
         </MaxWidthWrapper>
-      </div>
+      </DotPattern>
       <MaxWidthWrapper className="max-w-screen-lg bg-gradient-to-b from-background/50 to-transparent pb-20 pt-10 backdrop-blur">
         <div className="not-prose grid gap-4 py-6 md:grid-cols-2 lg:grid-cols-3">
           {HELP_CATEGORIES.map((category) => (

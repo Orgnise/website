@@ -1,4 +1,5 @@
 import { TrackingEvents } from "@/lib/utility/analytics/events-type";
+import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ClientLink } from "./client-link";
@@ -6,6 +7,7 @@ import { ClientLink } from "./client-link";
 type FooterLink = {
   title: string;
   url: string;
+  external?: boolean;
   trackEvent: TrackingEvents[number];
 };
 
@@ -34,7 +36,23 @@ export function Footer() {
           url: "/enterprise",
           trackEvent: "footer-enterprise-clicked",
         },
+        
         {
+          title: "About",
+          url: "/about",
+          trackEvent: "footer-about-clicked",
+        },
+        {
+          title: "Contact us",
+          url: "/contact",
+          trackEvent: "footer-contact-us-clicked",
+        },
+      ],
+    },
+    {
+      header: "Resources",
+      links: [
+       {
           title: "Use Cases",
           url: "/use-cases",
           trackEvent: "footer-usecase-clicked",
@@ -45,21 +63,12 @@ export function Footer() {
           trackEvent: "footer-changelog-clicked",
         },
         {
-          title: "Contact us",
-          url: "/contact",
-          trackEvent: "footer-contact-us-clicked",
-        },
-
-        {
-          title: "About",
-          url: "/about",
-          trackEvent: "footer-about-clicked",
-        },
-        {
           title: "Help",
           url: "/help",
           trackEvent: "footer-help-clicked",
         },
+        
+
       ],
     },
     {
@@ -89,11 +98,13 @@ export function Footer() {
           title: "Roadmap",
           url: "https://github.com/orgs/Orgnise/projects/1",
           trackEvent: "footer-roadmap-clicked",
+          external: true,
         },
         {
           title: "Book a demo",
           url: "https://go.orgnise.in/book-demo",
           trackEvent: "footer-book-a-demo-clicked",
+          external: true,
         },
       ],
     },
@@ -173,11 +184,11 @@ export function Footer() {
           </div>
 
           {/* LINKS */}
-          <div className="grid flex-1 grid-cols-3 gap-8">
+          <div className="flex-1 grid sm:gap-8 grid-cols-2 sm:grid-cols-4 sm:justify-items-center">
             {links.map((key, index) => (
               <div key={index}>
                 {
-                  <div>
+                  <div className="mb-4">
                     <label className="text-sm font-semibold text-gray-800 dark:text-gray-300">
                       {key.header}
                     </label>
@@ -192,7 +203,11 @@ export function Footer() {
                               data: { source: "footer" },
                             }}
                           >
+                            <span className="flex items-center gap-1">
+
                             {link.title}
+                            {link.external && <ExternalLink size={12}/>}
+                            </span>
                           </ClientLink>
                         </li>
                       ))}
