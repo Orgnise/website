@@ -9,12 +9,12 @@ import { CheckCircle2Icon } from "lucide-react";
 import { track } from "@/lib/utility/analytics/tracking";
 
 export function WaitList() {
-  track("waitlist-email-submit", { place: "waitlist-section" });
   type Status = "idle" | "loading" | "success" | "error";
   const [status, setStatus] = useState<Status>("idle");
   const emailRef = useRef<HTMLInputElement>(null);
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    track("waitlist-email-submit", { place: "waitlist-section" });
     const formData = new FormData(e.currentTarget);
     const email = formData.get("email") as string;
     console.log(email);
@@ -40,6 +40,7 @@ export function WaitList() {
       })
       .catch(() => {
         setStatus("error");
+        track("waitlist-email-submit-failed", { place: "waitlist-section" });
       })
       .finally(() => {
         if (emailRef.current) emailRef.current!.value = "";
