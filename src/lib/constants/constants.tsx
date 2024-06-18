@@ -193,13 +193,13 @@ export const USE_CASES: {
       "Capture, organize, and share HR policies, procedures, and training materials in a centralized knowledge base.",
     icon: <BookUserIcon className="h-6 w-6 text-gray-500" />,
   },
-  {
-    slug: "game-development",
-    title: "Game Development",
-    description:
-      "Create game, organize assets, and share knowledge with a centralized knowledge base.",
-    icon: <Gamepad2Icon className="h-6 w-6 text-gray-500" />,
-  },
+  // {
+  //   slug: "game-development",
+  //   title: "Game Development",
+  //   description:
+  //     "Create game, organize assets, and share knowledge with a centralized knowledge base.",
+  //   icon: <Gamepad2Icon className="h-6 w-6 text-gray-500" />,
+  // },
   {
     slug: "onboarding-and-training",
     title: "Onboarding and Training",

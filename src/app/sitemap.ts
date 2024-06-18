@@ -39,7 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
     },
     {
-      url: `https://${domain}/usecases`,
+      url: `https://${domain}/use-cases`,
       lastModified: new Date(),
     },
     ...allUseCasePosts.map((post) => ({
