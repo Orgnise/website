@@ -9,15 +9,18 @@ const Navbar = [
   "menu-usecase-clicked",
   "menu-changelog-clicked",
   "menu-join-waitlist-clicked",
+  "menu-login-clicked",
+  "menu-signup-clicked",
 ] as const;
 
-const HeroSection = ["get-early-access-CTA-clicked"] as const;
+const HeroSection = ["get-early-access-CTA-clicked", "signup-for-free-CTA-clicked", "go-to-dashboard-clicked"] as const;
 
 const WaitListSection = [
   "join-waitlist-input-box-clicked",
   "waitlist-email-submit",
   "waitlist-email-submitted",
   "waitlist-email-submit-failed",
+  "get-started-CTA-clicked",
 ] as const;
 
 const Footer = [

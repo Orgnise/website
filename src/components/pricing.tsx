@@ -35,8 +35,9 @@ const BUSINESS_PLAN_MODIFIER = ({
   cta: {
     text: "Get started with Business",
     shortText: "Get started",
-    href: "#",
+    href: "https://go.orgnise.in/signup",
     color: "bg-sky-900 border-sky-900 hover:text-sky-900",
+    isExternalLink: true,
   },
   featureTitle: "Everything in Pro, plus:",
   features: [
@@ -76,8 +77,9 @@ export const PLANS = [
     },
     cta: {
       text: "Start for free",
-      href: "#",
+      href: "https://go.orgnise.in/signup",
       color: "bg-black border-black hover:text-black",
+      isExternalLink: true,
     },
     featureTitle: "What's included:",
     features: [
@@ -110,9 +112,10 @@ export const PLANS = [
       text: "text-violet-600",
     },
     cta: {
-      text: "Contact us",
-      href: "/enterprise",
+      text: "Get started with Pro",
+      href: "https://go.orgnise.in/signup",
       color: "bg-violet-600 border-violet-600 hover:text-violet-600",
+      isExternalLink: true,
     },
     featureTitle: "Everything in Free, plus:",
     features: [
@@ -155,6 +158,7 @@ export const PLANS = [
       text: "Contact us",
       href: "/enterprise",
       color: "bg-violet-600 border-violet-600 hover:text-violet-600",
+      isExternalLink: false,
     },
     featureTitle: "Everything in Business, plus:",
     features: [

@@ -2,10 +2,10 @@
 import { TrackingEvents } from "@/lib/utility/analytics/events-type";
 import { track } from "@/lib/utility/analytics/tracking";
 import { clsx } from "clsx";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Button } from "./ui/button";
 import NavLink from "./ui/navlink";
 export function Navbar() {
   const [top, setTop] = useState<boolean>(true);
@@ -23,9 +23,9 @@ export function Navbar() {
     segment: string;
     trackEvent: TrackingEvents[number];
   }[];
-  // const session = useSession();
-  // const status = session.status;
-  // const isLoading = status === "loading";
+  const session = useSession();
+  const status = session.status;
+  const isLoading = status === "loading";
   const tabs: tabs = [
     {
       name: "Features",
@@ -104,7 +104,7 @@ export function Navbar() {
 
           <div></div>
           <div className="flex flex-row gap-4">
-            <Link
+            {/* <Link
               href="/#waitlist"
               className=""
               onClick={() => {
@@ -112,11 +112,11 @@ export function Navbar() {
               }}
             >
               <Button variant={"default"}>Join Waitlist</Button>
-            </Link>
+            </Link> */}
             {/* <ModeToggle /> */}
           </div>
           {/* Login/Sign up/Dashboard CTA */}
-          {/* {session.data ? (
+          {session.data ? (
             <Link
               className="animate-fade-in rounded-full border border-black bg-black px-4 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
               href="https://app.orgnise.in"
@@ -132,19 +132,25 @@ export function Navbar() {
               <div className="">
                 <Link
                   className="animate-fade-in rounded-full px-4 py-1.5 text-sm font-medium text-secondary-foreground/85 transition-colors ease-out hover:text-black"
-                  href="https://app.orgnise.in/login"
+                  href="https://go.orgnise.in/login"
+                  onClick={() => {
+                    track("menu-login-clicked", { place: "navbar" });
+                  }}
                 >
                   Log in
                 </Link>
                 <Link
                   className="animate-fade-in rounded-full border border-black bg-black px-4 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
-                  href="https://app.orgnise.in/signup"
+                  href="https://go.orgnise.in/signup"
+                  onClick={() => {
+                    track("menu-signup-clicked", { place: "navbar" });
+                  }}
                 >
                   Sign Up
                 </Link>
               </div>
             </div>
-          )} */}
+          )}
         </div>
       </div>
     </div>

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { FREE_PLAN } from "./pricing";
 import { track } from "@/lib/utility/analytics/tracking";
 import { TrackingEvents } from "@/lib/utility/analytics/events-type";
+import Link from "next/link";
 
 export function PricingPlanCard({
   plan,
@@ -56,18 +57,19 @@ export function PricingPlanCard({
           </li>
         ))}
       </ul>
-      <Button
-        className={cn(clsx("w-full text-primary-foreground", plan.colors.bg))}
-        variant={"outline"}
-        onClick={() => {
-          toast.success("Feature coming soon");
-          const name =
-            `pricing-${plan.name!.toLowerCase()}-CTA-choose-plan-clicked` as TrackingEvents[number];
-          track(name);
-        }}
-      >
-        Choose Plan
-      </Button>
+      <Link href={plan.cta.href}>
+        <Button
+          className={cn(clsx("w-full text-primary-foreground", plan.colors.bg))}
+          variant={"outline"}
+          onClick={() => {
+            const name =
+              `pricing-${plan.name!.toLowerCase()}-CTA-choose-plan-clicked` as TrackingEvents[number];
+            track(name, { place: "pricing-page" });
+          }}
+        >
+          {plan.cta.text}
+        </Button>
+      </Link>
 
       {isPopular && (
         <div className="absolute -top-5 left-[35%] inline-flex whitespace-nowrap rounded-full border border-solid border-primary bg-gradient-to-tr from-indigo-800 via-violet-600 to-purple-700 px-4 py-2 font-bold text-primary-foreground hover:bg-primary hover:text-primary-foreground">

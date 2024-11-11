@@ -1,7 +1,3 @@
-import { Card2 } from "@/components/card";
-import { DynamicPattern } from "@/components/pattern/dynamic-pattern";
-import Pattern from "@/components/pattern/pattern";
-import { MotionValue } from "framer-motion";
 import Image from "next/image";
 
 export default function OgPage() {

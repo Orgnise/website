@@ -4,6 +4,7 @@ import { constructMetadata } from "@/lib/utility/construct-metadata";
 import { cn } from "@/lib/utils";
 import { inter, satoshi } from "@/styles/font";
 import GTagScript from "@/components/gtag-script";
+import Providers from "./(landing)/providers";
 
 export const metadata = constructMetadata({});
 
@@ -28,7 +29,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          {children}
+          <Providers>{children}</Providers>
         </ThemeProvider>
       </body>
     </html>

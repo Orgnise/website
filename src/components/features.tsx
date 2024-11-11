@@ -1,7 +1,6 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { Card2 } from "./card";
-import clsx from "clsx";
 import { GlowingStarsBackgroundCard } from "./glowing-stars";
 export function Features() {
   return (

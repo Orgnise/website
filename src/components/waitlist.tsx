@@ -1,12 +1,11 @@
 "use client";
+import { APP_DOMAIN } from "@/lib/constants";
+import { track } from "@/lib/utility/analytics/tracking";
 import Image from "next/image";
+import Link from "next/link";
+import { useRef, useState } from "react";
 import { MaxWidthWrapper } from "./max-width-wrapper";
 import { Button } from "./ui/button";
-import { useRef, useState } from "react";
-import { APP_DOMAIN } from "@/lib/constants";
-import { Spinner } from "./ui/loader";
-import { CheckCircle2Icon } from "lucide-react";
-import { track } from "@/lib/utility/analytics/tracking";
 
 export function WaitList() {
   type Status = "idle" | "loading" | "success" | "error";
@@ -59,7 +58,7 @@ export function WaitList() {
           width={100}
           height={100}
         />
-        <div className="mt-4 flex flex-col place-content-center gap-4">
+        <div className="mt-4 flex flex-col place-content-center items-center gap-4">
           <h1 className="mb-3 text-4xl font-bold sm:text-5xl lg:text-7xl">
             A better way to align your team
           </h1>
@@ -67,7 +66,7 @@ export function WaitList() {
             Join the waitlist to be part of our growing community and we&apos;ll
             let you in as soon as possible
           </p>
-          <form
+          {/* <form
             onSubmit={handleSubmit}
             className="mt-6 flex items-center gap-1 rounded border border-border/60 bg-background p-1 shadow-[0px_10px_20px_10px_#E6E6E6AD] dark:border-indigo-950 dark:shadow-none"
           >
@@ -105,7 +104,20 @@ export function WaitList() {
                 )}
               </Button>
             )}
-          </form>
+          </form> */}
+          <Link
+            href="https://go.orgnise.in/signup"
+            className="mt-6"
+            onClick={() => {
+              track("signup-for-free-CTA-clicked", {
+                place: "waitlist-section",
+              });
+            }}
+          >
+            <Button variant={"default"} className="rounded-3xl px-10">
+              Get Started
+            </Button>
+          </Link>
         </div>
       </MaxWidthWrapper>
     </div>

@@ -1,12 +1,13 @@
 "use client";
 import { track } from "@/lib/utility/analytics/tracking";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
 export function HeroSection() {
-  // const session = useSession();
-  // const status = session.status;
-  // const isLoading = status === "loading";
+  const session = useSession();
+  const status = session.status;
+  const isLoading = status === "loading";
   return (
     <div>
       <div className="z-10 pt-10 lg:pt-16">
@@ -26,34 +27,33 @@ export function HeroSection() {
           </h2>
         </div>
         <div className="mx-auto my-12 flex place-content-center">
-          {/* {isLoading ? (
-            <div className=" h-14 w-[188px] px-10 py-2"></div>
+          {isLoading ? (
+            <div className="h-14 w-[188px] px-10 py-2"></div>
           ) : session.data ? (
             <Link
               href="https://app.orgnise.in"
-              className="flex flex-row items-center rounded-full border border-solid  border-primary px-10 py-3  font-bold text-primary hover:bg-primary hover:text-primary-foreground"
+              className="flex flex-row items-center rounded-full border border-solid border-primary px-10 py-3 font-bold text-primary hover:bg-primary hover:text-primary-foreground"
+              onClick={() => {
+                track("go-to-dashboard-clicked", {
+                  place: "hero-section",
+                });
+              }}
             >
               Go to Dashboard
             </Link>
           ) : (
             <Link
               href="https://app.orgnise.in/signup"
-              className="flex flex-row items-center rounded-full border border-solid  border-primary px-10 py-3  font-bold text-primary hover:bg-primary hover:text-primary-foreground"
+              className="flex flex-row items-center rounded-full border border-solid border-primary px-10 py-3 font-bold text-primary hover:bg-primary hover:text-primary-foreground"
+              onClick={() => {
+                track("signup-for-free-CTA-clicked", {
+                  place: "hero-section",
+                });
+              }}
             >
               Sign up for free
             </Link>
-          )} */}
-          <Link
-            href="#waitlist"
-            onClick={() => {
-              track("get-early-access-CTA-clicked", { place: "hero-section" });
-            }}
-            className="flex flex-row items-center rounded-full border border-solid border-primary px-10 py-3 font-bold text-primary hover:bg-primary hover:text-primary-foreground"
-          >
-            {/* <Button variant={"default"}> */}
-            Get Early Access
-            {/* </Button> */}
-          </Link>
+          )}
         </div>
       </div>
       <div className="relative aspect-video w-full rounded-xl border border-border bg-background drop-shadow-[0px_25px_25px_rgba(230,222,255,0.99)] dark:drop-shadow-none md:drop-shadow-[0px_50px_50px_rgba(230,222,255,0.99)] lg:rounded-[25px]">
