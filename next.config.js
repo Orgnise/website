@@ -9,8 +9,6 @@ const options = {
 };
 
 const withMDX = nextMDX({
-  reactStrictMode: true,
-  swcMinify: true,
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [],
@@ -19,6 +17,7 @@ const withMDX = nextMDX({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   // Configure `pageExtensions` to include MDX files
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 

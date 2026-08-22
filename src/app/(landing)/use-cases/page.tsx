@@ -5,6 +5,7 @@ import PlainPageHeader from "@/components/plain-page-header";
 import { USE_CASES } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import type { JSX } from "react";
 
 export default function HelpPage() {
   return (

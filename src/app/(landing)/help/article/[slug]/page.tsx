@@ -23,9 +23,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata | undefined> {
-  const post = allHelpPosts.find((post) => post.slug === params.slug);
+  const { slug } = await params;
+  const post = allHelpPosts.find((post) => post.slug === slug);
   if (!post) {
     return;
   }
@@ -44,11 +45,12 @@ export async function generateMetadata({
 export default async function HelpArticle({
   params,
 }: {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }) {
-  const data = allHelpPosts.find((post) => post.slug === params.slug);
+  const { slug } = await params;
+  const data = allHelpPosts.find((post) => post.slug === slug);
   if (!data) {
     notFound();
   }

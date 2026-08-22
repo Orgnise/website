@@ -1,4 +1,3 @@
-/* eslint-env node */
 import { ImageResponse } from "next/og";
 import { NextRequest } from "next/server";
 

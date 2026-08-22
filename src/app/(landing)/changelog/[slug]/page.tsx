@@ -52,9 +52,10 @@ function getNextAndPrevArticles(article: ChangelogPost): {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata | undefined> {
-  const post = allChangelogPosts.find((post) => post.slug === params.slug);
+  const { slug } = await params;
+  const post = allChangelogPosts.find((post) => post.slug === slug);
   if (!post) {
     return;
   }
@@ -75,9 +76,10 @@ export async function generateMetadata({
 export default async function ChangelogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = allChangelogPosts.find((post) => post.slug === params.slug);
+  const { slug } = await params;
+  const post = allChangelogPosts.find((post) => post.slug === slug);
   if (!post) {
     notFound();
   }

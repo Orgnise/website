@@ -1,5 +1,6 @@
 import { MaxWidthWrapper } from "@/components";
 import { ArrowLeftIcon } from "lucide-react";
+import type { JSX } from "react";
 
 export default function LoadingChangelog(): JSX.Element {
   return (
