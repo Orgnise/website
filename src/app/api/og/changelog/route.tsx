@@ -3,8 +3,6 @@ import { NextRequest } from "next/server";
 import { allChangelogPosts } from "contentlayer/generated";
 import { formatDate } from "@/lib/functions/utils";
 
-export const runtime = "edge";
-
 export async function GET(req: NextRequest) {
   const post = allChangelogPosts.sort((a, b) => {
     if (new Date(a.publishedAt) > new Date(b.publishedAt)) {
