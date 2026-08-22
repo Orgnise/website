@@ -40,3 +40,6 @@ next-env.d.ts
 
 # contentlayer
 .contentlayer
+
+# local agent workspace symlink
+.aw
