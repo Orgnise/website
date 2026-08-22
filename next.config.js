@@ -1,5 +1,5 @@
 const nextMDX = require("@next/mdx");
-const { withContentlayer } = require("next-contentlayer");
+const { withContentlayer } = require("next-contentlayer2");
 
 // const rehypePrettyCode = require("rehype-pretty-code");
 
