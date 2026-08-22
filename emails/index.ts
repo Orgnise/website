@@ -39,7 +39,7 @@ export async function sendEmail({
     from: "noreply@orgnise.in",
     subject: subject,
     html: "Hi",
-    ...(react && { html: render(react) }),
+    ...(react && { html: await render(react) }),
     ...(text && { TextBody: text }),
   });
   console.log("--------EMAIL TO:----------");
