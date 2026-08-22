@@ -15,7 +15,7 @@ export default async function Author({
     ["TheAlphamerc"]: {
       name: "Sonu Sharma",
       image:
-        "https://pbs.twimg.com/profile_images/1731142766196113408/pSTTZkrd_normal.jpg",
+        "https://avatars.githubusercontent.com/u/37103237?s=80&v=4",
     },
   };
 

@@ -1,5 +1,5 @@
 const nextMDX = require("@next/mdx");
-const { withContentlayer } = require("next-contentlayer");
+const { withContentlayer } = require("next-contentlayer2");
 
 // const rehypePrettyCode = require("rehype-pretty-code");
 
@@ -9,8 +9,6 @@ const options = {
 };
 
 const withMDX = nextMDX({
-  reactStrictMode: true,
-  swcMinify: true,
   extension: /\.mdx?$/,
   options: {
     remarkPlugins: [],
@@ -19,6 +17,7 @@ const withMDX = nextMDX({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
   // Configure `pageExtensions` to include MDX files
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
 

@@ -17,7 +17,7 @@ export const config = {
   ],
 };
 
-export const middleware = async (req: NextRequest) => {
+export const proxy = async (req: NextRequest) => {
   const session = await getToken({
     req: req,
     secret: process.env.AUTH_SECRET,

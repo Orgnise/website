@@ -1,4 +1,5 @@
 import { Logo } from "@/components/ui/logo";
+import type { JSX } from "react";
 import {
   BookCopyIcon,
   BookTextIcon,

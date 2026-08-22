@@ -1,8 +1,7 @@
-import { ImageResponse, NextRequest } from "next/server";
+import { ImageResponse } from "next/og";
+import { NextRequest } from "next/server";
 import { allChangelogPosts } from "contentlayer/generated";
 import { formatDate } from "@/lib/functions/utils";
-
-export const runtime = "edge";
 
 export async function GET(req: NextRequest) {
   const post = allChangelogPosts.sort((a, b) => {
