@@ -1,4 +1,5 @@
-import { ImageResponse, NextRequest } from "next/server";
+import { ImageResponse } from "next/og";
+import { NextRequest } from "next/server";
 import { allChangelogPosts } from "contentlayer/generated";
 import { formatDate } from "@/lib/functions/utils";
 
