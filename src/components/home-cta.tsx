@@ -4,7 +4,13 @@ import Link from "next/link";
 
 const DARK = "#0a0a0a";
 
-export function HomeCta() {
+export function HomeCta({
+  secondaryHref = "/pricing",
+  secondaryLabel = "See pricing",
+}: {
+  secondaryHref?: string;
+  secondaryLabel?: string;
+}) {
   return (
     <section id="get-started" className="relative">
       <CtaBackdrop />
@@ -29,10 +35,10 @@ export function HomeCta() {
             Get started
           </ClientLink>
           <Link
-            href="/pricing"
+            href={secondaryHref}
             className="inline-flex h-11 items-center justify-center rounded-lg bg-white/10 px-6 text-sm font-semibold text-white transition-colors hover:bg-white/15"
           >
-            See pricing
+            {secondaryLabel}
           </Link>
         </div>
       </div>

@@ -6,7 +6,9 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-[calc(100vh-56px)] w-full flex-col">
       {children}
-      <Footer />
+      <div className="mt-auto">
+        <Footer />
+      </div>
       <Toaster />
     </div>
   );

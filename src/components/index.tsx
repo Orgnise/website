@@ -20,6 +20,8 @@ export * from "./page-title";
 export * from "./plain-page-header";
 export * from "./prose-article";
 export * from "./pricing";
+export * from "./pricing-compare";
+export * from "./pricing-faq";
 export * from "./pricing-plan-card";
 export * from "./theme-provider";
 export * from "./table-of-contents";
