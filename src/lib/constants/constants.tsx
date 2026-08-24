@@ -29,6 +29,10 @@ export const APP_DOMAIN =
 
 export const HOME_DOMAIN = `https://${process.env.NEXT_PUBLIC_APP_DOMAIN}`;
 
+export const AUTH_APP_URL = "https://app.orgnise.in";
+export const AUTH_LOGIN_URL = "https://go.orgnise.in/login";
+export const AUTH_SIGNUP_URL = "https://go.orgnise.in/signup";
+
 export const POPULAR_ARTICLES = [
   "what-is-orgnise",
   "what-is-team",

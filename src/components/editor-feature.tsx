@@ -3,7 +3,7 @@ import Image from "next/image";
 export function EditorFeature() {
   return (
     <section className="px-4 py-8 sm:py-12">
-      <div className="overflow-hidden rounded-2xl border border-border bg-background">
+      <div className="overflow-hidden rounded-2xl border border-border bg-white bg-linear-to-tl from-indigo-900/10 shadow-sm dark:bg-card">
         <div className="grid items-center gap-10 p-6 sm:p-10 lg:grid-cols-2 lg:gap-12 lg:p-14">
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-primary">

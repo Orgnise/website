@@ -1,4 +1,5 @@
 "use client";
+import { AUTH_APP_URL, AUTH_SIGNUP_URL } from "@/lib/constants";
 import { track } from "@/lib/utility/analytics/tracking";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -28,11 +29,7 @@ export function HeroSection() {
             <div className="h-12 w-44 rounded-full bg-muted" />
           ) : (
             <Link
-              href={
-                isSignedIn
-                  ? "https://app.orgnise.in"
-                  : "https://app.orgnise.in/signup"
-              }
+              href={isSignedIn ? AUTH_APP_URL : AUTH_SIGNUP_URL}
               className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-semibold text-primary-foreground transition-colors hover:bg-primary/90"
               onClick={() => {
                 track(
@@ -80,11 +77,17 @@ export function HeroSection() {
         </div>
         <p className="mt-4 text-center text-sm text-muted-foreground">
           See the{" "}
-          <Link href="/changelog" className="font-medium text-foreground underline-offset-4 hover:underline">
+          <Link
+            href="/changelog"
+            className="font-medium text-foreground underline-offset-4 hover:underline"
+          >
             latest updates
           </Link>{" "}
           or browse the{" "}
-          <Link href="/help" className="font-medium text-foreground underline-offset-4 hover:underline">
+          <Link
+            href="/help"
+            className="font-medium text-foreground underline-offset-4 hover:underline"
+          >
             help center
           </Link>
           .

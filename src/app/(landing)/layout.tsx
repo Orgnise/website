@@ -8,7 +8,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <Background />
       <div className="relative flex h-full flex-col">
         <Navbar />
-        <div className="mt-[56px]">{children}</div>
+        <div className="mt-14">{children}</div>
       </div>
     </div>
   );

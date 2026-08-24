@@ -1,70 +1,115 @@
-import { FolderKanban, LayoutGrid, PenLine, Users } from "lucide-react";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { GlowingStarsBackgroundCard } from "./glowing-stars";
 
 const STEPS = [
   {
-    step: "01",
     title: "Start a team",
     description:
       "Invite people into one shared space so work is not scattered across chats and drives.",
-    icon: Users,
+    image: "/_static/create-team-2.png",
+    imageAlt: "Creating a team and inviting members in Orgnise",
+    className: "bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5",
   },
   {
-    step: "02",
     title: "Open a workspace",
     description:
       "Group work by project or function — design, marketing, engineering, or a new launch.",
-    icon: LayoutGrid,
+    image: "/_static/workspaces.png",
+    imageAlt: "Orgnise workspaces grouped by project",
+    className:
+      "bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5 sm:translate-y-1/4",
   },
   {
-    step: "03",
     title: "Write in the editor",
     description:
       "Draft docs that look the way you write them, with headings, lists, and embeds in one page.",
-    icon: PenLine,
+    image: "/_static/rich-editor.png",
+    imageAlt: "Orgnise rich text editor with a formatted page",
+    className: "bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5",
   },
   {
-    step: "04",
     title: "Move work on a board",
     description:
       "Turn a collection into columns and watch the same pages move through your workflow.",
-    icon: FolderKanban,
+    image: "/_static/board-view.png",
+    imageAlt: "Collection shown as a kanban board in Orgnise",
+    className:
+      "bg-gradient-to-tl from-indigo-900/10 to-indigo-900/5 sm:translate-y-1/4",
   },
 ] as const;
 
 export function HowItWorks() {
   return (
-    <section id="features" className="scroll-mt-20 px-4 py-20 sm:py-28">
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="font-display text-3xl font-extrabold sm:text-4xl">
+    <section
+      id="features"
+      className="scroll-mt-20 mb-10 w-full bg-gradient-to-b from-background/10 via-background/80 to-background/10 px-4 sm:my-32"
+    >
+      <div className="mx-auto my-14 sm:max-w-2xl lg:my-20">
+        <h2 className="font-display text-center text-4xl font-extrabold sm:text-5xl">
           How teams use Orgnise
         </h2>
-        <p className="mt-4 text-muted-foreground sm:text-lg">
+        <p className="mt-5 text-center text-muted-foreground/95 sm:text-lg">
           Four steps from an empty team to a living workspace.
         </p>
       </div>
-      <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {STEPS.map(({ step, title, description, icon: Icon }) => (
-          <li
-            key={step}
-            className="rounded-xl border border-border bg-background/80 p-6"
-          >
-            <div className="flex items-center justify-between">
-              <span className="flex size-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                <Icon className="size-5" aria-hidden />
-              </span>
-              <span className="text-xs font-semibold tracking-widest text-muted-foreground">
-                {step}
-              </span>
-            </div>
-            <h3 className="mt-5 text-lg font-semibold text-foreground">
-              {title}
-            </h3>
-            <p className="mt-2 text-sm leading-6 text-muted-foreground">
-              {description}
-            </p>
-          </li>
+      <div className="grid w-full grid-cols-1 gap-4 space-y-8 sm:grid-cols-2">
+        {STEPS.map((step) => (
+          <FeatureCard
+            key={step.title}
+            title={step.title}
+            description={step.description}
+            image={step.image}
+            imageAlt={step.imageAlt}
+            className={step.className}
+          />
         ))}
-      </ol>
+      </div>
     </section>
+  );
+}
+
+function FeatureCard({
+  title,
+  description,
+  image,
+  imageAlt,
+  className,
+}: {
+  title: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  className: string;
+}) {
+  return (
+    <GlowingStarsBackgroundCard
+      disabledGlow
+      className={cn(
+        "relative h-[440px] transform-gpu overflow-hidden rounded-xl border border-border p-4 lg:p-8 xl:h-[480px]",
+        className,
+      )}
+    >
+      <div className="highlight-white-md bg-gray-750/60 relative z-30">
+        <h3 className="relative max-w-md text-xl font-semibold text-secondary-foreground lg:text-2xl">
+          {title}
+        </h3>
+        <p className="relative mt-5 max-w-lg text-base text-secondary-foreground/[85%]">
+          {description}
+        </p>
+        <div className="relative -mb-10 -ml-9 -mr-2 mt-8">
+          <div className="relative overflow-hidden rounded-tr-xl border-border/40 shadow-2xl">
+            <Image
+              src={image}
+              className="relative -mr-px -mt-px rounded-tr-xl"
+              alt={imageAlt}
+              width={600}
+              height={400}
+              style={{ color: "transparent" }}
+            />
+          </div>
+        </div>
+      </div>
+    </GlowingStarsBackgroundCard>
   );
 }

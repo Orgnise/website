@@ -22,7 +22,7 @@ export function Footer() {
       header: "Product",
       links: [
         {
-          title: "Features",
+          title: "How it works",
           url: "/#features",
           trackEvent: "footer-features-clicked",
         },
