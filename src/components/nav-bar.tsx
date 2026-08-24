@@ -1,14 +1,60 @@
 "use client";
+import { AUTH_APP_URL, AUTH_LOGIN_URL, AUTH_SIGNUP_URL } from "@/lib/constants";
 import { TrackingEvents } from "@/lib/utility/analytics/events-type";
 import { track } from "@/lib/utility/analytics/tracking";
 import { clsx } from "clsx";
+import { Menu, X } from "lucide-react";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import NavLink from "./ui/navlink";
+
+const TABS: {
+  name: string;
+  segment: string;
+  trackEvent: TrackingEvents[number];
+}[] = [
+  {
+    name: "How it works",
+    segment: "/#features",
+    trackEvent: "menu-features-clicked",
+  },
+  {
+    name: "Pricing",
+    segment: "/pricing",
+    trackEvent: "menu-pricing-clicked",
+  },
+  {
+    name: "Enterprise",
+    segment: "/enterprise",
+    trackEvent: "menu-enterprise-clicked",
+  },
+  {
+    name: "Use Cases",
+    segment: "/use-cases",
+    trackEvent: "menu-usecase-clicked",
+  },
+  {
+    name: "Help",
+    segment: "/help",
+    trackEvent: "menu-help-clicked",
+  },
+  {
+    name: "Changelog",
+    segment: "/changelog",
+    trackEvent: "menu-changelog-clicked",
+  },
+];
+
 export function Navbar() {
-  const [top, setTop] = useState<boolean>(true);
+  const [top, setTop] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const session = useSession();
+  const status = session.status;
+  const isLoading = status === "loading";
+  const isSignedIn = Boolean(session.data);
+
   useEffect(() => {
     const handleScroll = () => setTop(window.scrollY <= 50);
     handleScroll();
@@ -18,62 +64,45 @@ export function Navbar() {
     };
   }, []);
 
-  type tabs = {
-    name: string;
-    segment: string;
-    trackEvent: TrackingEvents[number];
-  }[];
-  const session = useSession();
-  const status = session.status;
-  const isLoading = status === "loading";
-  const tabs: tabs = [
-    {
-      name: "Features",
-      segment: "/#features",
-      trackEvent: "menu-features-clicked",
-    },
-    {
-      name: "Pricing",
-      segment: "/pricing",
-      trackEvent: "menu-pricing-clicked",
-    },
-    {
-      name: "Enterprise",
-      segment: "/enterprise",
-      trackEvent: "menu-enterprise-clicked",
-    },
-    {
-      name: "Use Cases",
-      segment: "/use-cases",
-      trackEvent: "menu-usecase-clicked",
-    },
-    {
-      name: "Help",
-      segment: "/help",
-      trackEvent: "menu-help-clicked",
-    },
-    {
-      name: "ChangeLog",
-      segment: "/changelog",
-      trackEvent: "menu-changelog-clicked",
-    },
-  ] as const;
+  useEffect(() => {
+    const closeOnDesktop = () => {
+      if (window.innerWidth >= 1024) {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener("resize", closeOnDesktop);
+    return () => {
+      window.removeEventListener("resize", closeOnDesktop);
+    };
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [menuOpen]);
+
+  function closeMenu() {
+    setMenuOpen(false);
+  }
+
   return (
     <div
       className={clsx("fixed inset-x-0 top-0 z-30 w-full transition-all", {
         "border-b border-border bg-background/10 backdrop-blur-lg dark:bg-background":
-          !top,
+          !top || menuOpen,
       })}
     >
       <div className="mx-auto w-full px-2.5 lg:px-20">
         <div className="flex h-14 items-center justify-between">
-          {/* LOGO */}
-          <div className="flex items-center space-x-10">
+          <div className="flex items-center gap-8">
             <Link
               href="/"
               className="flex items-center gap-1"
               onClick={() => {
                 track("menu-logo-clicked", { place: "navbar" });
+                closeMenu();
               }}
             >
               <Image
@@ -86,11 +115,10 @@ export function Navbar() {
               />
               <h1 className="text-2xl font-bold">Orgnise</h1>
             </Link>
-            {/* NAVIGATION */}
-            <nav className="text-md space-x48 hidden items-center font-medium text-secondary-foreground/85 lg:flex">
-              {tabs.map(({ name, segment, trackEvent }, index) => (
+            <nav className="hidden items-center font-medium text-secondary-foreground/85 lg:flex">
+              {TABS.map(({ name, segment, trackEvent }) => (
                 <NavLink
-                  key={index}
+                  key={segment}
                   segment={segment}
                   onClick={() => {
                     track(trackEvent, { place: "navbar" });
@@ -102,37 +130,19 @@ export function Navbar() {
             </nav>
           </div>
 
-          <div></div>
-          <div className="flex flex-row gap-4">
-            {/* <Link
-              href="/#waitlist"
-              className=""
-              onClick={() => {
-                track("menu-join-waitlist-clicked", { place: "navbar" });
-              }}
-            >
-              <Button variant={"default"}>Join Waitlist</Button>
-            </Link> */}
-            {/* <ModeToggle /> */}
-          </div>
-          {/* Login/Sign up/Dashboard CTA */}
-          {session.data ? (
-            <Link
-              className="animate-fade-in rounded-full border border-black bg-black px-4 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
-              href="https://app.orgnise.in"
-            >
-              Dashboard
-            </Link>
-          ) : (
-            <div
-              className={clsx("", {
-                hidden: isLoading,
-              })}
-            >
-              <div className="">
+          <div className="flex items-center gap-2">
+            {isSignedIn ? (
+              <Link
+                className="rounded-full border border-black bg-black px-4 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
+                href={AUTH_APP_URL}
+              >
+                Dashboard
+              </Link>
+            ) : isLoading ? null : (
+              <div className="flex items-center">
                 <Link
-                  className="animate-fade-in rounded-full px-4 py-1.5 text-sm font-medium text-secondary-foreground/85 transition-colors ease-out hover:text-black"
-                  href="https://go.orgnise.in/login"
+                  className="hidden rounded-full px-4 py-1.5 text-sm font-medium text-secondary-foreground/85 transition-colors hover:text-foreground sm:inline-flex"
+                  href={AUTH_LOGIN_URL}
                   onClick={() => {
                     track("menu-login-clicked", { place: "navbar" });
                   }}
@@ -140,8 +150,8 @@ export function Navbar() {
                   Log in
                 </Link>
                 <Link
-                  className="animate-fade-in rounded-full border border-black bg-black px-4 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
-                  href="https://go.orgnise.in/signup"
+                  className="rounded-full border border-black bg-black px-4 py-1.5 text-sm text-white transition-all hover:bg-white hover:text-black"
+                  href={AUTH_SIGNUP_URL}
                   onClick={() => {
                     track("menu-signup-clicked", { place: "navbar" });
                   }}
@@ -149,9 +159,69 @@ export function Navbar() {
                   Sign Up
                 </Link>
               </div>
-            </div>
-          )}
+            )}
+            <button
+              type="button"
+              className="inline-flex size-10 items-center justify-center rounded-md text-foreground lg:hidden"
+              aria-expanded={menuOpen}
+              aria-controls="mobile-nav"
+              onClick={() => setMenuOpen((open) => !open)}
+            >
+              {menuOpen ? (
+                <X className="size-5" aria-hidden />
+              ) : (
+                <Menu className="size-5" aria-hidden />
+              )}
+              <span className="sr-only">
+                {menuOpen ? "Close menu" : "Open menu"}
+              </span>
+            </button>
+          </div>
         </div>
+
+        {menuOpen ? (
+          <nav
+            id="mobile-nav"
+            className="flex flex-col gap-1 border-t border-border py-3 lg:hidden"
+          >
+            {TABS.map(({ name, segment, trackEvent }) => (
+              <NavLink
+                key={segment}
+                segment={segment}
+                onClick={() => {
+                  track(trackEvent, { place: "navbar" });
+                  closeMenu();
+                }}
+              >
+                {name}
+              </NavLink>
+            ))}
+            {!isSignedIn && !isLoading ? (
+              <div className="mt-2 flex flex-col gap-2 px-2.5 sm:hidden">
+                <Link
+                  className="rounded-full px-4 py-2 text-sm font-medium text-secondary-foreground"
+                  href={AUTH_LOGIN_URL}
+                  onClick={() => {
+                    track("menu-login-clicked", { place: "navbar" });
+                    closeMenu();
+                  }}
+                >
+                  Log in
+                </Link>
+                <Link
+                  className="rounded-full border border-black bg-black px-4 py-2 text-center text-sm text-white"
+                  href={AUTH_SIGNUP_URL}
+                  onClick={() => {
+                    track("menu-signup-clicked", { place: "navbar" });
+                    closeMenu();
+                  }}
+                >
+                  Sign Up
+                </Link>
+              </div>
+            ) : null}
+          </nav>
+        ) : null}
       </div>
     </div>
   );

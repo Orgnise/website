@@ -1,81 +1,104 @@
 "use client";
 
-import { CheckCircle2Icon } from "lucide-react";
-import clsx from "clsx";
+import { ClientLink } from "@/components/client-link";
+import type { Plan } from "@/components/pricing";
 import { cn } from "@/lib/utils";
-import { toast } from "sonner";
-import { Button } from "@/components/ui/button";
-import { FREE_PLAN } from "./pricing";
-import { track } from "@/lib/utility/analytics/tracking";
 import { TrackingEvents } from "@/lib/utility/analytics/events-type";
+import { Check } from "lucide-react";
 import Link from "next/link";
 
 export function PricingPlanCard({
   plan,
   isMonthly,
-  className,
   isPopular,
 }: {
-  plan: typeof FREE_PLAN;
+  plan: Plan;
   isMonthly?: boolean;
-  className?: string;
   isPopular?: boolean;
 }) {
+  const monthly = plan.price.monthly ?? 0;
+  const yearly = plan.price.yearly ?? 0;
+  const displayPrice = isMonthly ? monthly : yearly;
+  const yearlySavings =
+    !isMonthly && monthly > 0 && yearly < monthly ? monthly - yearly : 0;
+
+  const eventName =
+    `pricing-${plan.name.toLowerCase()}-CTA-choose-plan-clicked` as TrackingEvents[number];
+
   return (
     <div
-      className={clsx(
-        "relative flex w-full max-w-[420px] flex-col rounded-xl border border-border bg-background p-4 text-left shadow-sm lg:min-w-[320px]",
-        className,
+      className={cn(
+        "relative flex h-full w-full flex-col rounded-xl border bg-background p-6 text-left",
+        isPopular ? "border-primary" : "border-border",
       )}
-      style={{}}
     >
-      <h2 className="py-3 text-base font-bold">{plan.name}</h2>
-
-      <p className="">
-        <span className="text-3xl font-bold">
-          ${isMonthly ? plan.price.monthly : plan.price.yearly}
+      {isPopular && (
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-xs font-semibold text-primary-foreground">
+          Popular
         </span>
-        <span className="px-1 text-sm text-secondary-foreground/80">
-          / per month
+      )}
+      <h2 className="text-base font-semibold">{plan.name}</h2>
+      <p className="mt-4 flex items-baseline gap-1">
+        <span className="font-display text-4xl font-bold tracking-tight">
+          ${displayPrice}
         </span>
+        <span className="text-sm text-muted-foreground">/ month</span>
       </p>
-      <p className="py-3 text-sm text-secondary-foreground/80">
-        {plan.tagline}
-      </p>
-      <hr />
-      <h4 className={clsx("mt-4 text-base font-bold", plan.colors.text)}>
-        {plan.featureTitle}
-      </h4>
-      <ul className="flex-grow py-3">
-        {plan.features.map((feature, index) => (
-          <li
-            key={index}
-            className="flex items-center gap-2 text-sm leading-9 text-secondary-foreground/70"
-          >
-            <CheckCircle2Icon size={20} className={plan.colors.text} />
-            {feature.text ?? ""}
+      {monthly === 0 ? (
+        <p className="mt-1 text-xs text-muted-foreground">
+          No credit card required
+        </p>
+      ) : yearlySavings > 0 ? (
+        <p className="mt-1 text-xs text-muted-foreground">
+          Billed yearly · save ${yearlySavings}/mo
+        </p>
+      ) : (
+        <p className="mt-1 text-xs text-muted-foreground">Billed monthly</p>
+      )}
+      <p className="mt-3 text-sm text-muted-foreground">{plan.tagline}</p>
+      <div className="my-5 h-px bg-border" />
+      <h3 className="text-sm font-semibold">{plan.featureTitle}</h3>
+      <ul className="mt-3 flex flex-1 flex-col gap-2.5">
+        {plan.features.map((feature) => (
+          <li key={feature.text} className="flex items-start gap-2.5 text-sm">
+            <Check
+              className="mt-0.5 size-4 shrink-0 text-primary"
+              aria-hidden
+            />
+            <span>
+              <span className="text-foreground">{feature.text}</span>
+              {feature.detail && (
+                <span className="mt-0.5 block text-xs text-muted-foreground">
+                  {feature.detail}{" "}
+                  {feature.href && (
+                    <Link
+                      href={feature.href}
+                      className="font-medium text-primary hover:underline"
+                    >
+                      Learn more
+                    </Link>
+                  )}
+                </span>
+              )}
+            </span>
           </li>
         ))}
       </ul>
-      <Link href={plan.cta.href}>
-        <Button
-          className={cn(clsx("w-full text-primary-foreground", plan.colors.bg))}
-          variant={"outline"}
-          onClick={() => {
-            const name =
-              `pricing-${plan.name!.toLowerCase()}-CTA-choose-plan-clicked` as TrackingEvents[number];
-            track(name, { place: "pricing-page" });
-          }}
-        >
-          {plan.cta.text}
-        </Button>
-      </Link>
-
-      {isPopular && (
-        <div className="absolute -top-5 left-[35%] inline-flex whitespace-nowrap rounded-full border border-solid border-primary bg-gradient-to-tr from-indigo-800 via-violet-600 to-purple-700 px-4 py-2 font-bold text-primary-foreground hover:bg-primary hover:text-primary-foreground">
-          Popular
-        </div>
-      )}
+      <ClientLink
+        href={plan.cta.href}
+        className={cn(
+          "mt-6 inline-flex h-11 w-full items-center justify-center rounded-lg text-sm font-semibold transition-colors",
+          isPopular
+            ? "bg-primary text-primary-foreground hover:bg-primary/90"
+            : "border border-border bg-background text-foreground hover:bg-accent",
+        )}
+        trackEvent={{
+          event: eventName,
+          data: { place: "pricing-page" },
+        }}
+      >
+        {plan.cta.text}
+      </ClientLink>
     </div>
   );
 }

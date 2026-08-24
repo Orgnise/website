@@ -17,22 +17,24 @@ interface LinkProps {
 }
 
 const ClientLink = React.forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ className, href, ...props }, ref) => {
+  ({ className, href, trackEvent, rel, target, children, ...rest }, ref) => {
     return (
       <Link
         href={href}
         className={className}
         ref={ref}
-        rel={props.rel}
-        target={props.target}
-        onClick={(e) => {
-          if (props.trackEvent) {
-            track(props.trackEvent.event, props.trackEvent.data);
+        rel={rel}
+        target={target}
+        onClick={(event) => {
+          if (trackEvent) {
+            track(trackEvent.event, trackEvent.data);
           }
-          e.stopPropagation();
+          event.stopPropagation();
         }}
-        {...props}
-      />
+        {...rest}
+      >
+        {children}
+      </Link>
     );
   },
 );

@@ -1,166 +1,150 @@
-const BUSINESS_PLAN_MODIFIER = ({
-  name = "Business",
-  monthly = 12,
-  yearly = 10,
-  workspace = 20,
-  pages = 200,
-  users = 12,
-  ids = [],
-}: {
-  name: string;
-  monthly: number;
-  yearly: number;
-  workspace: number;
-  pages: number;
-  users: number;
-  ids: string[];
-}) => ({
-  name: name,
-  tagline: "For larger teams with increased usage",
-  link: "#",
-  price: {
-    monthly,
-    yearly,
-    ids: ids,
-  },
-  limits: {
-    workspace,
-    pages,
-    users,
-  },
-  colors: {
-    bg: "bg-sky-900",
-    text: "text-sky-900",
-  },
-  cta: {
-    text: "Get started with Business",
-    shortText: "Get started",
-    href: "https://go.orgnise.in/signup",
-    color: "bg-sky-900 border-sky-900 hover:text-sky-900",
-    isExternalLink: true,
-  },
-  featureTitle: "Everything in Pro, plus:",
-  features: [
-    { text: `${users} users` },
-    {
-      text: `${workspace} workspace`,
-    },
-    {
-      text: `${pages} pages`,
-      footnote: {
-        title: "Counted as the total number of collections and pages.",
-        cta: "Learn more.",
-        href: "#",
-      },
-    },
-    { text: "Email and chat support", footnote: "Email and chat support." },
-  ],
-});
+import { AUTH_SIGNUP_URL } from "@/lib/constants";
 
-export const PLANS = [
+export type PlanFeature = {
+  text: string;
+  detail?: string;
+  href?: string;
+};
+
+export type Plan = {
+  name: string;
+  tagline: string;
+  link?: string;
+  price: {
+    monthly: number | null;
+    yearly: number | null;
+    ids: string[];
+  };
+  limits: {
+    workspace: number | null;
+    pages: number | null;
+    users: number | null;
+  };
+  cta: {
+    text: string;
+    href: string;
+    isExternalLink?: boolean;
+  };
+  featureTitle: string;
+  features: PlanFeature[];
+};
+
+export const PLANS: Plan[] = [
   {
     name: "Free",
-    tagline: "For hobby & side projects",
+    tagline: "For trying Orgnise with a small project",
     price: {
       monthly: 0,
       yearly: 0,
-      ids: [] as string[],
+      ids: [],
     },
     limits: {
       workspace: 3,
       pages: 30,
       users: 1,
     },
-    colors: {
-      bg: "bg-black",
-      text: "text-black",
-    },
     cta: {
       text: "Start for free",
-      href: "https://go.orgnise.in/signup",
-      color: "bg-black border-black hover:text-black",
+      href: AUTH_SIGNUP_URL,
       isExternalLink: true,
     },
-    featureTitle: "What's included:",
+    featureTitle: "What's included",
     features: [
+      { text: "Docs, collections, and boards" },
       { text: "1 user" },
+      { text: "3 workspaces" },
       {
-        text: "Up to 3 Workspaces",
+        text: "30 pages",
+        detail: "Pages and collections count toward this limit.",
+        href: "/help/article/what-is-page",
       },
-      { text: "upto 30 pages " },
       {
         text: "Community support",
-        footnote: "Help center + GitHub discussions.",
+        detail: "Help center and GitHub discussions.",
       },
     ],
   },
   {
     name: "Pro",
-    tagline: "For startups & small businesses",
+    tagline: "For startups and small teams",
     price: {
       monthly: 24,
       yearly: 19,
-      ids: [] as string[],
+      ids: [],
     },
     limits: {
       workspace: 10,
       pages: 200,
       users: 5,
     },
-    colors: {
-      bg: "bg-violet-600",
-      text: "text-violet-600",
-    },
     cta: {
       text: "Get started with Pro",
-      href: "https://go.orgnise.in/signup",
-      color: "bg-violet-600 border-violet-600 hover:text-violet-600",
+      href: AUTH_SIGNUP_URL,
       isExternalLink: true,
     },
-    featureTitle: "Everything in Free, plus:",
+    featureTitle: "Everything in Free, plus",
     features: [
-      { text: "5 user" },
-      { text: "10 Workspaces" },
-      { text: "200 pages" },
-      { text: "Email support", footnote: "Basic email support." },
+      { text: "5 users" },
+      { text: "10 workspaces" },
+      {
+        text: "200 pages",
+        detail: "Pages and collections count toward this limit.",
+        href: "/help/article/what-is-page",
+      },
+      { text: "Email support" },
     ],
   },
-  BUSINESS_PLAN_MODIFIER({
+  {
     name: "Business",
-    monthly: 59,
-    yearly: 49,
-    users: 10,
-    pages: 600,
-    workspace: 30,
-    ids: [],
-  }),
-  ,
+    tagline: "For teams that need more room and support",
+    price: {
+      monthly: 59,
+      yearly: 49,
+      ids: [],
+    },
+    limits: {
+      workspace: 30,
+      pages: 600,
+      users: 10,
+    },
+    cta: {
+      text: "Get started with Business",
+      href: AUTH_SIGNUP_URL,
+      isExternalLink: true,
+    },
+    featureTitle: "Everything in Pro, plus",
+    features: [
+      { text: "10 users" },
+      { text: "30 workspaces" },
+      {
+        text: "600 pages",
+        detail: "Pages and collections count toward this limit.",
+        href: "/help/article/what-is-page",
+      },
+      { text: "Email and chat support" },
+    ],
+  },
   {
     name: "Enterprise",
     tagline:
-      "Tailored plans for large corporations are available. Whether you are managing a multinational company or a local business, it is important to have a plan that fits your specific needs and goals. Our team of experts will work with you to create a customized strategy that maximizes efficiency and drives success in your industry.",
-    link: "https://organise.in/enterprise",
+      "Custom limits, a dedicated success manager, and priority support for larger organizations.",
+    link: "/enterprise",
     price: {
       monthly: null,
       yearly: null,
-      ids: [] as string[],
+      ids: [],
     },
     limits: {
-      links: null,
-      clicks: null,
-      domains: null,
-    },
-    colors: {
-      bg: "bg-violet-600",
-      text: "text-violet-600",
+      workspace: null,
+      pages: null,
+      users: null,
     },
     cta: {
       text: "Contact us",
       href: "/enterprise",
-      color: "bg-violet-600 border-violet-600 hover:text-violet-600",
       isExternalLink: false,
     },
-    featureTitle: "Everything in Business, plus:",
+    featureTitle: "Everything in Business, plus",
     features: [
       { text: "Custom usage limits" },
       { text: "Dedicated success manager" },
@@ -170,11 +154,11 @@ export const PLANS = [
   },
 ];
 
-export const FREE_PLAN = PLANS.find((plan) => plan?.name === "Free")!;
-export const PRO_PLAN = PLANS.find((plan) => plan?.name === "Pro")!;
-export const BUSINESS_PLAN = PLANS.find((plan) => plan?.name === "Business")!;
+export const FREE_PLAN = PLANS.find((plan) => plan.name === "Free")!;
+export const PRO_PLAN = PLANS.find((plan) => plan.name === "Pro")!;
+export const BUSINESS_PLAN = PLANS.find((plan) => plan.name === "Business")!;
 export const ENTERPRISE_PLAN = PLANS.find(
-  (plan) => plan?.name === "Enterprise",
+  (plan) => plan.name === "Enterprise",
 )!;
 
 export const PUBLIC_PLANS = [
@@ -185,24 +169,25 @@ export const PUBLIC_PLANS = [
 ];
 
 export const SELF_SERVE_PAID_PLANS = PLANS.filter(
-  (p) => p!.name !== "Free" && p!.name !== "Enterprise",
+  (plan) => plan.name !== "Free" && plan.name !== "Enterprise",
 );
 
-export const FREE_WORKSPACES_LIMIT = 2;
+export const FREE_WORKSPACES_LIMIT = 3;
 
 export const getPlanFromPriceId = (priceId: string) => {
-  return PLANS.find((plan) => plan?.price!.ids!.includes(priceId)) || null;
+  return PLANS.find((plan) => plan.price.ids.includes(priceId)) || null;
 };
 
 export const getPlanDetails = (plan: string) => {
   return SELF_SERVE_PAID_PLANS.find(
-    (p) => p!.name.toLowerCase() === plan.toLowerCase(),
+    (item) => item.name.toLowerCase() === plan.toLowerCase(),
   )!;
 };
 
 export const getNextPlan = (plan?: string | null) => {
   if (!plan) return PRO_PLAN;
   return PLANS[
-    PLANS.findIndex((p) => p!.name.toLowerCase() === plan.toLowerCase()) + 1
+    PLANS.findIndex((item) => item.name.toLowerCase() === plan.toLowerCase()) +
+      1
   ];
 };
