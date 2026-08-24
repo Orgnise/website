@@ -14,7 +14,7 @@ export function EditorFeature() {
             </h2>
             <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
               Write with slash commands, headings, and embeds. The same page can
-              live in a collection and move across a board — docs and delivery
+              live in a collection and move across a board. Docs and delivery
               stay in one place.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-foreground sm:text-base">

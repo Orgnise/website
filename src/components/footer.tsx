@@ -3,6 +3,7 @@ import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { ClientLink } from "./client-link";
+import { cn } from "@/lib/utils";
 
 type FooterLink = {
   title: string;
@@ -16,7 +17,7 @@ type FooterSection = {
   links: FooterLink[];
 };
 
-export function Footer() {
+export function Footer({embedded}: {embedded?: boolean}) {
   const links: FooterSection[] = [
     {
       header: "Product",
@@ -111,7 +112,7 @@ export function Footer() {
   ];
   return (
     <footer className="">
-      <div className="mx-auto w-full max-w-screen-xl border border-border bg-background/70 px-2.5 pb-4 pt-16 backdrop-blur-lg md:rounded-t-2xl lg:px-20">
+      <div className={cn("mx-auto w-full max-w-7xl border border-border bg-background/70 px-2.5 pb-4 pt-16 backdrop-blur-lg md:rounded-t-2xl lg:px-20", embedded && "border-0")}>
         <div className="w-full space-y-8 sm:flex sm:space-y-0">
           <div className="flex flex-col gap-6">
             <Link href="/" className="flex items-center gap-1">
@@ -129,7 +130,7 @@ export function Footer() {
               Bringing your team&apos;s knowledge and projects together in one
               place, simply and fast
             </p>
-            <p className="text-sm leading-5 text-gray-500 text-muted-foreground/95 dark:text-gray-200">
+            <p className="text-sm leading-5 text-gray-500 dark:text-gray-200">
               © 2024 Orgnise. All rights reserved.
             </p>
             <div className="flex flex-1 space-x-4 sm:items-end">

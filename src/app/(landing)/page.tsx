@@ -16,7 +16,7 @@ export default function Home() {
         <HomeUseCases />
       </MaxWidthWrapper>
       <HomeCta />
-      <Footer />
+      <Footer embedded/>
     </main>
   );
 }

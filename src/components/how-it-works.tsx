@@ -14,7 +14,7 @@ const STEPS = [
   {
     title: "Open a workspace",
     description:
-      "Group work by project or function — design, marketing, engineering, or a new launch.",
+      "Group work by project or function: design, marketing, engineering, or a new launch.",
     image: "/_static/workspaces.png",
     imageAlt: "Orgnise workspaces grouped by project",
     className:

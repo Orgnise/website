@@ -5,7 +5,7 @@ const FAQS = [
     question: "What is a page?",
     answer: (
       <>
-        Pages are living documents — notes, specs, policies, and the rest of
+        Pages are living documents: notes, specs, policies, and the rest of
         your writing. Collections and pages both count toward the page limit.{" "}
         <Link
           href="/help/article/what-is-page"

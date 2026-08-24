@@ -131,7 +131,7 @@ function CompareCell({ value }: { value: Cell }) {
   if (value === false) {
     return (
       <span className="text-muted-foreground/50" aria-label="Not included">
-        —
+        –
       </span>
     );
   }

@@ -26,7 +26,7 @@ export function HomeUseCases() {
           Built for how teams actually work
         </h2>
         <p className="mt-5 text-muted-foreground/95 sm:text-lg">
-          Pick a workflow and see how Orgnise fits — then explore the rest.
+          Pick a workflow and see how Orgnise fits, then explore the rest.
         </p>
       </div>
       <div className="grid gap-4 sm:grid-cols-2">
